@@ -4,8 +4,10 @@
 /app/config/parameters.yml
 /app/logs/*
 !app/logs/.gitkeep
-/app/phpunit.xml
-/app/phpunit.xml.dist
 /bin/
 /vendor/
-/web/bundles/
+/web/bundles
+/composer.lock
+/.idea
+/web/css
+/web/js
