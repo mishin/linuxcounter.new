@@ -9,5 +9,6 @@
 /web/bundles
 /composer.lock
 /.idea
+/web/coverage
 /web/css
 /web/js

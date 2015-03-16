@@ -23,6 +23,6 @@ class MainControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Hallo Alex")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Alexander M.")')->count());
     }
 }
