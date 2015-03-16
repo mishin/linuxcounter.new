@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite'
+        'bundles/sywfrontmain/css/jquery-ui.min.css'
+        'bundles/sywfrontmain/css/jquery-ui.structure.min.css'
+        'bundles/sywfrontmain/css/jquery-ui.theme.min.css'
+        'bundles/sywfrontmain/css/bootstrap.min.css'
+        'bundles/sywfrontmain/css/bootstrap-theme.min.css'
+        'bundles/sywfrontmain/css/jumbotron.css'
+        'bundles/sywfrontmain/css/landingpage.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+{{ include('SywFrontMainBundle:Common:_navbar.html.twig') }}
+
+{% block body %}{% endblock %}
+
+{% block javascripts %}
+
+    {% javascripts
+    'bundles/sywfrontmain/js/jquery-1.11.2.min.js'
+    'bundles/sywfrontmain/js/jquery-ui.min.js'
+    'bundles/sywfrontmain/js/bootstrap.min.js'
+    'bundles/sywfrontmain/js/holder.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}
+
+</body>
+</html>

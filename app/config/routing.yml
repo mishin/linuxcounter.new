@@ -1,0 +1,5 @@
+syw_front_main:
+    resource: "@SywFrontMainBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
