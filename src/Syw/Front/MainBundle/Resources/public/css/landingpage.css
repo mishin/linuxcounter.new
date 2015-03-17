@@ -246,3 +246,23 @@ body {
     margin-top: 5px;
 }
 
+.lead {
+    text-align: justify;
+}
+
+.container {
+    text-align: justify;
+}
+
+.row {
+    text-align: justify;
+}
+
+.featurette-heading {
+    text-align: left;
+}
+
+.intro-social-buttons {
+    text-align: center;
+}
+
