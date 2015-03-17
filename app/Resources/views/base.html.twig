@@ -13,6 +13,7 @@
         'bundles/sywfrontmain/css/jquery-ui.structure.min.css'
         'bundles/sywfrontmain/css/jquery-ui.theme.min.css'
         'bundles/sywfrontmain/css/bootstrap.min.css'
+        'bundles/sywfrontmain/css/bootstrap-editable.css'
         'bundles/sywfrontmain/css/bootstrap-theme.min.css'
         'bundles/sywfrontmain/css/jumbotron.css'
         'bundles/sywfrontmain/css/landingpage.css' %}
@@ -25,10 +26,8 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div id="main" class="container">
 {{ include('SywFrontMainBundle:Common:_navbar.html.twig') }}
-
-{{ include('SywFrontMainBundle:Common:_carousel.html.twig') }}
 
 {% block body %}{% endblock %}
 
@@ -40,12 +39,14 @@
     'bundles/sywfrontmain/js/jquery-1.11.2.min.js'
     'bundles/sywfrontmain/js/jquery-ui.min.js'
     'bundles/sywfrontmain/js/bootstrap.min.js'
+    'bundles/sywfrontmain/js/bootstrap-editable.min.js'
+    'bundles/sywfrontmain/js/moment.js'
     'bundles/sywfrontmain/js/holder.js'
     'bundles/sywfrontmain/js/page.js'%}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
 {% endblock %}
-
+</div>
 </body>
 </html>
