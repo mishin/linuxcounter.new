@@ -7,10 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class MainController extends Controller
+class StatsController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/statistics")
      * @Method("GET")
      *
      * @Template()
@@ -20,25 +20,4 @@ class MainController extends Controller
         return array();
     }
 
-    /**
-     * @Route("/contact")
-     * @Method("GET")
-     *
-     * @Template()
-     */
-    public function contactAction()
-    {
-        return array();
-    }
-
-    /**
-     * @Route("/about")
-     * @Method("GET")
-     *
-     * @Template()
-     */
-    public function aboutAction()
-    {
-        return array();
-    }
 }
