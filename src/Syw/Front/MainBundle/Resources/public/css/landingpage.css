@@ -191,14 +191,19 @@ body {
     text-shadow: none;
 }
 
+.navbar {
+    min-height: 50px;
+}
+
 .navbar-nav {
     font-size: 1.1em;
     font-weight: bold;
 }
 
 .navbar-brand {
-    padding: 0 15px;
-    height: 60px;
+    padding: 0;
+    padding-top: 4px;
+    height: auto;
 }
 
 #main.container {
@@ -206,13 +211,38 @@ body {
     padding: 0;
 }
 
+.carousel {
+    height: 560px;
+    margin-bottom: 60px;
+}
 
+.carousel .item {
+    height: 560px;
+    background-color: #777;
+}
 
+.navbar-toggle {
+    position: relative;
+    float: right;
+    padding: 7px 8px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-color: #bbb;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
 
+.navbar-header .col-xs-10 {
+    padding-left: 0;
+}
+.navbar-header .col-xs-2 {
+    padding-right: 0;
+}
 
-
-
-
-
-
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #bcbcbc;
+    margin-top: 5px;
+}
 
