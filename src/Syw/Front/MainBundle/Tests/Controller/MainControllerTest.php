@@ -13,7 +13,7 @@ class MainControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Welcome!")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("LiCo - The New Linux Counter Project")')->count());
     }
 
     /*
@@ -23,6 +23,6 @@ class MainControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Alexander M.")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("LiCo - The New Linux Counter Project")')->count());
     }
 }

@@ -2,176 +2,106 @@
 
 {% block body %}
 
-    <!-- Header -->
-    <a name="about"></a>
-    <div class="intro-header">
-        <div class="container">
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="img-circle"
+                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                 alt="Generic placeholder image" width="140" height="140">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1>Alexander M. L&ouml;hner</h1>
-                        <h3>Web developer, system admin, tech junkie, open source enthusiast and coffee addict</h3>
-                        <hr class="intro-divider">
-                        {{ include('SywFrontMainBundle:Common:_social.html.twig') }}
-                    </div>
-                </div>
-            </div>
+            <h2>Heading</h2>
 
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies
+                vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
+                cursus magna.</p>
+
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
-        <!-- /.container -->
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="img-circle"
+                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                 alt="Generic placeholder image" width="140" height="140">
 
+            <h2>Heading</h2>
+
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras
+                mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                condimentum nibh.</p>
+
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="img-circle"
+                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                 alt="Generic placeholder image" width="140" height="140">
+
+            <h2>Heading</h2>
+
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+                fermentum massa justo sit amet risus.</p>
+
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <!-- /.col-lg-4 -->
     </div>
-    <!-- /.intro-header -->
+    <!-- /.row -->
 
-    <!-- Page Content -->
 
-    <a  name="services"></a>
-    <div class="content-section-a">
+    <!-- START THE FEATURETTES -->
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Web developer</h2>
-                    <p class="lead">My passion is to write great SOA web applications and RESTful services with PHP(5+), (X)HTML(5), CSS(3), JQuery/Ajax, Bootstrap and available frameworks like Symfony2, together with automated testing through PHPUnit, Selenium, Jenkins and many more.<br/>
-                    Here you can see some of my own projects. Some are very old and thus, the techniques and the design isn't up to date, but they are still in use and popular:</p>
-                    <ul>
-                        <li><a href="https://linuxcounter.net">LiCo - The New Linux Counter Project</a></li>
-                        <li><a href="http://androidgateway.de">AndroidGateway.de</a></li>
-                        <li><a href="http://apboard.org">APP - Another PHP Program - APBoard</a></li>
-                        <li><a href="http://linux-guru.info">Linux Guru</a></li>
-                        <li><a href="http://sharenotes.eu">Share your notes</a></li>
-                        <li><a href="http://www.kv-wilhelmsdorf.de">Kulturverein Wilhelmsdorf e.V.</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="{{ 'bundles/sywfrontmain/images/ipad.png' }}" alt="">
-                </div>
-            </div>
+    <hr class="featurette-divider">
 
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">First featurette heading. <span
+                        class="text-muted">It'll blow your mind.</span></h2>
+
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+                semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+                commodo.</p>
         </div>
-        <!-- /.container -->
-
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto"
+                 alt="Generic placeholder image">
+        </div>
     </div>
-    <!-- /.content-section-a -->
 
-    <div class="content-section-b">
+    <hr class="featurette-divider">
 
-        <div class="container">
+    <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span>
+            </h2>
 
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">System administrator</h2>
-                    <p class="lead">For developing great web applications, you also need some kind of a web-, database- and mail-server. I'm using nginx and MariaDB since some years, together with postfix mail-server. Creating automated processes for deploying, testing and monitoring is a must and one of my greatest hobbies. I'm using the free operating system GNU/Linux since 1998 and I love to administrate all kinds of linux systems and server environments.</p>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="{{ 'bundles/sywfrontmain/images/dog.png' }}" alt="">
-                </div>
-            </div>
-
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+                semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+                commodo.</p>
         </div>
-        <!-- /.container -->
-
+        <div class="col-md-5 col-md-pull-7">
+            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto"
+                 alt="Generic placeholder image">
+        </div>
     </div>
-    <!-- /.content-section-b -->
 
-    <div class="content-section-a">
+    <hr class="featurette-divider">
 
-        <div class="container">
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
 
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Tech junkie</h2>
-                    <p class="lead">I'm a tech junkie at its finest and always trying to create cool things by myself. I'm working a lot with the Raspberry Pi and I'm doing really cool things with it. Actually I've created a home automation system with one Raspberry Pi, including voice recognition and voice control and a media center with another one.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="{{ 'bundles/sywfrontmain/images/phones.png' }}" alt="">
-                </div>
-            </div>
-
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+                semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+                commodo.</p>
         </div>
-        <!-- /.container -->
-
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto"
+                 alt="Generic placeholder image">
+        </div>
     </div>
-    <!-- /.content-section-a -->
 
-    <div class="content-section-b">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Open Source Enthusiast</h2>
-                    <p class="lead">I'm of the conviction that everything should be open source and free in the meaning of freedom. Thus I'm a great enthusiast of linux and of software that is licensed in a way that allows me to modify it to fit my needs. That of course doesn't mean, that I'm not willing to pay for a good piece of software. There are great open source projects out there, that nevertheless cost money and I'd purchase it, if I need it. &quot;Free&quot; doesn't mean free of charge - &quot;Free&quot; means freedom!</p>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="{{ 'bundles/sywfrontmain/images/os.jpg' }}" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-b -->
-
-    <div class="content-section-a">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Coffee addict</h2>
-                    <p class="lead">There still is this picture of someone sitting on front of a computer, with some thick glasses on his nose and drinking coffee while developing software. The typical picture of a real nerd. And yes, I'm such a nerd.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="{{ 'bundles/sywfrontmain/images/coffee.png' }}" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-a -->
-
-    <a  name="contact"></a>
-    <div class="banner">
-
-        <div class="container">
-
-            <div class="row">
-                {{ include('SywFrontMainBundle:Common:_social.html.twig') }}
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.banner -->
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        {{ include('SywFrontMainBundle:Common:_navigation.html.twig') }}
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Alexander M. L&ouml;hner. All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <hr class="featurette-divider">
 
 {% endblock %}

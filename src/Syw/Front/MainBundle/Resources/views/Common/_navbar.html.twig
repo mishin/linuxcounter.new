@@ -1,17 +1,18 @@
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-    <div class="container topnav">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand topnav" href="{{ url('syw_front_main_main_index') }}">Alexander M. L&ouml;hner</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                {{ include('SywFrontMainBundle:Common:_navigation.html.twig') }}
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+<div id="navwrapper" class="navbar-wrapper">
+    <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Project name</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        {{ include('SywFrontMainBundle:Common:_navigation.html.twig') }}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
     </div>
-    <!-- /.container -->
-</nav>
+</div>
