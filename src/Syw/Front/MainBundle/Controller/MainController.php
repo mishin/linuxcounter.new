@@ -41,4 +41,37 @@ class MainController extends Controller
     {
         return array();
     }
+
+    /**
+     * @Route("/download")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function downloadAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/impressum")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function impressumAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/support")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function supportAction()
+    {
+        return array();
+    }
 }
