@@ -263,3 +263,15 @@ body {
     text-align: center;
 }
 
+.featurette-divider {
+    margin: 30px 0;
+}
+
+.carousel-caption {
+    bottom: 80px;
+}
+
+
+
+
+
