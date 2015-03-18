@@ -19,5 +19,13 @@ install:
   - composer install
   - composer update
 
-script: phpunit -c app/phpunit.travis.xml
+script:
+  - mkdir -p app/cache
+  - mkdir -p app/logs
+  - php app/console cache:clear
+  - php app/console assets:install --symlink web
+  - php app/console assetic:dump
+  - phpunit -c app/phpunit.travis.xml
 
+after_script:
+  - php vendor/bin/coveralls
