@@ -28,4 +28,4 @@ script:
   - phpunit -c app/phpunit.travis.xml
 
 after_script:
-  - php vendor/bin/coveralls
+  - php bin/coveralls
