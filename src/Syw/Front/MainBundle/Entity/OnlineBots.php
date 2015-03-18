@@ -1,0 +1,155 @@
+<?php
+
+namespace Syw\Front\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * OnlineBots
+ *
+ * @ORM\Table(name="online_bots", indexes={@ORM\Index(name="ipaddress", columns={"ipaddress"}), @ORM\Index(name="stamp", columns={"stamp"}), @ORM\Index(name="key", columns={"key"})})
+ * @ORM\Entity
+ */
+class OnlineBots
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ipaddress", type="string", length=16, nullable=false)
+     */
+    private $ipaddress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="browser", type="string", length=255, nullable=false)
+     */
+    private $browser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="key", type="integer", nullable=false)
+     */
+    private $key;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="stamp", type="integer", nullable=false)
+     */
+    private $stamp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+
+    /**
+     * Set ipaddress
+     *
+     * @param string $ipaddress
+     * @return OnlineBots
+     */
+    public function setIpaddress($ipaddress)
+    {
+        $this->ipaddress = $ipaddress;
+
+        return $this;
+    }
+
+    /**
+     * Get ipaddress
+     *
+     * @return string 
+     */
+    public function getIpaddress()
+    {
+        return $this->ipaddress;
+    }
+
+    /**
+     * Set browser
+     *
+     * @param string $browser
+     * @return OnlineBots
+     */
+    public function setBrowser($browser)
+    {
+        $this->browser = $browser;
+
+        return $this;
+    }
+
+    /**
+     * Get browser
+     *
+     * @return string 
+     */
+    public function getBrowser()
+    {
+        return $this->browser;
+    }
+
+    /**
+     * Set key
+     *
+     * @param integer $key
+     * @return OnlineBots
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+
+        return $this;
+    }
+
+    /**
+     * Get key
+     *
+     * @return integer 
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * Set stamp
+     *
+     * @param integer $stamp
+     * @return OnlineBots
+     */
+    public function setStamp($stamp)
+    {
+        $this->stamp = $stamp;
+
+        return $this;
+    }
+
+    /**
+     * Get stamp
+     *
+     * @return integer 
+     */
+    public function getStamp()
+    {
+        return $this->stamp;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
