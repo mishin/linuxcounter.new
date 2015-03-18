@@ -51,7 +51,7 @@
     </filter>
 
     <logging>
-        <log type="coverage-clover" target="app/logs/clover.xml"/>
+        <log type="coverage-clover" target="logs/clover.xml"/>
     </logging>
 
 </phpunit>

@@ -1,0 +1,4 @@
+Syw\Front\MainBundle\Tests\Controller\MainController
+ [x] Check for utf 8
+ [x] Check for correct content
+
