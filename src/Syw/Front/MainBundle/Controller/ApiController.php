@@ -7,10 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class StatsController extends Controller
+class ApiController extends Controller
 {
     /**
-     * @Route("/statistics")
+     * @Route("/api")
      * @Method("GET")
      *
      * @Template()
@@ -20,14 +20,4 @@ class StatsController extends Controller
         return array();
     }
 
-    /**
-     * @Route("/statistics/guess")
-     * @Method("GET")
-     *
-     * @Template()
-     */
-    public function guessAction()
-    {
-        return array();
-    }
 }

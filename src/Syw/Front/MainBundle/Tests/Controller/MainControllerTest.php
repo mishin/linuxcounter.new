@@ -9,11 +9,12 @@ class MainControllerTest extends WebTestCase
     /*
      * @desc Check for using the base.html.twig
      */
-    public function testCheckForBaseLayout()
+    public function testCheckForUtf8()
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("LiCo - The New Linux Counter Project")')->count());
+        $this->assertEquals(1, $crawler->filter('meta[charset="utf-8"]')->count(),
+            'document shall have a meta[charset="utf-8"] node');
     }
 
     /*
@@ -23,6 +24,6 @@ class MainControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("LiCo - The New Linux Counter Project")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("We are providing the most accurate and complete statistics about linux and its distributions, users, kernels and machines in the world wide web. This also includes statistics about users per country or city, most used cpus, top uptimes lists and much more.")')->count());
     }
 }

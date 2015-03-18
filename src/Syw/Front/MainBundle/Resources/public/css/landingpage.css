@@ -13,6 +13,10 @@ body {
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
+.h2, h2 {
+    font-size: 24px;
+}
+
 #main {
     background-color: #fff;
 }
@@ -216,7 +220,11 @@ body {
 
 .carousel .item {
     height: 510px;
-    background-color: #777;
+    background-color: #222;
+}
+
+.carousel-inner > .item > img {
+    height: 520px;
 }
 
 @media (min-width: 768px) {
@@ -225,6 +233,31 @@ body {
         height: 510px;
         margin-bottom: 60px;
     }
+}
+
+.carousel-inner > .item > .carousel-image {
+    width: 100%;
+    height: 520px;
+    text-align: center;
+    align: center;
+}
+
+#csl-item1 {
+    background:url(../images/slide.001.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+#csl-item2 {
+    background:url(../images/slide.002.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+#csl-item3 {
+    background:url(../images/slide.003.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
 }
 
 .navbar-toggle {
@@ -288,4 +321,7 @@ body {
 .navbar-wrapper .navbar {
     border-radius: 4px;
 }
+
+
+
 
