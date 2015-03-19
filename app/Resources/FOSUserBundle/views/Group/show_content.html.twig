@@ -1,0 +1,6 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_group_show">
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+    <p>{{ 'group.show.name'|trans }}: {{ group.getName() }}</p>
+</div>
