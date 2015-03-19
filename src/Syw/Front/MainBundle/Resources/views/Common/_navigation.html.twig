@@ -1,31 +1,41 @@
 <li>
-    <a href="{{ url('syw_front_main_main_index') }}">Home</a>
+    <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_about') }}">About</a>
+    <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_stats_index') }}">Statistics</a>
+    <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_download') }}">Download</a>
+    <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_security_register') }}">Register</a>
+    <a href="{{ url('syw_front_main_main_support') }}">{{ 'Support'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_support') }}">Support</a>
+    <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Impressum'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_impressum') }}">Impressum</a>
+    <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
-<li>
-    <a href="{{ url('syw_front_main_main_contact') }}">Contact</a>
-</li>
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <li>
+        <a href="{{ url('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
+    </li>
+{% else %}
+    <li>
+        <a href="{{ url('fos_user_security_login') }}">{{ 'Sign in'|trans }}</a>
+    </li>
+    <li class="footer-menu-divider">&sdot;</li>
+    <li>
+        <a href="{{ url('fos_user_registration_register') }}">{{ 'Sign up'|trans }}</a>
+    </li>
+{% endif %}

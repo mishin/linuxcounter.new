@@ -58,7 +58,14 @@
         {% endfor %}
     {% endfor %}
 
-    {% block body %}{% endblock %}
+
+    {% block body %}
+        <div class="container page">
+            {% block fos_user_content %}
+                {% trans_default_domain 'FOSUserBundle' %}
+            {% endblock %}
+        </div>
+    {% endblock %}
 
     {{ include('SywFrontMainBundle:Common:_footer.html.twig') }}
 
