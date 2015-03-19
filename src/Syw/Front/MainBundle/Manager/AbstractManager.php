@@ -2,15 +2,15 @@
 
 namespace Syw\Front\MainBundle\Manager;
 
-use Symfony\Component\DependencyInjection\ContainerInterface,
-    Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Doctrine\ORM\EntityManager;
 
 /**
  * AbstractManager manager class
  *
  * @author Alexander Löhner <alex.loehner@linux.com>
- * @package SywFrontMainBundle
- * @subpackage Manager
  */
 abstract class AbstractManager
 {

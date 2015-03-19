@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class MainController extends Controller
+class MainController extends BaseController
 {
     /**
      * @Route("/")
@@ -17,6 +17,7 @@ class MainController extends Controller
      */
     public function indexAction()
     {
+
         return array();
     }
 
