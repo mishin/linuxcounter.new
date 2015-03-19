@@ -322,6 +322,43 @@ body {
     border-radius: 4px;
 }
 
+.flash {
+    margin-top: 10px;
+    position: absolute;
+    z-index: 999;
+    width: 80%;
+    left: 10%;
+}
+.flashbag {
+    z-index:999;
+}
+.alert {
+    z-index:999;
+}
+.flash-danger {
+    z-index:999;
+}
+.alert-danger {
+    z-index:999;
+}
+.flash-warning {
+    z-index:999;
+}
+.alert-warning {
+    z-index:999;
+}
+.flash-info {
+    z-index:999;
+}
+.alert-info {
+    z-index:999;
+}
+.flash-success {
+    z-index:999;
+}
+.alert-success {
+    z-index:999;
+}
 
 
 

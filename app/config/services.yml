@@ -14,3 +14,22 @@ services:
         arguments: [@session]
         tags:
             - { name: kernel.event_listener, event: security.interactive_login, method: onInteractiveLogin }
+    syw.password_resetting:
+        class: Syw\Front\MainBundle\EventListener\PasswordResettingListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }
+    syw.login_success:
+        class: Syw\Front\MainBundle\EventListener\LoginListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }
+    syw.form_success:
+        class: Syw\Front\MainBundle\EventListener\FormSuccessListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }
+    syw_user.registration.form.type:
+        class: Syw\Front\MainBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: syw_user_registration }

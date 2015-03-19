@@ -13,11 +13,11 @@
                      src="{{ 'bundles/sywfrontmain/images/heading.circle.001.jpg' }}"
                      alt="Generic placeholder image" width="140" height="140">
 
-                <h2>Statistics</h2>
+                <h2>{{ 'Statistics'|trans }}</h2>
 
-                <p>We are providing the most accurate and complete statistics about linux and its distributions, users, kernels and machines in the world wide web. This also includes statistics about users per country or city, most used cpus, top uptimes lists and much more.</p>
+                <p>{{ 'We are providing the most accurate and complete statistics about linux and its distributions, users, kernels and machines in the world wide web.'|trans }} {{ 'This also includes statistics about users per country or city, most used cpus, top uptimes lists and much more.'|trans }}</p>
 
-                <p><a class="btn btn-default" href="{{ url('syw_front_main_stats_index') }}" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-default" href="{{ url('syw_front_main_stats_index') }}" role="button">{{ 'View details'|trans }} &raquo;</a></p>
             </div>
             <!-- /.col-lg-4 -->
             <div class="col-lg-4">
@@ -25,11 +25,11 @@
                      src="{{ 'bundles/sywfrontmain/images/heading.circle.002.jpg' }}"
                      alt="Generic placeholder image" width="140" height="140">
 
-                <h2>Linux users in the world</h2>
+                <h2>{{ 'Linux users in the world'|trans }}</h2>
 
-                <p>Our guess of how many linux users there are in the world, is probably the closest guess you can get. This is measured by the access logs of many great websites, together with our statistics and the statistical numbers of <a href="http://www.worldometers.info/">worldometers.info</a>.</a></p>
+                <p>{{ 'Our guess of how many linux users there are in the world, is probably the closest guess you can get.'|trans }} {{ 'This is measured by the access logs of many great websites, together with our statistics and the statistical numbers of <a href="http://www.worldometers.info/">worldometers.info</a>.'|trans|raw }}</a></p>
 
-                <p><a class="btn btn-default" href="{{ url('syw_front_main_stats_guess') }}" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-default" href="{{ url('syw_front_main_stats_guess') }}" role="button">{{ 'View details'|trans }} &raquo;</a></p>
             </div>
             <!-- /.col-lg-4 -->
             <div class="col-lg-4">
@@ -37,78 +37,19 @@
                      src="{{ 'bundles/sywfrontmain/images/heading.circle.003.jpg' }}"
                      alt="Generic placeholder image" width="140" height="140">
 
-                <h2>Service and RESTful API</h2>
+                <h2>{{ 'Service and RESTful API'|trans }}</h2>
 
-                <p>All of our generated data and statistics is publicy available either through direct download of the nightly generated XML files or through our cool, RESTful API.</p>
+                <p>{{ 'All of our generated data and statistics is publicy available either through direct download of the nightly generated XML files or through our cool, RESTful API.'|trans }}</p>
 
-                <p><a class="btn btn-default" href="{{ url('syw_front_main_api_index') }}" role="button">View details &raquo;</a></p>
+                <p><a class="btn btn-default" href="{{ url('syw_front_main_api_index') }}" role="button">{{ 'View details'|trans }} &raquo;</a></p>
             </div>
             <!-- /.col-lg-4 -->
         </div>
         <!-- /.row -->
 
-
-        <!-- START THE FEATURETTES -->
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading">First featurette heading. <span
-                            class="text-muted">It'll blow your mind.</span></h2>
-
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
-                    euismod
-                    semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac
-                    cursus
-                    commodo.</p>
-            </div>
-            <div class="col-md-5">
-                <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto"
-                     alt="Generic placeholder image">
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7 col-md-push-5">
-                <h2 class="featurette-heading">Oh yeah, it's that good. <span
-                            class="text-muted">See for yourself.</span>
-                </h2>
-
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
-                    euismod
-                    semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac
-                    cursus
-                    commodo.</p>
-            </div>
-            <div class="col-md-5 col-md-pull-7">
-                <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto"
-                     alt="Generic placeholder image">
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
-                    euismod
-                    semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac
-                    cursus
-                    commodo.</p>
-            </div>
-            <div class="col-md-5">
-                <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto"
-                     alt="Generic placeholder image">
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
     </div>
+    <p> &nbsp; </p>
+    <p> &nbsp; </p>
+    <p> &nbsp; </p>
 
 {% endblock %}
