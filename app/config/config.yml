@@ -73,6 +73,13 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Syw\Front\MainBundle\Entity\User
+    from_email:
+        address:        info@linuxcounter.net
+        sender_name:    The New Linux Counter
+    registration:
+        confirmation:
+            enabled:    true
+            template:   FOSUserBundle:Registration:email.txt.twig
 
 asm_translation_loader:
     history: true
