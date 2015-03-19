@@ -16,7 +16,6 @@
     stopOnFailure="false"
     stopOnIncomplete="false"
     stopOnSkipped="false"
-    strict="true"
     verbose="true"
     colors="true"
     bootstrap="bootstrap.php.cache">
