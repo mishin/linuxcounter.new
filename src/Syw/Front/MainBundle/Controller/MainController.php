@@ -74,4 +74,18 @@ class MainController extends Controller
     {
         return array();
     }
+
+    /**
+     * @Route("/switchlanguage")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function switchlanguageAction($locale = 'en') {
+
+        $this->get('session')->set('_locale', $locale);
+        $request = $this->getRequest();
+        $request->setLocale($locale);
+        return $this->redirect($request->headers->get('referer'));
+    }
 }

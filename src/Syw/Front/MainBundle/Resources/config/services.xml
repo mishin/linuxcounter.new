@@ -4,13 +4,16 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+    <!-- parameters>
+        <parameter key="syw.languages_management.class">Syw\Front\MainBundle\Manager\LanguageManager</parameter>
+    </parameters>
+
     <services>
-        <service id="syw_front_main.example" class="Syw\Front\MainBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="syw.languages_management" class="%syw.languages_management.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
         </service>
-    </services>
-    -->
+    </services -->
+
 </container>
