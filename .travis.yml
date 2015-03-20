@@ -22,9 +22,8 @@ install:
 script:
   - mkdir -p app/cache
   - mkdir -p app/logs
-  - php app/console doctrine:database:drop --force
   - php app/console doctrine:database:create
-  - php app/console doctrine:generate:entities SywFrontMainBundle
+  - php app/console doctrine:schema:create
   - php app/console doctrine:schema:update --force
   - php app/console doctrine:cache:clear-metadata
   - yes | php app/console doctrine:migrations:migrate 20150320085115
