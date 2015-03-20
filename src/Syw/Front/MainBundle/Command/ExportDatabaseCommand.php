@@ -20,16 +20,16 @@ class ExportDatabaseCommand extends ContainerAwareCommand
     {
         $this
             ->setName('syw:export:database')
-            ->setDescription('Exports the database content to a file')
+            ->setDescription('Exports a database table to a directory')
             ->setDefinition(array(
-                new InputArgument('file', InputArgument::REQUIRED, 'The file')
+                new InputArgument('folder', InputArgument::REQUIRED, 'The folder')
             ))
             ->setHelp(<<<EOT
-The <info>syw:export:database</info> command exports the database content to a file:
+The <info>syw:export:database</info> command exports the database content to a folder:
 
-  <info>php app/console syw:export:database app/config/initial.sql</info>
+  <info>php app/console syw:export:database app/config/travis-sql</info>
 
-This will export the database structure and data into the file app/config/initial.sql
+This will export the database structure and data into the folder app/config/travis-sql
 
 EOT
             );
@@ -40,14 +40,20 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $file = $input->getArgument('file');
+        $folder = $input->getArgument('folder');
 
         $mysql_user     = $this->getContainer()->getParameter('database_user');
         $mysql_passwd   = $this->getContainer()->getParameter('database_password');
         $mysql_database = $this->getContainer()->getParameter('database_name');
-        @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$file.'');
-        @exec('sed "/^INSERT INTO \`fos_user\`.*$/d" -i '.$file.'');
-        $output->writeln(sprintf('Database structure and data exported to <comment>%s</comment>', $file));
+
+        @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' languages | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/languages.sql');
+        @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' migration_versions | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/migration_versions.sql');
+        @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' translation | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/translation.sql');
+        @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' translation_history | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/translation_history.sql');
+        @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' fos_user | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/fos_user.sql');
+
+        @exec('sed "/^INSERT INTO \`fos_user\`.*$/d" -i '.$folder.'/fos_user.sql');
+        $output->writeln(sprintf('Database structure and data exported to <comment>%s</comment>', $folder));
     }
 
     /**
@@ -55,19 +61,19 @@ EOT
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        if (!$input->getArgument('file')) {
-            $file = $this->getHelper('dialog')->askAndValidate(
+        if (!$input->getArgument('folder')) {
+            $folder = $this->getHelper('dialog')->askAndValidate(
                 $output,
-                'Please enter a filename:',
-                function ($file) {
-                    if (empty($file)) {
-                        throw new \Exception('Filename can not be empty');
+                'Please enter a folder:',
+                function ($folder) {
+                    if (empty($folder)) {
+                        throw new \Exception('folder can not be empty');
                     }
 
-                    return $file;
+                    return $folder;
                 }
             );
-            $input->setArgument('file', $file);
+            $input->setArgument('folder', $folder);
         }
     }
 }

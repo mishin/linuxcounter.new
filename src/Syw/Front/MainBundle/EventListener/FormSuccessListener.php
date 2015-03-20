@@ -38,7 +38,7 @@ class FormSuccessListener implements EventSubscriberInterface
     {
         $url = $this->router->generate('syw_front_main_main_index');
 
-        if ($event === FOSUserEvents::REGISTRATION_SUCCESS) {
+        if ($event == FOSUserEvents::REGISTRATION_SUCCESS) {
             $this->get('session')->getFlashBag()->add('success', 'Your registration was successful. An email was sent to your postbox. Please check it and click the confirmation link.');
         }
 
