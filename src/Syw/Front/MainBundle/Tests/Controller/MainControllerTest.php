@@ -13,8 +13,7 @@ class MainControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
-        $this->assertEquals(1, $crawler->filter('meta[charset="utf-8"]')->count(),
-            'document shall have a meta[charset="utf-8"] node');
+        $this->assertGreaterThan(0, $crawler->filter('meta[charset="utf-8"]')->count());
     }
 
     /*

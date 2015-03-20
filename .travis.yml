@@ -22,9 +22,12 @@ install:
 script:
   - mkdir -p app/cache
   - mkdir -p app/logs
-  - php app/console cache:clear
-  - php app/console assets:install --symlink web
+  - php app/console doctrine:generate:entities SywFrontMainBundle
+  - php app/console doctrine:cache:clear-metadata
+  - php app/console cache:clear # --no-debug
+  - php app/console assets:install --symlink web # --no-debug
   - php app/console assetic:dump
+  - php app/console asm:translations:dummy
   - phpunit -c app/phpunit.travis.xml
 
 after_script:
