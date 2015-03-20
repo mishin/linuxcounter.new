@@ -37,6 +37,8 @@
         <whitelist>
             <directory>../src</directory>
             <exclude>
+                <directory>../src/Asm/*</directory>
+                <directory>../src/FOS/*</directory>
                 <directory>../src/*Bundle/Resources</directory>
                 <directory>../src/*Bundle/Tests</directory>
                 <directory>../src/*/*Bundle/Resources</directory>
