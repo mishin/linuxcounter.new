@@ -82,3 +82,5 @@ asm_translation_loader:
 easy_admin:
     entities:
         - Syw\Front\MainBundle\Entity\User
+        - Syw\Front\MainBundle\Entity\Translation
+        - Syw\Front\MainBundle\Entity\Languages
