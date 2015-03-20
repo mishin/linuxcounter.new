@@ -78,3 +78,7 @@ fos_user:
 
 asm_translation_loader:
     history: true
+
+easy_admin:
+    entities:
+        - Syw\Front\MainBundle\Entity\User

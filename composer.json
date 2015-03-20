@@ -26,7 +26,8 @@
     "knplabs/knp-menu-bundle": "~2",
     "knplabs/knp-paginator-bundle": "~2.4",
     "friendsofsymfony/user-bundle": "~2.0@dev",
-    "asm/translation-loader-bundle": "~1.0"
+    "asm/translation-loader-bundle": "~1.0",
+    "javiereguiluz/easyadmin-bundle": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",

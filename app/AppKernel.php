@@ -21,7 +21,8 @@ class AppKernel extends Kernel
             new Syw\Front\MainBundle\SywFrontMainBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Asm\TranslationLoaderBundle\AsmTranslationLoaderBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

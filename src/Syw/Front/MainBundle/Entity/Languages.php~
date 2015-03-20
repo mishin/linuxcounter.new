@@ -6,9 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Class Languages
- *
- * @author Alexander Löhner <alex.loehner@linux.com>
+ * Languages
  *
  * @ORM\Entity(repositoryClass="Syw\Front\MainBundle\Repository\LanguageRepository")
  * @UniqueEntity(fields="locale", message="Locale already exists.")
@@ -17,39 +15,83 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Languages
 {
     /**
-     * @ORM\Column(type="integer")
+     * @var string
+     *
+     * @ORM\Column(name="locale", type="string", length=7, nullable=false)
+     */
+    private $locale;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="language", type="string", length=128, nullable=false)
+     */
+    private $language;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;
+    private $id;
+
+
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * Set locale
+     *
+     * @param string $locale
+     * @return Languages
      */
-    protected $locale;
-
-    /**
-     * @ORM\Column(type="string", scale=128)
-     */
-    protected $language;
-
-    public function getId() {
-        return $this->id;
-    }
-
-    public function setLocale($locale) {
+    public function setLocale($locale)
+    {
         $this->locale = $locale;
+
+        return $this;
     }
 
-    public function getLocale() {
+    /**
+     * Get locale
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
         return $this->locale;
     }
 
-    public function setLanguage($language) {
+    /**
+     * Set language
+     *
+     * @param string $language
+     * @return Languages
+     */
+    public function setLanguage($language)
+    {
         $this->language = $language;
+
+        return $this;
     }
 
-    public function getLanguage() {
+    /**
+     * Get language
+     *
+     * @return string
+     */
+    public function getLanguage()
+    {
         return $this->language;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

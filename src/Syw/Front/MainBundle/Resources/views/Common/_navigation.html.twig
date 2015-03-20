@@ -28,6 +28,10 @@
 <li class="footer-menu-divider">&sdot;</li>
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     <li>
+        <a href="{{ url('fos_user_profile_show') }}">{{ 'Account'|trans }}</a>
+    </li>
+    <li class="footer-menu-divider">&sdot;</li>
+    <li>
         <a href="{{ url('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
     </li>
 {% else %}
