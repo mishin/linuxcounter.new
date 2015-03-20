@@ -16,7 +16,7 @@ install:
   - composer install
   - composer update
 
-script:
+before_script:
   - mkdir -p app/cache
   - mkdir -p app/logs
   - php app/console doctrine:database:create
@@ -28,6 +28,8 @@ script:
   - php app/console asm:translations:dummy
   - php app/console syw:user:create tester1 tester1@linuxcounter.net test123 en
   - php app/console syw:user:create tester2 tester2@linuxcounter.net test123 de
+
+script:
   - phpunit -c app/phpunit.travis.xml
 
 after_script:
