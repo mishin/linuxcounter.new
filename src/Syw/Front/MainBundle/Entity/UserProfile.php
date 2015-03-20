@@ -140,14 +140,10 @@ class UserProfile
      */
     private $hobbies;
 
-
-
-
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -170,7 +166,7 @@ class UserProfile
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -193,7 +189,7 @@ class UserProfile
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -216,7 +212,7 @@ class UserProfile
     /**
      * Get birthDay
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthDay()
     {
@@ -239,7 +235,7 @@ class UserProfile
     /**
      * Get birthPlace
      *
-     * @return string 
+     * @return string
      */
     public function getBirthPlace()
     {
@@ -262,7 +258,7 @@ class UserProfile
     /**
      * Get homePage
      *
-     * @return string 
+     * @return string
      */
     public function getHomePage()
     {
@@ -285,7 +281,7 @@ class UserProfile
     /**
      * Get icq
      *
-     * @return string 
+     * @return string
      */
     public function getIcq()
     {
@@ -308,7 +304,7 @@ class UserProfile
     /**
      * Get skype
      *
-     * @return string 
+     * @return string
      */
     public function getSkype()
     {
@@ -331,7 +327,7 @@ class UserProfile
     /**
      * Get jabber
      *
-     * @return string 
+     * @return string
      */
     public function getJabber()
     {
@@ -354,7 +350,7 @@ class UserProfile
     /**
      * Get msn
      *
-     * @return string 
+     * @return string
      */
     public function getMsn()
     {
@@ -377,7 +373,7 @@ class UserProfile
     /**
      * Get facebook
      *
-     * @return string 
+     * @return string
      */
     public function getFacebook()
     {
@@ -400,7 +396,7 @@ class UserProfile
     /**
      * Get google
      *
-     * @return string 
+     * @return string
      */
     public function getGoogle()
     {
@@ -423,7 +419,7 @@ class UserProfile
     /**
      * Get twitter
      *
-     * @return string 
+     * @return string
      */
     public function getTwitter()
     {
@@ -446,7 +442,7 @@ class UserProfile
     /**
      * Get identica
      *
-     * @return string 
+     * @return string
      */
     public function getIdentica()
     {
@@ -469,7 +465,7 @@ class UserProfile
     /**
      * Get interests
      *
-     * @return string 
+     * @return string
      */
     public function getInterests()
     {
@@ -492,7 +488,7 @@ class UserProfile
     /**
      * Get hobbies
      *
-     * @return string 
+     * @return string
      */
     public function getHobbies()
     {
@@ -515,7 +511,7 @@ class UserProfile
     /**
      * Get user
      *
-     * @return \Syw\Front\MainBundle\Entity\User 
+     * @return \Syw\Front\MainBundle\Entity\User
      */
     public function getUser()
     {
@@ -538,7 +534,7 @@ class UserProfile
     /**
      * Get city
      *
-     * @return \Syw\Front\MainBundle\Entity\Cities 
+     * @return \Syw\Front\MainBundle\Entity\Cities
      */
     public function getCity()
     {
