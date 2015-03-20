@@ -11,9 +11,6 @@ env:
 service:
   - memcached
 
-before_script:
-  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS lico;" -uroot; fi
-
 install:
   - composer self-update
   - composer install
@@ -23,10 +20,8 @@ script:
   - mkdir -p app/cache
   - mkdir -p app/logs
   - php app/console doctrine:database:create
-  - php app/console doctrine:schema:create
-  - php app/console doctrine:schema:update --force
+  - if [[ "$DB" == "mysql" ]]; then mysql -uroot symfony < app/initial.sql; fi
   - php app/console doctrine:cache:clear-metadata
-  - yes | php app/console doctrine:migrations:migrate 20150320085115
   - php app/console cache:clear
   - php app/console assets:install --symlink web
   - php app/console assetic:dump
