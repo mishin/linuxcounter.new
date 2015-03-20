@@ -2,17 +2,14 @@
 
 namespace Syw\Front\MainBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
-class MainControllerTest extends WebTestCase
+class MainControllerTest extends BaseControllerTest
 {
     /*
      * @desc Check for using the base.html.twig
      */
     public function testMainIndexCharset()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $this->client->request('GET', '/');
         $this->assertGreaterThan(0, $crawler->filter('meta[charset="utf-8"]')->count());
     }
 
@@ -21,8 +18,7 @@ class MainControllerTest extends WebTestCase
      */
     public function testMainIndexContent()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/');
+        $crawler = $this->client->request('GET', '/');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("We are providing the most accurate and complete statistics about linux and its distributions, users, kernels and machines in the world wide web. This also includes statistics about users per country or city, most used cpus, top uptimes lists and much more.")')->count());
     }
 
@@ -31,8 +27,7 @@ class MainControllerTest extends WebTestCase
      */
     public function testMainContactContent()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/contact');
+        $crawler = $this->client->request('GET', '/contact');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Contact")')->count());
     }
 
@@ -41,8 +36,7 @@ class MainControllerTest extends WebTestCase
      */
     public function testMainAboutContent()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/about');
+        $crawler = $this->client->request('GET', '/about');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("About")')->count());
     }
 
@@ -51,8 +45,7 @@ class MainControllerTest extends WebTestCase
      */
     public function testMainDownloadContent()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/download');
+        $crawler = $this->client->request('GET', '/download');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Download")')->count());
     }
 
@@ -61,8 +54,7 @@ class MainControllerTest extends WebTestCase
      */
     public function testMainImpressumContent()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/impressum');
+        $crawler = $this->client->request('GET', '/impressum');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Impressum")')->count());
     }
 
@@ -71,11 +63,9 @@ class MainControllerTest extends WebTestCase
      */
     public function testMainSupportContent()
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/support');
+        $crawler = $this->client->request('GET', '/support');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Support")')->count());
     }
-
 
 
 
