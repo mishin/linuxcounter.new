@@ -33,3 +33,6 @@ services:
         class: Syw\Front\MainBundle\Form\Type\RegistrationFormType
         tags:
             - { name: form.type, alias: syw_user_registration }
+    syw.util.user_manipulator:
+        class:      Syw\Front\MainBundle\Util\UserManipulator
+        arguments:  [@fos_user.user_manager]

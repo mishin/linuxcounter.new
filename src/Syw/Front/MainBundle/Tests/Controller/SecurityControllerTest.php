@@ -13,7 +13,7 @@ class SecurityControllerTest extends BaseControllerTest
 
         $crawler = $this->client->followRedirect();
 
-        $this->assertCount(1, $crawler->filter('li a:contains("Logout")'));
+        $this->assertCount(1, $crawler->filter('li a:contains("Ausloggen")'));
     }
 
 

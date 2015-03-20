@@ -20,12 +20,13 @@ script:
   - mkdir -p app/cache
   - mkdir -p app/logs
   - php app/console doctrine:database:create
-  - if [[ "$DB" == "mysql" ]]; then mysql -uroot symfony < app/initial.sql; fi
+  - if [[ "$DB" == "mysql" ]]; then mysql -uroot symfony < app/config/initial.sql; fi
   - php app/console doctrine:cache:clear-metadata
   - php app/console cache:clear
   - php app/console assets:install --symlink web
   - php app/console assetic:dump
   - php app/console asm:translations:dummy
+  - php app/console syw:user:create tester tester@linuxcounter.net test123 de
   - phpunit -c app/phpunit.travis.xml
 
 after_script:
