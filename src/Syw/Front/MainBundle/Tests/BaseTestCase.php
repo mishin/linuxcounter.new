@@ -4,7 +4,6 @@ namespace Syw\Front\MainBundle\Tests;
 
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -25,17 +24,20 @@ abstract class BaseTestCase extends WebTestCase
     protected $form;
 
 
-    public function getContainer () {
+    public function getContainer()
+    {
         return self::$container;
     }
 
 
-    public function getEntityManager () {
+    public function getEntityManager()
+    {
         return self::$em;
     }
 
 
-    public function get($serviceId) {
+    public function get($serviceId)
+    {
         return self::$container->get($serviceId);
     }
 }

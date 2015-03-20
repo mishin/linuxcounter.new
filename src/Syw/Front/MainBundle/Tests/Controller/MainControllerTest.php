@@ -66,17 +66,4 @@ class MainControllerTest extends BaseControllerTest
         $crawler = $this->client->request('GET', '/support');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Support")')->count());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

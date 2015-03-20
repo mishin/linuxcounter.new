@@ -17,7 +17,6 @@ class MainController extends BaseController
      */
     public function indexAction()
     {
-
         return array();
     }
 

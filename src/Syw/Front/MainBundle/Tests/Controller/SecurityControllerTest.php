@@ -4,8 +4,8 @@ namespace Syw\Front\MainBundle\Tests\Controller;
 
 class SecurityControllerTest extends BaseControllerTest
 {
-    public function testLoginSuccess () {
-
+    public function testLoginSuccess()
+    {
         $crawler = $this->client->request('GET', '/login');
 
         $form = $crawler->selectButton('Login')->form(array( '_username' => $this->test_email, '_password' => $this->test_passwd ));
@@ -17,8 +17,8 @@ class SecurityControllerTest extends BaseControllerTest
     }
 
 
-    public function testLoginFailure () {
-
+    public function testLoginFailure()
+    {
         $crawler = $this->client->request('GET', '/login');
 
         $form = $crawler->selectButton('Login')->form(array( '_username' => $this->test_email, '_password' => $this->test_passwd.'xyz' ));
@@ -28,5 +28,4 @@ class SecurityControllerTest extends BaseControllerTest
 
         $this->assertCount(1, $crawler->filter('html:contains("Invalid credentials.")'));
     }
-
 }

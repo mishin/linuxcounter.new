@@ -19,5 +19,4 @@ class ApiController extends BaseController
     {
         return array();
     }
-
 }

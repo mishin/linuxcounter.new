@@ -78,7 +78,7 @@ class Translation
     /**
      * Get translation
      *
-     * @return string 
+     * @return string
      */
     public function getTranslation()
     {
@@ -101,7 +101,7 @@ class Translation
     /**
      * Get dateCreated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -124,7 +124,7 @@ class Translation
     /**
      * Get dateUpdated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdated()
     {
@@ -147,7 +147,7 @@ class Translation
     /**
      * Get transKey
      *
-     * @return string 
+     * @return string
      */
     public function getTransKey()
     {
@@ -170,7 +170,7 @@ class Translation
     /**
      * Get transLocale
      *
-     * @return string 
+     * @return string
      */
     public function getTransLocale()
     {
@@ -193,7 +193,7 @@ class Translation
     /**
      * Get messageDomain
      *
-     * @return string 
+     * @return string
      */
     public function getMessageDomain()
     {

@@ -88,7 +88,7 @@ class TranslationHistory
     /**
      * Get transKey
      *
-     * @return string 
+     * @return string
      */
     public function getTransKey()
     {
@@ -111,7 +111,7 @@ class TranslationHistory
     /**
      * Get transLocale
      *
-     * @return string 
+     * @return string
      */
     public function getTransLocale()
     {
@@ -134,7 +134,7 @@ class TranslationHistory
     /**
      * Get messageDomain
      *
-     * @return string 
+     * @return string
      */
     public function getMessageDomain()
     {
@@ -157,7 +157,7 @@ class TranslationHistory
     /**
      * Get userName
      *
-     * @return string 
+     * @return string
      */
     public function getUserName()
     {
@@ -180,7 +180,7 @@ class TranslationHistory
     /**
      * Get userAction
      *
-     * @return string 
+     * @return string
      */
     public function getUserAction()
     {
@@ -203,7 +203,7 @@ class TranslationHistory
     /**
      * Get translation
      *
-     * @return string 
+     * @return string
      */
     public function getTranslation()
     {
@@ -226,7 +226,7 @@ class TranslationHistory
     /**
      * Get dateOfChange
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateOfChange()
     {
@@ -236,7 +236,7 @@ class TranslationHistory
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

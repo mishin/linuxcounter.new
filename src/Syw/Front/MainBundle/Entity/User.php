@@ -196,7 +196,7 @@ class User extends BaseUser
      * @param \DateTime $lastLogin
      * @return FosUser
      */
-    public function setLastLogin(\DateTime $time = NULL)
+    public function setLastLogin(\DateTime $time = null)
     {
         $this->lastLogin = $time;
 
@@ -265,7 +265,7 @@ class User extends BaseUser
      * @param \DateTime $expiresAt
      * @return FosUser
      */
-    public function setExpiresAt(\DateTime $date = NULL)
+    public function setExpiresAt(\DateTime $date = null)
     {
         $this->expiresAt = $date;
 
@@ -311,7 +311,7 @@ class User extends BaseUser
      * @param \DateTime $passwordRequestedAt
      * @return FosUser
      */
-    public function setPasswordRequestedAt(\DateTime $date = NULL)
+    public function setPasswordRequestedAt(\DateTime $date = null)
     {
         $this->passwordRequestedAt = $date;
 
@@ -380,7 +380,7 @@ class User extends BaseUser
      * @param \DateTime $credentialsExpireAt
      * @return FosUser
      */
-    public function setCredentialsExpireAt(\DateTime $date = NULL)
+    public function setCredentialsExpireAt(\DateTime $date = null)
     {
         $this->credentialsExpireAt = $date;
 

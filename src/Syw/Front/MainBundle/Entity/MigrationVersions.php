@@ -26,7 +26,7 @@ class MigrationVersions
     /**
      * Get version
      *
-     * @return string 
+     * @return string
      */
     public function getVersion()
     {

@@ -35,6 +35,5 @@ class LoginListener implements EventSubscriberInterface
     public function onLoginSuccess(FormEvent $event)
     {
         $this->get('session')->getFlashBag()->add('success', 'You have successfully logged in!');
-
     }
 }
