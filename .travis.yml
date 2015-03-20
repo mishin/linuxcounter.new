@@ -26,7 +26,8 @@ script:
   - php app/console assets:install --symlink web
   - php app/console assetic:dump
   - php app/console asm:translations:dummy
-  - php app/console syw:user:create tester tester@linuxcounter.net test123 de
+  - php app/console syw:user:create tester1 tester1@linuxcounter.net test123 en
+  - php app/console syw:user:create tester2 tester2@linuxcounter.net test123 de
   - phpunit -c app/phpunit.travis.xml
 
 after_script:

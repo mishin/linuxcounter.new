@@ -15,8 +15,11 @@ abstract class BaseControllerTest extends BaseTestCase
 
     protected $client = null;
 
-    protected $test_email       = 'tester@linuxcounter.net';
-    protected $test_passwd      = 'test123';
+    protected $test1_email       = 'tester1@linuxcounter.net';
+    protected $test1_passwd      = 'test123';
+
+    protected $test2_email       = 'tester2@linuxcounter.net';
+    protected $test2_passwd      = 'test123';
 
     public function setUp()
     {
