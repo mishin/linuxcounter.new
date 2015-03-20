@@ -30,6 +30,11 @@ class User extends BaseUser
     protected $locale;
 
     /**
+     * @ORM\OneToOne(targetEntity="UserProfile")
+     */
+    protected $profile;
+
+    /**
      * Set username
      *
      * @param string $username

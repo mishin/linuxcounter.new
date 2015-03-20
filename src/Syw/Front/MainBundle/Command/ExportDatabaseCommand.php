@@ -51,6 +51,7 @@ EOT
         @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' translation | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/translation.sql');
         @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' translation_history | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/translation_history.sql');
         @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' fos_user | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/fos_user.sql');
+        @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' user_profile | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/user_profile.sql');
 
         @exec('sed "/^INSERT INTO \`fos_user\`.*$/d" -i '.$folder.'/fos_user.sql');
         $output->writeln(sprintf('Database structure and data exported to <comment>%s</comment>', $folder));

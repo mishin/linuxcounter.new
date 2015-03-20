@@ -4,6 +4,7 @@ namespace Syw\Front\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Cities
@@ -14,6 +15,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Cities
 {
+    /**
+     * @ORM\OneToMany(targetEntity="UserProfile", mappedBy="city")
+     */
+    protected $users;
+
+    public function __construct()
+    {
+        $this->$users = new ArrayCollection();
+    }
     /**
      * @var integer
      *
@@ -83,7 +93,7 @@ class Cities
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -106,7 +116,7 @@ class Cities
     /**
      * Get isoCountryCode
      *
-     * @return string 
+     * @return string
      */
     public function getIsoCountryCode()
     {
@@ -129,7 +139,7 @@ class Cities
     /**
      * Get fipsCountryCode
      *
-     * @return string 
+     * @return string
      */
     public function getFipsCountryCode()
     {
@@ -152,7 +162,7 @@ class Cities
     /**
      * Get region
      *
-     * @return string 
+     * @return string
      */
     public function getRegion()
     {
@@ -175,7 +185,7 @@ class Cities
     /**
      * Get population
      *
-     * @return integer 
+     * @return integer
      */
     public function getPopulation()
     {
@@ -198,7 +208,7 @@ class Cities
     /**
      * Get latitude
      *
-     * @return float 
+     * @return float
      */
     public function getLatitude()
     {
@@ -221,7 +231,7 @@ class Cities
     /**
      * Get longitude
      *
-     * @return float 
+     * @return float
      */
     public function getLongitude()
     {
@@ -244,7 +254,7 @@ class Cities
     /**
      * Get shortName
      *
-     * @return string 
+     * @return string
      */
     public function getShortName()
     {
@@ -267,7 +277,7 @@ class Cities
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
