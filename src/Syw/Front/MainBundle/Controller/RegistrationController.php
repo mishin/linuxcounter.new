@@ -61,7 +61,6 @@ class RegistrationController extends Controller
 
             $userManager->updateUser($user);
 
-
             $userProfile = new UserProfile();
             $userProfile->setUser($user);
             $em = $this->getDoctrine()->getManager();
