@@ -6,8 +6,16 @@
     <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
-<li>
-    <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics'|trans }}</a>
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'Statistics'|trans }} <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics mainpage'|trans }}</a></li>
+        <li><a href="#">{{ 'User statistics'|trans }}</a></li>
+        <li><a href="#">{{ 'Machine statistics'|trans }}</a></li>
+        <li><a href="#">{{ 'Distribution statistics'|trans }}</a></li>
+        <li><a href="#">{{ 'Kernel statistics'|trans }}</a></li>
+        <li><a href="#">{{ 'Uptime statistics'|trans }}</a></li>
+    </ul>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
@@ -27,8 +35,17 @@
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    <li>
-        <a href="{{ url('fos_user_profile_show') }}">{{ 'Account'|trans }}</a>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'Account'|trans }} <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ url('fos_user_profile_show') }}">{{ 'Show Profile'|trans }}</a></li>
+            <li><a href="{{ url('fos_user_profile_edit') }}">{{ 'Edit Account'|trans }}</a></li>
+            <li><a href="#">{{ 'Edit Profile'|trans }}</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">{{ 'Counter data'|trans }}</li>
+            <li><a href="#">{{ 'Show user information'|trans }}</a></li>
+            <li><a href="#">{{ 'Show machines'|trans }}</a></li>
+        </ul>
     </li>
     <li class="footer-menu-divider">&sdot;</li>
     <li>
