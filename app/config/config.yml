@@ -84,3 +84,8 @@ easy_admin:
         - Syw\Front\MainBundle\Entity\User
         - Syw\Front\MainBundle\Entity\Translation
         - Syw\Front\MainBundle\Entity\Languages
+
+ornicar_gravatar:
+    rating: pg
+    size: 240
+    default: mm

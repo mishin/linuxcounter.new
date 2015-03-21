@@ -426,6 +426,19 @@ class User extends BaseUser
     }
 
     /**
+     * Set profile
+     *
+     * @param string $locale
+     * @return FosUser
+     */
+    public function setProfile(\Syw\Front\MainBundle\Entity\UserProfile $userProfile)
+    {
+        $this->profile = $userProfile;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer

@@ -1,6 +1,31 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
+    <p>
+        <img src="{{ gravatar(user.email) }}" alt=""/>
+    </p>
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <p>{{ 'Language'|trans }}: {{ language }}</p>
+
+    <p>{{ 'City'|trans }}: {% if userprofile.city %}{{ userprofile.city.getName() }}{% endif %}</p>
+    <p>{{ 'Latitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLatitude() }}{% endif %}</p>
+    <p>{{ 'Langitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLongitude() }}{% endif %}</p>
+
+    <p>{{ 'Firstname'|trans }}: {{ userprofile.firstName }}</p>
+    <p>{{ 'Lastname'|trans }}: {{ userprofile.lastName }}</p>
+    <p>{{ 'Birthday'|trans }}: {{ userprofile.birthDay|date('Y-m-d') }}</p>
+    <p>{{ 'Birthplace'|trans }}: {{ userprofile.birthPlace }}</p>
+    <p>{{ 'Homepage'|trans }}: {{ userprofile.homepage }}</p>
+    <p>{{ 'ICQ'|trans }}: {{ userprofile.icq }}</p>
+    <p>{{ 'Skype'|trans }}: {{ userprofile.skype }}</p>
+    <p>{{ 'Jabber'|trans }}: {{ userprofile.jabber }}</p>
+    <p>{{ 'MSN'|trans }}: {{ userprofile.msn }}</p>
+    <p>{{ 'Facebook'|trans }}: {{ userprofile.facebook }}</p>
+    <p>{{ 'Google+'|trans }}: {{ userprofile.google }}</p>
+    <p>{{ 'Twitter'|trans }}: {{ userprofile.twitter }}</p>
+    <p>{{ 'Identi.ca'|trans }}: {{ userprofile.identica }}</p>
+    <p>{{ 'Interests'|trans }}: {{ userprofile.interests }}</p>
+    <p>{{ 'Hobbies'|trans }}: {{ userprofile.hobbies }}</p>
+
 </div>

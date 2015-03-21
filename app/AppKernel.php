@@ -22,7 +22,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Asm\TranslationLoaderBundle\AsmTranslationLoaderBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle()
+            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Ornicar\GravatarBundle\OrnicarGravatarBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
