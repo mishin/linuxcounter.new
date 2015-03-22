@@ -10,3 +10,6 @@ easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
+
+shtumi_useful:
+    resource: '@ShtumiUsefulBundle/Resources/config/routing.xml'

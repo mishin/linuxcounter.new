@@ -38,3 +38,6 @@ services:
         arguments:  [@fos_user.user_manager]
     syw.userprofile_manager:
         class:      Syw\Front\MainBundle\Manager\UserProfileManager
+    syw.repository_helper:
+        class: Syw\Front\MainBundle\Util\RepositoryHelper
+        arguments: [ @doctrine.orm.entity_manager ]

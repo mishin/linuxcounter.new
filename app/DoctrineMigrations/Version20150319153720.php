@@ -18,7 +18,6 @@ class Version20150319153720 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
 
         $this->addSql('CREATE TABLE `languages` ( `id` INT(11) NOT NULL AUTO_INCREMENT, `locale` VARCHAR(7) NOT NULL, `language` VARCHAR(128) NOT NULL, PRIMARY KEY (`id`), INDEX `locale` (`locale`) ) COLLATE=\'utf8_general_ci\' ENGINE=InnoDB');
-
     }
 
     /**
@@ -29,6 +28,5 @@ class Version20150319153720 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
 
         $this->addSql('DROP TABLE `languages`');
-
     }
 }

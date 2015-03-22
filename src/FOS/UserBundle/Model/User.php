@@ -123,6 +123,4 @@ class User
      * @ORM\Column(name="credentials_expire_at", type="datetime", nullable=true)
      */
     private $credentialsExpireAt;
-
-
 }

@@ -3,6 +3,7 @@
 namespace Syw\Front\MainBundle\Util;
 
 use FOS\UserBundle\Model\UserManagerInterface;
+use Syw\Front\MainBundle\Entity\UserProfile;
 
 /**
  *
@@ -43,6 +44,17 @@ class UserManipulator
         $user->setEnabled((Boolean)$active);
         $user->setSuperAdmin((Boolean)$superadmin);
         $this->userManager->updateUser($user);
+
+        /*
+        $userProfile = new UserProfile();
+        $userProfile->setUser($user);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($userProfile);
+        $em->flush();
+
+        $user->setProfile($userProfile);
+        $this->userManager->updateUser($user);
+        */
 
         return $user;
     }

@@ -25,6 +25,4 @@ class Group
      * @ORM\Column(name="roles", type="array")
      */
     private $roles;
-
-
 }

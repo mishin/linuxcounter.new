@@ -69,6 +69,4 @@ class TranslationHistory
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-
 }

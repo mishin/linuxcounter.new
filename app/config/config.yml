@@ -30,12 +30,16 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'SywFrontMainBundle:Form:fields.html.twig'
+            - 'ShtumiUsefulBundle::fields.html.twig'
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ 'FOSUserBundle' ]
+    bundles:        [ 'FOSUserBundle', 'SywFrontMainBundle' ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -89,3 +93,14 @@ ornicar_gravatar:
     rating: pg
     size: 240
     default: mm
+
+mopa_bootstrap:
+    form: ~  # Adds twig form theme  support
+    menu: ~  # enables twig helpers for menu
+
+shtumi_useful:
+    autocomplete_entities:
+        cities:
+            class: SywFrontMainBundle:Cities
+            property: name
+            case_insensitive: true

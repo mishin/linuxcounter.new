@@ -59,6 +59,4 @@ class Translation
      * @ORM\GeneratedValue(strategy="NONE")
      */
     private $messageDomain;
-
-
 }
