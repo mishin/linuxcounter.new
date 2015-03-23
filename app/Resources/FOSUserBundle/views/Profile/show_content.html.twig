@@ -8,7 +8,7 @@
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
     <p>{{ 'Language'|trans }}: {{ language }}</p>
 
-    <p>{{ 'City'|trans }}: {% if userprofile.city %}{{ userprofile.city.getName() }}{% endif %}</p>
+    <p>{{ 'City'|trans }}: {% if userprofile.city %}{{ userprofile.city.getName() }} (<a href="http://www.openstreetmap.org/#map=15/{{ userprofile.city.getLatitude() }}/{{ userprofile.city.getLongitude() }}">{{ 'Show on map'|trans }}</a>){% endif %}</p>
     <p>{{ 'Latitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLatitude() }}{% endif %}</p>
     <p>{{ 'Langitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLongitude() }}{% endif %}</p>
 
