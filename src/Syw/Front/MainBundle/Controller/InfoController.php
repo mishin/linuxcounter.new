@@ -40,6 +40,8 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class InfoController extends Controller
 {
+    private $oldcity;
+
     /**
      * @Route("/info/edit")
      *
@@ -48,18 +50,61 @@ class InfoController extends Controller
     public function editAction(Request $request)
     {
         $user = $this->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
+
+        if (false === is_object($user) || false === $user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+
         $userProfile = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:UserProfile')
             ->findOneBy(array('user' => $user));
 
-        $form = $this->createForm(new UserProfileFormType(), $userProfile);
+        if (false === is_object($userProfile)) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        $this->oldcity = $userProfile->getCity();
+
+        $form = $this->createForm(
+            new UserProfileFormType(
+                $userProfile
+            ),
+            $userProfile
+        );
 
         $form->handleRequest($request);
 
+        if ($request->getMethod() == 'POST') {
+            $formData = $request->request->all();
 
+            if (true === isset($formData['userprofile']['city']) && trim($formData['userprofile']['city']) != "") {
+                $cityfield = $formData['userprofile']['city'];
+
+                file_put_contents('/tmp/debug.log', $cityfield."\n\n", FILE_APPEND);
+
+                $city_id   = preg_replace("`.*, ID:([0-9]+)\)$`", "$1", $cityfield);
+                if (true === isset($city_id) && true === is_numeric($city_id)) {
+
+                    file_put_contents('/tmp/debug.log', $city_id."\n\n", FILE_APPEND);
+
+                    $city = $this->getDoctrine()
+                        ->getRepository('SywFrontMainBundle:Cities')
+                        ->findOneBy(array('id' => $city_id));
+                    $userProfile->setCity($city);
+                } else {
+                    $userProfile->setCity($this->oldcity);
+                }
+            } else {
+                file_put_contents('/tmp/debug.log', "else 2 \n\n", FILE_APPEND);
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userProfile);
+            $em->flush();
+
+            $flashBag = $this->get('session')->getFlashBag();
+            $flashBag->set('success', 'User Information saved!');
+
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
 
         return $this->render('SywFrontMainBundle:Info:edit.html.twig', array('form' => $form->createView()));
     }

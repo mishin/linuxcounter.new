@@ -1,0 +1,27 @@
+#loadingDiv {
+    z-index: 99999;
+    position: fixed;
+    top: 70px;
+    width: 200px;
+    margin-left: 30%;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 4px 4px 10px;
+    border: 1px solid grey;
+}
+
+#loadingImg {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-top: 7px;
+}
+
+label > span {
+    font-weight: normal;
+    font-size: 0.7em;
+    color: #aaa;
+}

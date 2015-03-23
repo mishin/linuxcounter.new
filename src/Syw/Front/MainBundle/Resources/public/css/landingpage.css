@@ -360,5 +360,8 @@ body {
     z-index:999;
 }
 
-
+.form-group {
+    margin-bottom: 15px;
+    min-height: 23px;
+}
 

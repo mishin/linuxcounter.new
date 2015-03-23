@@ -21,7 +21,7 @@ class CitiesRepository extends EntityRepository
     public function find($id)
     {
         return $this->getEntityManager()
-            ->createQuery("SELECT * FROM SywFrontMainBundle:Cities c WHERE c.id = '".$id."'")
+            ->createQuery("SELECT c.id FROM SywFrontMainBundle:Cities c WHERE c.id = '".$id."'")
             ->getResult();
     }
 }

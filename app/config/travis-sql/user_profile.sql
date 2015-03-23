@@ -53,7 +53,7 @@ CREATE TABLE `user_profile` (
 
 LOCK TABLES `user_profile` WRITE;
 /*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
-INSERT INTO `user_profile` VALUES (1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `user_profile` VALUES (1,1,2927454,'Alexander','Löhner','1972-07-14 00:00:00','Berlin','http://alex.loehner.solutions','43293804','alexloehner',NULL,'dma147@web.de','https://www.facebook.com/alexanderloehner','https://plus.google.com/u/0/+AlexanderL%C3%B6hner72/posts','NewLinuxCounter','NewLinuxCounter',NULL,NULL);
 /*!40000 ALTER TABLE `user_profile` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +66,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-22 22:01:55
+-- Dump completed on 2015-03-23 22:00:06
