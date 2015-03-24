@@ -74,6 +74,10 @@ label > span {
 
 }
 
+.panel-body {
+    overflow: hidden;
+}
+
 .profile_realname {
     font-weight: bolder;
     font-size: 1.8em;
