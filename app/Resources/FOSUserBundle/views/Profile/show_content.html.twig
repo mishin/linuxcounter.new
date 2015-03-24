@@ -46,7 +46,7 @@
                     <div id="profile_personal_lastname">{{ 'Lastname'|trans }}: {{ userprofile.lastName }}</div>
                     <div id="profile_personal_birthday">{{ 'Birthday'|trans }}: {{ userprofile.birthDay|date('Y-m-d') }}</div>
                     <div id="profile_personal_birthplace">{{ 'Birthplace'|trans }}: {{ userprofile.birthPlace }}</div>
-                    <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: {{ userprofile.homepage }}</div>
+                    <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: <a href="{{ userprofile.homepage }}">{{ userprofile.homepage|length > 40 ? userprofile.homepage|slice(0, 40) ~ '...' : userprofile.homepage }}</a></div>
                 </div>
             </div>
 
@@ -80,8 +80,8 @@
                     <h3 class="panel-title">{{ 'Social information' }}</h3>
                 </div>
                 <div class="panel-body">
-                    <div id="profile_social_facebook">{{ 'Facebook'|trans }}: {{ userprofile.facebook }}</div>
-                    <div id="profile_social_google">{{ 'Google+'|trans }}: {{ userprofile.google }}</div>
+                    <div id="profile_social_facebook">{{ 'Facebook'|trans }}: <a href="{{ userprofile.facebook }}">{{ userprofile.facebook|length > 40 ? userprofile.facebook|slice(0, 40) ~ '...' : userprofile.facebook }}</a></div>
+                    <div id="profile_social_google">{{ 'Google+'|trans }}: <a href="{{ userprofile.google }}">{{ userprofile.google|length > 40 ? userprofile.google|slice(0, 40) ~ '...' : userprofile.google }}</a></div>
                     <div id="profile_social_twitter">{{ 'Twitter'|trans }}: {{ userprofile.twitter }}</div>
                     <div id="profile_social_identica">{{ 'Identi.ca'|trans }}: {{ userprofile.identica }}</div>
                 </div>
