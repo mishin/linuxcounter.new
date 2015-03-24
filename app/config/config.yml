@@ -85,9 +85,14 @@ asm_translation_loader:
 
 easy_admin:
     entities:
-        - Syw\Front\MainBundle\Entity\User
-        - Syw\Front\MainBundle\Entity\Translation
-        - Syw\Front\MainBundle\Entity\Languages
+        User:
+            class: Syw\Front\MainBundle\Entity\User
+        Translation:
+            class: Syw\Front\MainBundle\Entity\Translation
+            form:
+                fields: ['transKey', 'translation', 'transLocale', 'messageDomain', 'dateCreated', 'dateUpdated']
+        Languages:
+            class: Syw\Front\MainBundle\Entity\Languages
 
 ornicar_gravatar:
     rating: pg

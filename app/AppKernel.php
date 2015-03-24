@@ -25,7 +25,7 @@ class AppKernel extends Kernel
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
-            new Shtumi\UsefulBundle\ShtumiUsefulBundle()
+            new Shtumi\UsefulBundle\ShtumiUsefulBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

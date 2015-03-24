@@ -51,6 +51,12 @@
     <li>
         <a href="{{ url('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
     </li>
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="footer-menu-divider">&sdot;</li>
+        <li>
+            <a href="{{ url('admin') }}"><span class="fa fa-exclamation-triangle"></span>{{ 'Admin'|trans }}</a>
+        </li>
+    {% endif %}
 {% else %}
     <li>
         <a href="{{ url('fos_user_security_login') }}">{{ 'Sign in'|trans }}</a>
