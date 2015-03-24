@@ -1,13 +1,13 @@
 <li>
-    <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a>
+    <a href="{{ url('syw_front_main_main_index') }}"><span class="fa fa-home"></span>{{ 'Home'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a>
+    <a href="{{ url('syw_front_main_main_about') }}"><span class="fa fa-circle"></span>{{ 'About'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'Statistics'|trans }} <span class="caret"></span></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-bar-chart"></span>{{ 'Statistics'|trans }} <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
         <li><a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics mainpage'|trans }}</a></li>
         <li><a href="#">{{ 'User statistics'|trans }}</a></li>
@@ -19,24 +19,24 @@
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a>
+    <a href="{{ url('syw_front_main_main_download') }}"><span class="fa fa-download"></span>{{ 'Download'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_support') }}">{{ 'Support'|trans }}</a>
+    <a href="{{ url('syw_front_main_main_support') }}"><span class="fa fa-support"></span>{{ 'Support'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Impressum'|trans }}</a>
+    <a href="{{ url('syw_front_main_main_impressum') }}"><span class="fa fa-code"></span>{{ 'Impressum'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 <li>
-    <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a>
+    <a href="{{ url('syw_front_main_main_contact') }}"><span class="fa fa-phone"></span>{{ 'Contact'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'Account'|trans }} <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-dashboard"></span>{{ 'Account'|trans }} <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
             <li><a href="{{ url('fos_user_profile_show') }}">{{ 'Show Profile'|trans }}</a></li>
             <li><a href="{{ url('fos_user_profile_edit') }}">{{ 'Edit Account'|trans }}</a></li>
@@ -49,14 +49,14 @@
     </li>
     <li class="footer-menu-divider">&sdot;</li>
     <li>
-        <a href="{{ url('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
+        <a href="{{ url('fos_user_security_logout') }}"><span class="fa fa-sign-out"></span>{{ 'Logout'|trans }}</a>
     </li>
 {% else %}
     <li>
-        <a href="{{ url('fos_user_security_login') }}">{{ 'Sign in'|trans }}</a>
+        <a href="{{ url('fos_user_security_login') }}"><span class="fa fa-sign-in"></span>{{ 'Sign in'|trans }}</a>
     </li>
     <li class="footer-menu-divider">&sdot;</li>
     <li>
-        <a href="{{ url('fos_user_registration_register') }}">{{ 'Sign up'|trans }}</a>
+        <a href="{{ url('fos_user_registration_register') }}"><span class="fa fa-plus-square-o"></span>{{ 'Sign up'|trans }}</a>
     </li>
 {% endif %}
