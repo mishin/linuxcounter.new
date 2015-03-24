@@ -57,6 +57,11 @@ label > span {
 
 }
 
+.profile_personalinfo {
+    text-align: left;
+    font-size: 0.9em;
+}
+
 .profilecontact {
 
 }
@@ -69,9 +74,37 @@ label > span {
 
 }
 
+.profile_realname {
+    font-weight: bolder;
+    font-size: 1.8em;
+}
 
+.profile_username {
+    font-weight: normal;
+    font-size: 1.2em;
+}
 
+.profile_hr > hr {
 
+}
+
+.glyphicon, .fa {
+    color: #aaaaaa;
+    margin-right: 5px;
+}
+
+#profile_gravatar {
+    margin-bottom: 5px;
+}
+
+#profile_gravatar > img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.leftside {
+    text-align: center;
+}
 
 
 
