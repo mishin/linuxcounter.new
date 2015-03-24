@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 
-class AjaxAutocompleteJSONController extends Controller
+class AjaxAutocompleteJSONController extends BaseController
 {
 
     /**

@@ -31,7 +31,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  *
  * @author Christophe Coevoet <stof@notk.org>
  */
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
     /**
      * Show the user
@@ -49,11 +49,15 @@ class ProfileController extends Controller
         $language = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $locale));
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'userprofile' => $userProfile,
-            'language' => $language->getLanguage()
+            'language' => $language->getLanguage(),
+            'languages' => $languages
         ));
     }
 
@@ -66,6 +70,10 @@ class ProfileController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
@@ -105,7 +113,8 @@ class ProfileController extends Controller
         }
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'languages' => $languages
         ));
     }
 }

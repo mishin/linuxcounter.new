@@ -5,7 +5,20 @@
 
     <div class="banner">
 
+        <div class="content">
+            <!-- ... -->
+            <form action="{{ path('syw_front_main_main_lang') }}" method="post">
+                <select name="language">
+                    {% for language in languages %}
+                        <option value="{{ language.locale }}" {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}>{{ language.language }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="{{ 'Choose language...'|trans }}">
+            </form>
+        </div>
+        <p> &nbsp; </p>
         <div class="container">
+            <p> &nbsp; </p>
 
             <div class="row">
                 {{ include('SywFrontMainBundle:Common:_social.html.twig') }}

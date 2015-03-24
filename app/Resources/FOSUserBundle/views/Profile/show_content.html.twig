@@ -39,7 +39,7 @@
         <div class="col-sm-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Personal information' }}</h3>
+                    <h3 class="panel-title">{{ 'Personal information'|trans }}</h3>
                 </div>
                 <div class="panel-body">
                     <div id="profile_personal_firstname">{{ 'Firstname'|trans }}: {{ userprofile.firstName }}</div>
@@ -52,7 +52,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Location information' }}</h3>
+                    <h3 class="panel-title">{{ 'Location information'|trans }}</h3>
                 </div>
                 <div class="panel-body">
                     <div id="profile_location_city">{{ 'City'|trans }}: {% if userprofile.city %}{{ userprofile.city.getName() }} (<a
@@ -65,7 +65,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Contact information' }}</h3>
+                    <h3 class="panel-title">{{ 'Contact information'|trans }}</h3>
                 </div>
                 <div class="panel-body">
                     <div id="profile_contact_icq">{{ 'ICQ'|trans }}: {{ userprofile.icq }}</div>
@@ -77,7 +77,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Social information' }}</h3>
+                    <h3 class="panel-title">{{ 'Social information'|trans }}</h3>
                 </div>
                 <div class="panel-body">
                     <div id="profile_social_facebook">{{ 'Facebook'|trans }}: <a href="{{ userprofile.facebook }}">{{ userprofile.facebook|length > 30 ? userprofile.facebook|slice(0, 30) ~ '...' : userprofile.facebook }}</a></div>
@@ -89,7 +89,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Other information' }}</h3>
+                    <h3 class="panel-title">{{ 'Other information'|trans }}</h3>
                 </div>
                 <div class="panel-body">
                     <div id="profile_info_interests">{{ 'Interests'|trans }}: {{ userprofile.interests }}</div>

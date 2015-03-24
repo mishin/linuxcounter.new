@@ -29,7 +29,7 @@ use Syw\Front\MainBundle\Entity\UserProfile;
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Christophe Coevoet <stof@notk.org>
  */
-class RegistrationController extends Controller
+class RegistrationController extends BaseController
 {
     public function registerAction(Request $request)
     {
@@ -39,6 +39,9 @@ class RegistrationController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
 
         $user = $userManager->createUser();
         $user->setEnabled(true);
@@ -82,6 +85,7 @@ class RegistrationController extends Controller
 
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
             'form' => $form->createView(),
+            'languages' => $languages
         ));
     }
 
@@ -93,6 +97,9 @@ class RegistrationController extends Controller
         $email = $this->get('session')->get('fos_user_send_confirmation_email/email');
         $this->get('session')->remove('fos_user_send_confirmation_email/email');
         $user = $this->get('fos_user.user_manager')->findUserByEmail($email);
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
 
         if (null === $user) {
             throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
@@ -100,6 +107,7 @@ class RegistrationController extends Controller
 
         return $this->render('FOSUserBundle:Registration:checkEmail.html.twig', array(
             'user' => $user,
+            'languages' => $languages
         ));
     }
 
@@ -127,6 +135,9 @@ class RegistrationController extends Controller
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRM, $event);
 
         $userManager->updateUser($user);
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
 
         if (null === $response = $event->getResponse()) {
             $url = $this->generateUrl('fos_user_registration_confirmed');
@@ -147,9 +158,13 @@ class RegistrationController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
 
         return $this->render('FOSUserBundle:Registration:confirmed.html.twig', array(
             'user' => $user,
+            'languages' => $languages
         ));
     }
 }

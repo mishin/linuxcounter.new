@@ -38,7 +38,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @license  GPL v3
  * @link     https://github.com/alexloehner/linuxcounter.new
  */
-class InfoController extends Controller
+class InfoController extends BaseController
 {
     private $oldcity;
 
@@ -55,9 +55,16 @@ class InfoController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
+        $locale = $user->getLocale();
         $userProfile = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:UserProfile')
             ->findOneBy(array('user' => $user));
+        $language = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $locale));
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
 
         if (false === is_object($userProfile)) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -106,6 +113,6 @@ class InfoController extends Controller
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
-        return $this->render('SywFrontMainBundle:Info:edit.html.twig', array('form' => $form->createView()));
+        return $this->render('SywFrontMainBundle:Info:edit.html.twig', array('form' => $form->createView(), 'languages' => $languages));
     }
 }

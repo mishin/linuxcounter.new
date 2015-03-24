@@ -17,7 +17,11 @@ class StatsController extends BaseController
      */
     public function indexAction()
     {
-        return array();
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        return array('languages' => $languages);
     }
 
     /**
@@ -28,6 +32,10 @@ class StatsController extends BaseController
      */
     public function guessAction()
     {
-        return array();
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        return array('languages' => $languages);
     }
 }
