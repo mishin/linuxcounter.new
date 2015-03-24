@@ -8,9 +8,9 @@
         <div class="content">
             <!-- ... -->
             <form action="{{ path('syw_front_main_main_lang') }}" method="post">
-                <select name="language">
+                <select name="language" id="languages">
                     {% for language in languages %}
-                        <option value="{{ language.locale }}" {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}>{{ language.language }}</option>
+                        <option value="{{ language.locale }}" {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}> {{ language.language }}</option>
                     {% endfor %}
                 </select>
                 <input type="submit" value="{{ 'Choose language...'|trans }}">
