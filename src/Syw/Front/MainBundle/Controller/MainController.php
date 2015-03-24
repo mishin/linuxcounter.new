@@ -111,10 +111,12 @@ class MainController extends BaseController
         $userManager = $this->get('fos_user.user_manager');
 
         $user = $this->getUser();
-        $user->setLocale($locale);
-        $userManager->updateUser($user);
+        if (true === isset($user) && true === is_object($user)) {
+            $user->setLocale($locale);
+            $userManager->updateUser($user);
+        }
 
-        $this->get('session')->set('_locale', $user->getLocale());
+        $this->get('session')->set('_locale', $locale);
 
         return $this->redirect($this->generateUrl('syw_front_main_main_index', array('_locale' => $locale)));
 
