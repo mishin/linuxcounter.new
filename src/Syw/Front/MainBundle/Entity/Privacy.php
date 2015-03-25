@@ -29,7 +29,7 @@ class Privacy
      *
      * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fos_user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })
      */
     private $user;
@@ -97,7 +97,7 @@ class Privacy
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -120,7 +120,7 @@ class Privacy
     /**
      * Get secretProfile
      *
-     * @return integer 
+     * @return integer
      */
     public function getSecretProfile()
     {
@@ -143,7 +143,7 @@ class Privacy
     /**
      * Get secretCounterData
      *
-     * @return integer 
+     * @return integer
      */
     public function getSecretCounterData()
     {
@@ -166,7 +166,7 @@ class Privacy
     /**
      * Get secretMachines
      *
-     * @return integer 
+     * @return integer
      */
     public function getSecretMachines()
     {
@@ -189,7 +189,7 @@ class Privacy
     /**
      * Get secretContactInfo
      *
-     * @return integer 
+     * @return integer
      */
     public function getSecretContactInfo()
     {
@@ -212,7 +212,7 @@ class Privacy
     /**
      * Get secretSocialInfo
      *
-     * @return integer 
+     * @return integer
      */
     public function getSecretSocialInfo()
     {
@@ -235,7 +235,7 @@ class Privacy
     /**
      * Get showRealName
      *
-     * @return integer 
+     * @return integer
      */
     public function getShowRealName()
     {
@@ -258,7 +258,7 @@ class Privacy
     /**
      * Get showEmail
      *
-     * @return integer 
+     * @return integer
      */
     public function getShowEmail()
     {
@@ -281,7 +281,7 @@ class Privacy
     /**
      * Get showLocation
      *
-     * @return integer 
+     * @return integer
      */
     public function getShowLocation()
     {
@@ -304,7 +304,7 @@ class Privacy
     /**
      * Get showHostnames
      *
-     * @return integer 
+     * @return integer
      */
     public function getShowHostnames()
     {
@@ -327,7 +327,7 @@ class Privacy
     /**
      * Get showKernel
      *
-     * @return integer 
+     * @return integer
      */
     public function getShowKernel()
     {
@@ -350,7 +350,7 @@ class Privacy
     /**
      * Get showDistribution
      *
-     * @return integer 
+     * @return integer
      */
     public function getShowDistribution()
     {
@@ -373,7 +373,7 @@ class Privacy
     /**
      * Get showVersions
      *
-     * @return integer 
+     * @return integer
      */
     public function getShowVersions()
     {
@@ -396,7 +396,7 @@ class Privacy
     /**
      * Get user
      *
-     * @return \Syw\Front\MainBundle\Entity\User 
+     * @return \Syw\Front\MainBundle\Entity\User
      */
     public function getUser()
     {

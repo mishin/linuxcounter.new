@@ -58,6 +58,8 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $db = $this->getContainer()->get('doctrine')->getManager();
+
         $username   = $input->getArgument('username');
         $email      = $input->getArgument('email');
         $password   = $input->getArgument('password');
@@ -67,6 +69,34 @@ EOT
 
         $manipulator = $this->getContainer()->get('syw.util.user_manipulator');
         $manipulator->create($username, $password, $email, $locale, !$inactive, $superadmin);
+
+        $user = $db->getRepository('SywFrontMainBundle:User')->findOneBy(array("username" => $username, "email" => $email));
+
+        $obj = new \Syw\Front\MainBundle\Entity\UserProfile();
+        $obj->setUser($user);
+        $db->persist($obj);
+        $db->flush();
+
+        $userProfile = $db->getRepository('SywFrontMainBundle:UserProfile')->findOneBy(array("user" => $user));
+        $user->setProfile($userProfile);
+        $db->flush();
+
+        $obj = new \Syw\Front\MainBundle\Entity\Privacy();
+        $obj->setUser($user);
+        $obj->setSecretProfile(0);
+        $obj->setSecretCounterData(0);
+        $obj->setSecretMachines(0);
+        $obj->setSecretContactInfo(0);
+        $obj->setSecretSocialInfo(0);
+        $obj->setShowRealName(0);
+        $obj->setShowEmail(0);
+        $obj->setShowLocation(1);
+        $obj->setShowHostnames(1);
+        $obj->setShowKernel(1);
+        $obj->setShowDistribution(1);
+        $obj->setShowVersions(1);
+        $db->persist($obj);
+        $db->flush();
 
         $output->writeln(sprintf('Created user <comment>%s</comment>', $username));
     }

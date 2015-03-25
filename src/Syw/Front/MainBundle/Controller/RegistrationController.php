@@ -73,6 +73,24 @@ class RegistrationController extends BaseController
             $user->setProfile($userProfile);
             $userManager->updateUser($user);
 
+            $obj = new \Syw\Front\MainBundle\Entity\Privacy();
+            $obj->setUser($user);
+            $obj->setSecretProfile(0);
+            $obj->setSecretCounterData(0);
+            $obj->setSecretMachines(0);
+            $obj->setSecretContactInfo(0);
+            $obj->setSecretSocialInfo(0);
+            $obj->setShowRealName(0);
+            $obj->setShowEmail(0);
+            $obj->setShowLocation(1);
+            $obj->setShowHostnames(1);
+            $obj->setShowKernel(1);
+            $obj->setShowDistribution(1);
+            $obj->setShowVersions(1);
+            $em->persist($obj);
+            $em->flush();
+
+
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_registration_confirmed');
                 $response = new RedirectResponse($url);
