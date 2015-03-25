@@ -1,6 +1,6 @@
 {% extends "SywFrontMainBundle::base.html.twig" %}
 
-{% trans_default_domain 'FOSUserBundle' %}
+{% trans_default_domain 'messages' %}
 
 {% block fos_user_content %}
     {% if error %}
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">Password</label>
+            <label for="password" class="col-sm-2 control-label">{{ 'Password'|trans }}</label>
             <div class="col-sm-10">
                 <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="{{ 'Password'|trans }}"/>
             </div>

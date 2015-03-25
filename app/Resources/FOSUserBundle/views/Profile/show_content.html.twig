@@ -8,95 +8,124 @@
             <div class="profilegravatar" id="profile_gravatar">
                 <img src="{{ gravatar(user.email) }}" alt=""/>
             </div>
-
             {% if (userprofile.firstName or userprofile.lastName) %}
                 <div class="profile_realname">
                     {% if userprofile.firstName %}{{ userprofile.firstName }}{% endif %}{% if userprofile.lastName %} {{ userprofile.lastName }}{% endif %}
                 </div>
             {% endif %}
-
             <div class="profile_username">
                 {{ user.username }}
             </div>
-
             <div class="profile_hr">
                 <hr size="1" noshade="noshade"/>
             </div>
-
-
             <div class="profile_personalinfo">
-                {% if userprofile.city %}<div class="profile_city"><span class="fa fa-location-arrow"></span> {{ userprofile.city.getName() }} (<a href="http://www.openstreetmap.org/#map=15/{{ userprofile.city.getLatitude() }}/{{ userprofile.city.getLongitude() }}">{{ 'Show on map'|trans }}</a>)</div>{% endif %}
+                {% if userprofile.city %}
+                    <div class="profile_city"><span
+                            class="fa fa-location-arrow"></span> {{ userprofile.city.getName() }} (<a
+                            href="http://www.openstreetmap.org/#map=15/{{ userprofile.city.getLatitude() }}/{{ userprofile.city.getLongitude() }}">{{ 'Show on map'|trans }}</a>)
+                    </div>{% endif %}
                 <div class="profile_email"><span class="fa fa-envelope"></span> {{ user.email }}</div>
-                <div class="profile_homepage"><span class="fa fa-anchor"></span> {% if userprofile.homepage %}{{ userprofile.homepage }}{% else %}No homepage yet{% endif %}</div>
+                <div class="profile_homepage"><span
+                            class="fa fa-anchor"></span> {% if userprofile.homepage %}{{ userprofile.homepage }}{% else %}No homepage yet{% endif %}
+                </div>
                 <div class="profile_language"><span class="fa fa-flag"></span> {{ language }}</div>
             </div>
-
-            <div class="profile_hr">
-                <hr size="1" noshade="noshade"/>
-            </div>
         </div>
-
         <div class="col-sm-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Personal information'|trans }}</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="profile_personal_firstname">{{ 'Firstname'|trans }}: {{ userprofile.firstName }}</div>
-                    <div id="profile_personal_lastname">{{ 'Lastname'|trans }}: {{ userprofile.lastName }}</div>
-                    <div id="profile_personal_birthday">{{ 'Birthday'|trans }}: {{ userprofile.birthDay|date('Y-m-d') }}</div>
-                    <div id="profile_personal_birthplace">{{ 'Birthplace'|trans }}: {{ userprofile.birthPlace }}</div>
-                    <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: <a href="{{ userprofile.homepage }}">{{ userprofile.homepage|length > 30 ? userprofile.homepage|slice(0, 30) ~ '...' : userprofile.homepage }}</a></div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Location information'|trans }}</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="profile_location_city">{{ 'City'|trans }}: {% if userprofile.city %}{{ userprofile.city.getName() }} (<a
-                                href="http://www.openstreetmap.org/#map=15/{{ userprofile.city.getLatitude() }}/{{ userprofile.city.getLongitude() }}">{{ 'Show on map'|trans }}</a>){% endif %}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Personal information'|trans }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="profile_personal_firstname">{{ 'Firstname'|trans }}: {{ userprofile.firstName }}</div>
+                            <div id="profile_personal_lastname">{{ 'Lastname'|trans }}: {{ userprofile.lastName }}</div>
+                            <div id="profile_personal_birthday">{{ 'Birthday'|trans }}: {{ userprofile.birthDay|date('Y-m-d') }}</div>
+                            <div id="profile_personal_birthplace">{{ 'Birthplace'|trans }}: {{ userprofile.birthPlace }}</div>
+                            <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: <a href="{{ userprofile.homepage }}">{{ userprofile.homepage|length > 30 ? userprofile.homepage|slice(0, 30) ~ '...' : userprofile.homepage }}</a>
+                            </div>
+                        </div>
                     </div>
-                    <div id="profile_location_lat">{{ 'Latitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLatitude() }}{% endif %}</div>
-                    <div id="profile_location_long">{{ 'Langitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLongitude() }}{% endif %}</div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Location information'|trans }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="profile_location_city">{{ 'City'|trans }}: {% if userprofile.city %}{{ userprofile.city.getName() }} (<a
+                                        href="http://www.openstreetmap.org/#map=15/{{ userprofile.city.getLatitude() }}/{{ userprofile.city.getLongitude() }}">{{ 'Show on map'|trans }}</a>){% endif %}
+                            </div>
+                            <div id="profile_location_lat">{{ 'Latitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLatitude() }}{% endif %}</div>
+                            <div id="profile_location_long">{{ 'Langitude'|trans }}: {% if userprofile.city %}{{ userprofile.city.getLongitude() }}{% endif %}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Contact information'|trans }}</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Contact information'|trans }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="profile_contact_icq">{{ 'ICQ'|trans }}: {{ userprofile.icq }}</div>
+                            <div id="profile_contact_skype">{{ 'Skype'|trans }}: {{ userprofile.skype }}</div>
+                            <div id="profile_contact_jabber">{{ 'Jabber'|trans }}: {{ userprofile.jabber }}</div>
+                            <div id="profile_contact_msn">{{ 'MSN'|trans }}: {{ userprofile.msn }}</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div id="profile_contact_icq">{{ 'ICQ'|trans }}: {{ userprofile.icq }}</div>
-                    <div id="profile_contact_skype">{{ 'Skype'|trans }}: {{ userprofile.skype }}</div>
-                    <div id="profile_contact_jabber">{{ 'Jabber'|trans }}: {{ userprofile.jabber }}</div>
-                    <div id="profile_contact_msn">{{ 'MSN'|trans }}: {{ userprofile.msn }}</div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Social information'|trans }}</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="profile_social_facebook">{{ 'Facebook'|trans }}: <a href="{{ userprofile.facebook }}">{{ userprofile.facebook|length > 30 ? userprofile.facebook|slice(0, 30) ~ '...' : userprofile.facebook }}</a></div>
-                    <div id="profile_social_google">{{ 'Google+'|trans }}: <a href="{{ userprofile.google }}">{{ userprofile.google|length > 30 ? userprofile.google|slice(0, 30) ~ '...' : userprofile.google }}</a></div>
-                    <div id="profile_social_twitter">{{ 'Twitter'|trans }}: {{ userprofile.twitter }}</div>
-                    <div id="profile_social_identica">{{ 'Identi.ca'|trans }}: {{ userprofile.identica }}</div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ 'Other information'|trans }}</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="profile_info_interests">{{ 'Interests'|trans }}: {{ userprofile.interests }}</div>
-                    <div id="profile_info_hobbies">{{ 'Hobbies'|trans }}: {{ userprofile.hobbies }}</div>
+                <div class="col-sm-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Social information'|trans }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="profile_social_facebook">{{ 'Facebook'|trans }}: <a
+                                        href="{{ userprofile.facebook }}">{{ userprofile.facebook|length > 30 ? userprofile.facebook|slice(0, 30) ~ '...' : userprofile.facebook }}</a>
+                            </div>
+                            <div id="profile_social_google">{{ 'Google+'|trans }}: <a
+                                        href="{{ userprofile.google }}">{{ userprofile.google|length > 30 ? userprofile.google|slice(0, 30) ~ '...' : userprofile.google }}</a>
+                            </div>
+                            <div id="profile_social_twitter">{{ 'Twitter'|trans }}: {{ userprofile.twitter }}</div>
+                            <div id="profile_social_identica">{{ 'Identi.ca'|trans }}: {{ userprofile.identica }}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Other information'|trans }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="profile_info_interests">{{ 'Interests'|trans }}: {{ userprofile.interests }}</div>
+                            <div id="profile_info_hobbies">{{ 'Hobbies'|trans }}: {{ userprofile.hobbies }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="profile_hr">
+            <hr size="1" noshade="noshade"/>
+        </div>
+    </div>
+    <div class="row">
+
+
+
+
+
+
+
+
+
+
     </div>
 </div>
