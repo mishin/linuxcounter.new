@@ -2,17 +2,135 @@
 
 namespace Syw\Front\MainBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * FosUser
  *
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="fos_user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_957A647992FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_957A6479A0D96FBF", columns={"email_canonical"})}, indexes={@ORM\Index(name="FK_fos_user_user_profile", columns={"profile_id"})})
  * @ORM\Entity
  */
-class User extends BaseUser
+class FosUser
 {
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username_canonical", type="string", length=255, nullable=false)
+     */
+    private $usernameCanonical;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email_canonical", type="string", length=255, nullable=false)
+     */
+    private $emailCanonical;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enabled", type="boolean", nullable=false)
+     */
+    private $enabled;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=255, nullable=false)
+     */
+    private $salt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     */
+    private $lastLogin;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="locked", type="boolean", nullable=false)
+     */
+    private $locked;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="expired", type="boolean", nullable=false)
+     */
+    private $expired;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="expires_at", type="datetime", nullable=true)
+     */
+    private $expiresAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="confirmation_token", type="string", length=255, nullable=true)
+     */
+    private $confirmationToken;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="password_requested_at", type="datetime", nullable=true)
+     */
+    private $passwordRequestedAt;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="array", nullable=false)
+     */
+    private $roles;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="credentials_expired", type="boolean", nullable=false)
+     */
+    private $credentialsExpired;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="credentials_expire_at", type="datetime", nullable=true)
+     */
+    private $credentialsExpireAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="locale", type="string", length=7, nullable=false)
+     */
+    private $locale;
+
     /**
      * @var integer
      *
@@ -20,14 +138,19 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;
+    private $id;
 
     /**
-     * @var string
+     * @var \Syw\Front\MainBundle\Entity\UserProfile
      *
-     * @ORM\Column(name="locale", type="string", length=7, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\UserProfile")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="profile_id", referencedColumnName="id")
+     * })
      */
-    protected $locale;
+    private $profile;
+
+
 
     /**
      * Set username
@@ -45,7 +168,7 @@ class User extends BaseUser
     /**
      * Get username
      *
-     * @return string
+     * @return string 
      */
     public function getUsername()
     {
@@ -68,7 +191,7 @@ class User extends BaseUser
     /**
      * Get usernameCanonical
      *
-     * @return string
+     * @return string 
      */
     public function getUsernameCanonical()
     {
@@ -91,7 +214,7 @@ class User extends BaseUser
     /**
      * Get email
      *
-     * @return string
+     * @return string 
      */
     public function getEmail()
     {
@@ -114,7 +237,7 @@ class User extends BaseUser
     /**
      * Get emailCanonical
      *
-     * @return string
+     * @return string 
      */
     public function getEmailCanonical()
     {
@@ -137,7 +260,7 @@ class User extends BaseUser
     /**
      * Get enabled
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getEnabled()
     {
@@ -160,7 +283,7 @@ class User extends BaseUser
     /**
      * Get salt
      *
-     * @return string
+     * @return string 
      */
     public function getSalt()
     {
@@ -183,7 +306,7 @@ class User extends BaseUser
     /**
      * Get password
      *
-     * @return string
+     * @return string 
      */
     public function getPassword()
     {
@@ -196,9 +319,9 @@ class User extends BaseUser
      * @param \DateTime $lastLogin
      * @return FosUser
      */
-    public function setLastLogin(\DateTime $time = NULL)
+    public function setLastLogin($lastLogin)
     {
-        $this->lastLogin = $time;
+        $this->lastLogin = $lastLogin;
 
         return $this;
     }
@@ -206,7 +329,7 @@ class User extends BaseUser
     /**
      * Get lastLogin
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getLastLogin()
     {
@@ -229,7 +352,7 @@ class User extends BaseUser
     /**
      * Get locked
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getLocked()
     {
@@ -252,7 +375,7 @@ class User extends BaseUser
     /**
      * Get expired
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getExpired()
     {
@@ -265,9 +388,9 @@ class User extends BaseUser
      * @param \DateTime $expiresAt
      * @return FosUser
      */
-    public function setExpiresAt(\DateTime $date = NULL)
+    public function setExpiresAt($expiresAt)
     {
-        $this->expiresAt = $date;
+        $this->expiresAt = $expiresAt;
 
         return $this;
     }
@@ -275,7 +398,7 @@ class User extends BaseUser
     /**
      * Get expiresAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getExpiresAt()
     {
@@ -298,7 +421,7 @@ class User extends BaseUser
     /**
      * Get confirmationToken
      *
-     * @return string
+     * @return string 
      */
     public function getConfirmationToken()
     {
@@ -311,9 +434,9 @@ class User extends BaseUser
      * @param \DateTime $passwordRequestedAt
      * @return FosUser
      */
-    public function setPasswordRequestedAt(\DateTime $date = NULL)
+    public function setPasswordRequestedAt($passwordRequestedAt)
     {
-        $this->passwordRequestedAt = $date;
+        $this->passwordRequestedAt = $passwordRequestedAt;
 
         return $this;
     }
@@ -321,7 +444,7 @@ class User extends BaseUser
     /**
      * Get passwordRequestedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getPasswordRequestedAt()
     {
@@ -334,7 +457,7 @@ class User extends BaseUser
      * @param array $roles
      * @return FosUser
      */
-    public function setRoles(array $roles)
+    public function setRoles($roles)
     {
         $this->roles = $roles;
 
@@ -344,7 +467,7 @@ class User extends BaseUser
     /**
      * Get roles
      *
-     * @return array
+     * @return array 
      */
     public function getRoles()
     {
@@ -367,7 +490,7 @@ class User extends BaseUser
     /**
      * Get credentialsExpired
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getCredentialsExpired()
     {
@@ -380,9 +503,9 @@ class User extends BaseUser
      * @param \DateTime $credentialsExpireAt
      * @return FosUser
      */
-    public function setCredentialsExpireAt(\DateTime $date = NULL)
+    public function setCredentialsExpireAt($credentialsExpireAt)
     {
-        $this->credentialsExpireAt = $date;
+        $this->credentialsExpireAt = $credentialsExpireAt;
 
         return $this;
     }
@@ -390,7 +513,7 @@ class User extends BaseUser
     /**
      * Get credentialsExpireAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCredentialsExpireAt()
     {
@@ -413,7 +536,7 @@ class User extends BaseUser
     /**
      * Get locale
      *
-     * @return string
+     * @return string 
      */
     public function getLocale()
     {
@@ -423,10 +546,33 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Syw\Front\MainBundle\Entity\UserProfile $profile
+     * @return FosUser
+     */
+    public function setProfile(\Syw\Front\MainBundle\Entity\UserProfile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Syw\Front\MainBundle\Entity\UserProfile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }
