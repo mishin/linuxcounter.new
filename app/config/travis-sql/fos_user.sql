@@ -44,7 +44,9 @@ CREATE TABLE `fos_user` (
   `profile_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_957A647992FC23A8` (`username_canonical`),
-  UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`)
+  UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`),
+  KEY `FK_fos_user_user_profile` (`profile_id`),
+  CONSTRAINT `FK_fos_user_user_profile` FOREIGN KEY (`profile_id`) REFERENCES `user_profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 10:14:58
+-- Dump completed on 2015-03-25 11:44:03

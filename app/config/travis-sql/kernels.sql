@@ -16,45 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_profile`
+-- Table structure for table `kernels`
 --
 
-DROP TABLE IF EXISTS `user_profile`;
+DROP TABLE IF EXISTS `kernels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_profile` (
+CREATE TABLE `kernels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) NOT NULL DEFAULT '0',
-  `city` int(11) DEFAULT NULL,
-  `firstname` varchar(128) DEFAULT NULL,
-  `lastname` varchar(128) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
-  `birthplace` varchar(128) DEFAULT NULL,
-  `homepage` varchar(255) DEFAULT NULL,
-  `icq` varchar(15) DEFAULT NULL,
-  `skype` varchar(128) DEFAULT NULL,
-  `jabber` varchar(255) DEFAULT NULL,
-  `msn` varchar(255) DEFAULT NULL,
-  `facebook` varchar(255) DEFAULT NULL,
-  `google` varchar(255) DEFAULT NULL,
-  `twitter` varchar(255) DEFAULT NULL,
-  `identica` varchar(255) DEFAULT NULL,
-  `interests` text,
-  `hobbies` text,
+  `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `user` (`user`),
-  KEY `city` (`city`),
-  CONSTRAINT `FK_user_profile_fos_user` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_profile`
+-- Dumping data for table `kernels`
 --
 
-LOCK TABLES `user_profile` WRITE;
-/*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_profile` ENABLE KEYS */;
+LOCK TABLES `kernels` WRITE;
+/*!40000 ALTER TABLE `kernels` DISABLE KEYS */;
+/*!40000 ALTER TABLE `kernels` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
