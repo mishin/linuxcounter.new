@@ -439,6 +439,19 @@ class User extends BaseUser
     }
 
     /**
+     * Set id
+     *
+     * @param integer $id
+     * @return FosUser
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
      * @return integer

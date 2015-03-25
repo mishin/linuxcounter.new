@@ -7,6 +7,12 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\Model\UserInterface;
+use Syw\Front\MainBundle\Entity\UserProfile;
 
 /**
  * Class ImportFromLicoCommand
@@ -19,6 +25,9 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ImportFromLicoCommand extends ContainerAwareCommand
 {
+
+    public $container;
+
     /**
      * @see Command
      */
@@ -50,6 +59,7 @@ EOT
 
         $licotest = $this->getContainer()->get('doctrine')->getManager();
         $lico = $this->getContainer()->get('doctrine.dbal.lico_connection');
+        $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
 
         if ($item == "processors" || $item == "all") {
             $rows = $lico->fetchAll('SELECT p.name, p.herz FROM processors p ORDER BY p.name ASC');
@@ -154,15 +164,128 @@ EOT
             }
         }
 
-        if ($item == "machines" || $item == "all") {
-            $rows = $lico->fetchAll('SELECT * FROM machines ORDER BY id');
-            foreach ($rows as $row) {
-                $name = $row['name'];
-                $obj = new \Syw\Front\MainBundle\Entity\Classes();
-                $obj->setName($name);
-                $licotest->persist($obj);
-                $licotest->flush();
+        if ($item == "users" || $item == "all") {
+            $userManager = $this->getContainer()->get('fos_user.user_manager');
+
+            $start = 0;
+            $itemsperloop = 10;
+
+            $nums = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
+            $numusers = $nums[0]['num'];
+
+            for ($a = $start; $a < $numusers; $a+=$itemsperloop) {
+                unset($rows);
+                $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.$a.','.$itemsperloop.'');
+                foreach ($rows as $row) {
+                    $sendmail = false;
+                    $id        = $row['f_key'];
+                    $email     = $row['email'];
+                    $lastLogin = $row['logintime'];
+                    $username  = $row['username'];
+                    if (trim($username) == "") {
+                        $username = $id;
+                    }
+                    $password = mt_rand(1000000000, 9999999999);
+
+                    $username_exists = false;
+                    $username_exists = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("username" => $username));
+                    $email_exists = false;
+                    $email_exists = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("email" => $email));
+
+                    if (!$username_exists && !$email_exists) {
+                        $sendmail = true;
+                    } else if ($username_exists && !$email_exists) {
+                        $sendmail = true;
+                        $username = $id;
+                    } else {
+                        $sendmail = false;
+                    }
+
+                    if ($sendmail === true) {
+                        $row2 = $lico->fetchAll('SELECT * FROM persons WHERE f_key = '.$id.'');
+                        $fullname = trim($row2[0]['name']);
+                        if (strpos($fullname, " ") !== false) {
+                            $fullname_array = explode(" ", $fullname);
+                            if (sizeof($fullname_array) >= 3) {
+                                $firstname = $fullname_array[0];
+                                $lastname = "";
+                                for ($i=1; $i<count($fullname_array); $i++) {
+                                    $lastname .= $fullname_array[$i]." ";
+                                }
+                                $lastname = trim($lastname);
+                            } else {
+                                $firstname = $fullname_array[0];
+                                $lastname = $fullname_array[1];
+                            }
+                        }
+
+                        $user     = $userManager->createUser();
+                        $user->setEnabled(true);
+                        $user->setUsername($username);
+                        $user->setEmail($email);
+                        $user->setPlainPassword($password);
+                        $user->setLastLogin(new \DateTime($lastLogin));
+                        $user->setSuperAdmin(false);
+                        $user->setLocale('en');
+                        $userManager->updateUser($user);
+
+                        $userid = $user->getId();
+                        $licotestdb->query('UPDATE fos_user SET id=' . $id . ' WHERE id=\'' . $userid . '\'');
+
+                        unset($user);
+                        $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $id));
+
+                        $userProfile = new UserProfile();
+                        $userProfile->setUser($user);
+
+                        $userProfile->setFirstName($firstname);
+                        $userProfile->setLastName($lastname);
+                        $userProfile->setHomePage($row2[0]['homepage']);
+                        $licotest->persist($userProfile);
+                        $licotest->flush();
+
+                        $user->setProfile($userProfile);
+                        $userManager->updateUser($user);
+                        $licotest->flush();
+
+                        $privacy = new \Syw\Front\MainBundle\Entity\Privacy();
+                        $privacy->setUser($user);
+                        $privacy->setSecretProfile(0);
+                        $privacy->setSecretCounterData(0);
+                        $privacy->setSecretMachines(0);
+                        $privacy->setSecretContactInfo(0);
+                        $privacy->setSecretSocialInfo(0);
+                        $privacy->setShowRealName(0);
+                        $privacy->setShowEmail(0);
+                        $privacy->setShowLocation(1);
+                        $privacy->setShowHostnames(1);
+                        $privacy->setShowKernel(1);
+                        $privacy->setShowDistribution(1);
+                        $privacy->setShowVersions(1);
+                        $licotest->persist($privacy);
+                        $licotest->flush();
+
+                        unset($user);
+                        unset($userProfile);
+                        unset($privacy);
+
+                        gc_collect_cycles();
+                    }
+
+
+                    if ($sendmail === true) {
+                        // TODO: send email!
+
+
+
+
+                    }
+
+                    gc_collect_cycles();
+                }
+                gc_collect_cycles();
             }
+            gc_collect_cycles();
         }
 
 
