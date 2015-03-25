@@ -49,7 +49,9 @@ EOT
         $tables = array();
         @exec('mysql -u'.$mysql_user.' -p'.$mysql_passwd.' '.$mysql_database.' -e \'SHOW TABLES;\'', $tables);
         for ($a=1; $a<count($tables); $a++) {
-            @exec('mysqldump -u'.$mysql_user.' -p'.$mysql_passwd.' --opt --quote-names --add-drop-table '.$mysql_database.' '.$tables[$a].' | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > '.$folder.'/'.$tables[$a].'.sql');
+            if ($tables[$a] != "cities") {
+                @exec('mysqldump -u' . $mysql_user . ' -p' . $mysql_passwd . ' --opt --quote-names --add-drop-table ' . $mysql_database . ' ' . $tables[$a] . ' | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > ' . $folder . '/' . $tables[$a] . '.sql');
+            }
         }
         @exec('sed "/^INSERT INTO \`fos_user\`.*$/d" -i '.$folder.'/fos_user.sql');
         @exec('sed "/^INSERT INTO \`user_profile\`.*$/d" -i '.$folder.'/user_profile.sql');
