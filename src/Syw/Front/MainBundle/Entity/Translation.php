@@ -1,198 +1,24 @@
 <?php
 
+/*
+ * This file is part of the AsmTranslationLoaderBundle package.
+ *
+ * (c) Marc Aschmann <maschmann@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Syw\Front\MainBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Asm\TranslationLoaderBundle\Model\Translation as BaseTranslation;
 
 /**
- * Translation
+ * Translation entity class for the Doctrine ORM storage layer implementation.
  *
- * @ORM\Table(name="translation")
- * @ORM\Entity
+ * @package Asm\TranslationLoaderBundle\Entity
+ * @author  Marc Aschmann <maschmann@gmail.com>
  */
-class Translation
+class Translation extends BaseTranslation
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="trans_key", type="string", length=255)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $transKey;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="translation", type="text", nullable=false)
-     */
-    private $translation;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="trans_locale", type="string", length=5)
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $transLocale;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="message_domain", type="string", length=255)
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $messageDomain;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_created", type="datetime", nullable=false)
-     */
-    private $dateCreated;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_updated", type="datetime", nullable=false)
-     */
-    private $dateUpdated;
-
-    /**
-     * Set translation
-     *
-     * @param string $translation
-     * @return Translation
-     */
-    public function setTranslation($translation)
-    {
-        $this->translation = $translation;
-
-        return $this;
-    }
-
-    /**
-     * Get translation
-     *
-     * @return string
-     */
-    public function getTranslation()
-    {
-        return $this->translation;
-    }
-
-    /**
-     * Set dateCreated
-     *
-     * @param \DateTime $dateCreated
-     * @return Translation
-     */
-    public function setDateCreated($dateCreated)
-    {
-        $this->dateCreated = $dateCreated;
-
-        return $this;
-    }
-
-    /**
-     * Get dateCreated
-     *
-     * @return \DateTime
-     */
-    public function getDateCreated()
-    {
-        return $this->dateCreated;
-    }
-
-    /**
-     * Set dateUpdated
-     *
-     * @param \DateTime $dateUpdated
-     * @return Translation
-     */
-    public function setDateUpdated($dateUpdated)
-    {
-        $this->dateUpdated = $dateUpdated;
-
-        return $this;
-    }
-
-    /**
-     * Get dateUpdated
-     *
-     * @return \DateTime
-     */
-    public function getDateUpdated()
-    {
-        return $this->dateUpdated;
-    }
-
-    /**
-     * Set transKey
-     *
-     * @param string $transKey
-     * @return Translation
-     */
-    public function setTransKey($transKey)
-    {
-        $this->transKey = $transKey;
-
-        return $this;
-    }
-
-    /**
-     * Get transKey
-     *
-     * @return string
-     */
-    public function getTransKey()
-    {
-        return $this->transKey;
-    }
-
-    /**
-     * Set transLocale
-     *
-     * @param string $transLocale
-     * @return Translation
-     */
-    public function setTransLocale($transLocale)
-    {
-        $this->transLocale = $transLocale;
-
-        return $this;
-    }
-
-    /**
-     * Get transLocale
-     *
-     * @return string
-     */
-    public function getTransLocale()
-    {
-        return $this->transLocale;
-    }
-
-    /**
-     * Set messageDomain
-     *
-     * @param string $messageDomain
-     * @return Translation
-     */
-    public function setMessageDomain($messageDomain)
-    {
-        $this->messageDomain = $messageDomain;
-
-        return $this;
-    }
-
-    /**
-     * Get messageDomain
-     *
-     * @return string
-     */
-    public function getMessageDomain()
-    {
-        return $this->messageDomain;
-    }
 }

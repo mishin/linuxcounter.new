@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.41, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: symfony
+-- Host: localhost    Database: licotest
 -- ------------------------------------------------------
 -- Server version	5.5.41-0ubuntu0.14.04.1
 
@@ -65,14 +65,14 @@ CREATE TABLE `machines` (
   KEY `online` (`online`),
   KEY `user_online` (`user`,`online`),
   KEY `user_key` (`user`,`key`),
-  CONSTRAINT `FK_machines_purposes` FOREIGN KEY (`purpose`) REFERENCES `purposes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_machines_architectures` FOREIGN KEY (`architecture`) REFERENCES `architectures` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_machines_classes` FOREIGN KEY (`class`) REFERENCES `classes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_machines_countries` FOREIGN KEY (`country`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_machines_cpus` FOREIGN KEY (`cpu`) REFERENCES `cpus` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_machines_distributions` FOREIGN KEY (`distribution`) REFERENCES `distributions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_machines_fos_user` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_machines_kernels` FOREIGN KEY (`kernel`) REFERENCES `kernels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_machines_kernels` FOREIGN KEY (`kernel`) REFERENCES `kernels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_machines_purposes` FOREIGN KEY (`purpose`) REFERENCES `purposes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -94,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 12:28:38
+-- Dump completed on 2015-03-25 20:22:35

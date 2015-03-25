@@ -16,26 +16,40 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `migration_versions`
+-- Table structure for table `privacy`
 --
 
-DROP TABLE IF EXISTS `migration_versions`;
+DROP TABLE IF EXISTS `privacy`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `migration_versions` (
-  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `privacy` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `secret_profile` tinyint(1) NOT NULL DEFAULT '0',
+  `secret_counterdata` tinyint(1) NOT NULL DEFAULT '0',
+  `secret_machines` tinyint(1) NOT NULL DEFAULT '0',
+  `secret_contactinfo` tinyint(1) NOT NULL DEFAULT '0',
+  `secret_socialinfo` tinyint(1) NOT NULL DEFAULT '0',
+  `show_realname` tinyint(1) NOT NULL DEFAULT '0',
+  `show_email` tinyint(1) NOT NULL DEFAULT '0',
+  `show_location` tinyint(1) NOT NULL DEFAULT '1',
+  `show_hostnames` tinyint(1) NOT NULL DEFAULT '1',
+  `show_kernel` tinyint(1) NOT NULL DEFAULT '1',
+  `show_distribution` tinyint(1) NOT NULL DEFAULT '1',
+  `show_versions` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  CONSTRAINT `FK__fos_user` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `migration_versions`
+-- Dumping data for table `privacy`
 --
 
-LOCK TABLES `migration_versions` WRITE;
-/*!40000 ALTER TABLE `migration_versions` DISABLE KEYS */;
-INSERT INTO `migration_versions` VALUES ('20150319153720'),('20150319200423'),('20150319201810'),('20150320225507');
-/*!40000 ALTER TABLE `migration_versions` ENABLE KEYS */;
+LOCK TABLES `privacy` WRITE;
+/*!40000 ALTER TABLE `privacy` DISABLE KEYS */;
+/*!40000 ALTER TABLE `privacy` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
