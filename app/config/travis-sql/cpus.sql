@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `cpus`;
 CREATE TABLE `cpus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
-  `hertz` int(11) NOT NULL DEFAULT '0',
+  `hertz` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `hertz` (`hertz`)
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 22:34:06
+-- Dump completed on 2015-03-26  9:38:02

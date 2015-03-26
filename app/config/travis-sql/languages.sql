@@ -27,11 +27,8 @@ CREATE TABLE `languages` (
   `locale` varchar(7) NOT NULL,
   `country` varchar(7) NOT NULL,
   `language` varchar(128) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `locale` (`locale`),
-  KEY `active` (`active`),
-  KEY `country` (`country`)
+  `active` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 22:34:06
+-- Dump completed on 2015-03-26  9:38:02

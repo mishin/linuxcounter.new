@@ -167,7 +167,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\FosUser
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\FosUser")
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })
@@ -252,7 +252,7 @@ class Machines
     /**
      * Get key
      *
-     * @return string 
+     * @return string
      */
     public function getKey()
     {
@@ -275,7 +275,7 @@ class Machines
     /**
      * Get hostname
      *
-     * @return string 
+     * @return string
      */
     public function getHostname()
     {
@@ -298,7 +298,7 @@ class Machines
     /**
      * Get cores
      *
-     * @return integer 
+     * @return integer
      */
     public function getCores()
     {
@@ -321,7 +321,7 @@ class Machines
     /**
      * Get flags
      *
-     * @return string 
+     * @return string
      */
     public function getFlags()
     {
@@ -344,7 +344,7 @@ class Machines
     /**
      * Get accounts
      *
-     * @return integer 
+     * @return integer
      */
     public function getAccounts()
     {
@@ -367,7 +367,7 @@ class Machines
     /**
      * Get diskspace
      *
-     * @return integer 
+     * @return integer
      */
     public function getDiskspace()
     {
@@ -390,7 +390,7 @@ class Machines
     /**
      * Get diskspaceFree
      *
-     * @return integer 
+     * @return integer
      */
     public function getDiskspaceFree()
     {
@@ -413,7 +413,7 @@ class Machines
     /**
      * Get memory
      *
-     * @return integer 
+     * @return integer
      */
     public function getMemory()
     {
@@ -436,7 +436,7 @@ class Machines
     /**
      * Get memoryFree
      *
-     * @return integer 
+     * @return integer
      */
     public function getMemoryFree()
     {
@@ -459,7 +459,7 @@ class Machines
     /**
      * Get swap
      *
-     * @return integer 
+     * @return integer
      */
     public function getSwap()
     {
@@ -482,7 +482,7 @@ class Machines
     /**
      * Get swapFree
      *
-     * @return integer 
+     * @return integer
      */
     public function getSwapFree()
     {
@@ -505,7 +505,7 @@ class Machines
     /**
      * Get distversion
      *
-     * @return string 
+     * @return string
      */
     public function getDistversion()
     {
@@ -528,7 +528,7 @@ class Machines
     /**
      * Get mailer
      *
-     * @return string 
+     * @return string
      */
     public function getMailer()
     {
@@ -551,7 +551,7 @@ class Machines
     /**
      * Get network
      *
-     * @return string 
+     * @return string
      */
     public function getNetwork()
     {
@@ -574,7 +574,7 @@ class Machines
     /**
      * Get online
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getOnline()
     {
@@ -597,7 +597,7 @@ class Machines
     /**
      * Get uptime
      *
-     * @return integer 
+     * @return integer
      */
     public function getUptime()
     {
@@ -620,7 +620,7 @@ class Machines
     /**
      * Get load
      *
-     * @return string 
+     * @return string
      */
     public function getLoad()
     {
@@ -643,7 +643,7 @@ class Machines
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -666,7 +666,7 @@ class Machines
     /**
      * Get modifiedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
@@ -676,7 +676,7 @@ class Machines
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -699,7 +699,7 @@ class Machines
     /**
      * Get distribution
      *
-     * @return \Syw\Front\MainBundle\Entity\Distributions 
+     * @return \Syw\Front\MainBundle\Entity\Distributions
      */
     public function getDistribution()
     {
@@ -722,7 +722,7 @@ class Machines
     /**
      * Get user
      *
-     * @return \Syw\Front\MainBundle\Entity\FosUser 
+     * @return \Syw\Front\MainBundle\Entity\FosUser
      */
     public function getUser()
     {
@@ -745,7 +745,7 @@ class Machines
     /**
      * Get kernel
      *
-     * @return \Syw\Front\MainBundle\Entity\Kernels 
+     * @return \Syw\Front\MainBundle\Entity\Kernels
      */
     public function getKernel()
     {
@@ -768,7 +768,7 @@ class Machines
     /**
      * Get cpu
      *
-     * @return \Syw\Front\MainBundle\Entity\Cpus 
+     * @return \Syw\Front\MainBundle\Entity\Cpus
      */
     public function getCpu()
     {
@@ -791,7 +791,7 @@ class Machines
     /**
      * Get country
      *
-     * @return \Syw\Front\MainBundle\Entity\Countries 
+     * @return \Syw\Front\MainBundle\Entity\Countries
      */
     public function getCountry()
     {
@@ -814,7 +814,7 @@ class Machines
     /**
      * Get architecture
      *
-     * @return \Syw\Front\MainBundle\Entity\Architectures 
+     * @return \Syw\Front\MainBundle\Entity\Architectures
      */
     public function getArchitecture()
     {
@@ -837,7 +837,7 @@ class Machines
     /**
      * Get class
      *
-     * @return \Syw\Front\MainBundle\Entity\Classes 
+     * @return \Syw\Front\MainBundle\Entity\Classes
      */
     public function getClass()
     {
@@ -860,7 +860,7 @@ class Machines
     /**
      * Get purpose
      *
-     * @return \Syw\Front\MainBundle\Entity\Purposes 
+     * @return \Syw\Front\MainBundle\Entity\Purposes
      */
     public function getPurpose()
     {

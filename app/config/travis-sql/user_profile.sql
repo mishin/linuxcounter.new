@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `user_profile`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) NOT NULL DEFAULT '0',
+  `user` int(11) DEFAULT NULL,
   `city` int(11) DEFAULT NULL,
   `firstname` varchar(128) DEFAULT NULL,
   `lastname` varchar(128) DEFAULT NULL,
@@ -39,12 +39,13 @@ CREATE TABLE `user_profile` (
   `google` varchar(255) DEFAULT NULL,
   `twitter` varchar(255) DEFAULT NULL,
   `identica` varchar(255) DEFAULT NULL,
-  `interests` text,
-  `hobbies` text,
+  `interests` varchar(2500) DEFAULT NULL,
+  `hobbies` varchar(2500) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `user` (`user`),
+  UNIQUE KEY `UNIQ_D95AB4058D93D649` (`user`),
   KEY `city` (`city`),
-  CONSTRAINT `FK_user_profile_fos_user` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_D95AB4052D5B0234` FOREIGN KEY (`city`) REFERENCES `cities` (`id`),
+  CONSTRAINT `FK_D95AB4058D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,4 +67,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 22:34:07
+-- Dump completed on 2015-03-26  9:38:02

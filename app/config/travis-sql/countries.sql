@@ -26,7 +26,7 @@ CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(5) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `population` int(15) NOT NULL DEFAULT '0',
+  `population` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 22:34:06
+-- Dump completed on 2015-03-26  9:38:02

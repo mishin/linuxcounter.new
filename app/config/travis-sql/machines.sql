@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `machines`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `machines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) NOT NULL DEFAULT '0',
+  `user` int(11) DEFAULT NULL,
   `country` int(11) DEFAULT NULL,
   `cpu` int(11) DEFAULT NULL,
   `distribution` int(11) DEFAULT NULL,
@@ -46,10 +46,10 @@ CREATE TABLE `machines` (
   `distversion` varchar(24) DEFAULT NULL,
   `mailer` varchar(24) DEFAULT NULL,
   `network` varchar(24) DEFAULT NULL,
-  `online` tinyint(1) NOT NULL DEFAULT '1',
-  `uptime` int(8) NOT NULL DEFAULT '0',
+  `online` tinyint(1) NOT NULL,
+  `uptime` int(11) NOT NULL,
   `load` varchar(48) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL,
   `modified_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
@@ -65,14 +65,14 @@ CREATE TABLE `machines` (
   KEY `online` (`online`),
   KEY `user_online` (`user`,`online`),
   KEY `user_key` (`user`,`key`),
-  CONSTRAINT `FK_machines_architectures` FOREIGN KEY (`architecture`) REFERENCES `architectures` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_machines_classes` FOREIGN KEY (`class`) REFERENCES `classes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_machines_countries` FOREIGN KEY (`country`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_machines_cpus` FOREIGN KEY (`cpu`) REFERENCES `cpus` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_machines_distributions` FOREIGN KEY (`distribution`) REFERENCES `distributions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_machines_fos_user` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_machines_kernels` FOREIGN KEY (`kernel`) REFERENCES `kernels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_machines_purposes` FOREIGN KEY (`purpose`) REFERENCES `purposes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_F1CE8DEDB887B3EB` FOREIGN KEY (`purpose`) REFERENCES `purposes` (`id`),
+  CONSTRAINT `FK_F1CE8DED5373C966` FOREIGN KEY (`country`) REFERENCES `countries` (`id`),
+  CONSTRAINT `FK_F1CE8DED5DD29AAB` FOREIGN KEY (`kernel`) REFERENCES `kernels` (`id`),
+  CONSTRAINT `FK_F1CE8DED74995EFA` FOREIGN KEY (`architecture`) REFERENCES `architectures` (`id`),
+  CONSTRAINT `FK_F1CE8DED8D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`),
+  CONSTRAINT `FK_F1CE8DEDA4483781` FOREIGN KEY (`distribution`) REFERENCES `distributions` (`id`),
+  CONSTRAINT `FK_F1CE8DEDBA80502E` FOREIGN KEY (`cpu`) REFERENCES `cpus` (`id`),
+  CONSTRAINT `FK_F1CE8DEDED4B199F` FOREIGN KEY (`class`) REFERENCES `classes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -94,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 22:34:06
+-- Dump completed on 2015-03-26  9:38:02

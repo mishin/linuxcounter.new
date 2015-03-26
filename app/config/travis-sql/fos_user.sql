@@ -40,13 +40,13 @@ CREATE TABLE `fos_user` (
   `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
   `credentials_expired` tinyint(1) NOT NULL,
   `credentials_expire_at` datetime DEFAULT NULL,
-  `locale` varchar(7) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'en',
+  `locale` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
   `profile_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_957A647992FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`),
-  KEY `FK_fos_user_user_profile` (`profile_id`),
-  CONSTRAINT `FK_fos_user_user_profile` FOREIGN KEY (`profile_id`) REFERENCES `user_profile` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `UNIQ_957A6479CCFA12B8` (`profile_id`),
+  CONSTRAINT `FK_957A6479CCFA12B8` FOREIGN KEY (`profile_id`) REFERENCES `user_profile` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 22:34:06
+-- Dump completed on 2015-03-26  9:38:02

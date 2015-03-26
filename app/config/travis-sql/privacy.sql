@@ -24,22 +24,22 @@ DROP TABLE IF EXISTS `privacy`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `privacy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) NOT NULL,
-  `secret_profile` tinyint(1) NOT NULL DEFAULT '0',
-  `secret_counterdata` tinyint(1) NOT NULL DEFAULT '0',
-  `secret_machines` tinyint(1) NOT NULL DEFAULT '0',
-  `secret_contactinfo` tinyint(1) NOT NULL DEFAULT '0',
-  `secret_socialinfo` tinyint(1) NOT NULL DEFAULT '0',
-  `show_realname` tinyint(1) NOT NULL DEFAULT '0',
-  `show_email` tinyint(1) NOT NULL DEFAULT '0',
-  `show_location` tinyint(1) NOT NULL DEFAULT '1',
-  `show_hostnames` tinyint(1) NOT NULL DEFAULT '1',
-  `show_kernel` tinyint(1) NOT NULL DEFAULT '1',
-  `show_distribution` tinyint(1) NOT NULL DEFAULT '1',
-  `show_versions` tinyint(1) NOT NULL DEFAULT '1',
+  `user` int(11) DEFAULT NULL,
+  `secret_profile` int(11) NOT NULL,
+  `secret_counterdata` int(11) NOT NULL,
+  `secret_machines` int(11) NOT NULL,
+  `secret_contactinfo` int(11) NOT NULL,
+  `secret_socialinfo` int(11) NOT NULL,
+  `show_realname` int(11) NOT NULL,
+  `show_email` int(11) NOT NULL,
+  `show_location` int(11) NOT NULL,
+  `show_hostnames` int(11) NOT NULL,
+  `show_kernel` int(11) NOT NULL,
+  `show_distribution` int(11) NOT NULL,
+  `show_versions` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
-  CONSTRAINT `FK__fos_user` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_C38419088D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 22:34:07
+-- Dump completed on 2015-03-26  9:38:02

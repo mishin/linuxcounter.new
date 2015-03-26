@@ -167,59 +167,39 @@ EOT
         if ($item == "users" || $item == "all") {
             $userManager = $this->getContainer()->get('fos_user.user_manager');
 
-            $start = 0;
-            $itemsperloop = 10;
 
             $nums = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
             $numusers = $nums[0]['num'];
+            $start = $numusers;
+            $itemsperloop = 100;
 
-            for ($a = $start; $a < $numusers; $a+=$itemsperloop) {
+            $z = 0;
+
+            for ($a = $start; $a > 0; $a-=$itemsperloop) {
                 unset($rows);
-                $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.$a.','.$itemsperloop.'');
+                $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
                 foreach ($rows as $row) {
                     $sendmail = false;
                     $id        = $row['f_key'];
                     $email     = $row['email'];
-                    $lastLogin = $row['logintime'];
-                    $username  = $row['username'];
-                    if (trim($username) == "") {
-                        $username = $id;
+
+                    if (preg_match("`^([a-z]{5,}[0-9]{2,}[\+]+[a-z0-9]{3,}@gmail\.com)$`i", strtolower($email))) {
+                        continue;
                     }
+
+                    if (preg_match("`^(.*[a-z]+\.[a-z]+\.[a-z0-9]+\.[a-z0-9]+.*@gmail\.com)$`i", strtolower($email))) {
+                        continue;
+                    }
+
+
+                    $lastLogin = $row['logintime'];
+                    $username  = $id;
                     $password = mt_rand(1000000000, 9999999999);
 
-                    $username_exists = false;
-                    $username_exists = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("username" => $username));
-                    $email_exists = false;
-                    $email_exists = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("email" => $email));
-
-                    if (!$username_exists && !$email_exists) {
-                        $sendmail = true;
-                    } else if ($username_exists && !$email_exists) {
-                        $sendmail = true;
-                        $username = $id;
-                    } else {
-                        $sendmail = false;
-                    }
+                    $sendmail = true;
 
                     if ($sendmail === true) {
-                        $row2 = $lico->fetchAll('SELECT * FROM persons WHERE f_key = '.$id.'');
-                        $fullname = trim($row2[0]['name']);
-                        if (strpos($fullname, " ") !== false) {
-                            $fullname_array = explode(" ", $fullname);
-                            if (sizeof($fullname_array) >= 3) {
-                                $firstname = $fullname_array[0];
-                                $lastname = "";
-                                for ($i=1; $i<count($fullname_array); $i++) {
-                                    $lastname .= $fullname_array[$i]." ";
-                                }
-                                $lastname = trim($lastname);
-                            } else {
-                                $firstname = $fullname_array[0];
-                                $lastname = $fullname_array[1];
-                            }
-                        }
-
-                        $user     = $userManager->createUser();
+                        $user = $userManager->createUser();
                         $user->setEnabled(true);
                         $user->setUsername($username);
                         $user->setEmail($email);
@@ -237,10 +217,6 @@ EOT
 
                         $userProfile = new UserProfile();
                         $userProfile->setUser($user);
-
-                        $userProfile->setFirstName($firstname);
-                        $userProfile->setLastName($lastname);
-                        $userProfile->setHomePage($row2[0]['homepage']);
                         $licotest->persist($userProfile);
                         $licotest->flush();
 
@@ -274,9 +250,10 @@ EOT
 
 
                     if ($sendmail === true) {
-                        // TODO: send email!
+                        // NOTE: Email Versand wird nicht gemacht! Zu teuer und Gefahr für Blacklisting
 
-
+                        $z++;
+                        echo ">>>  $z \n";
 
 
                     }

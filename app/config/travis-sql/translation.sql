@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `translation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `translation` (
   `trans_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `trans_locale` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'de',
-  `message_domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'messages',
+  `trans_locale` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `message_domain` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `translation` longtext COLLATE utf8_unicode_ci NOT NULL,
   `date_created` datetime NOT NULL,
   `date_updated` datetime NOT NULL,
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 22:34:07
+-- Dump completed on 2015-03-26  9:38:02
