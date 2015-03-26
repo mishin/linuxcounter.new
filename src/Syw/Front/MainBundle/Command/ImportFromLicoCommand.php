@@ -197,6 +197,9 @@ EOT
 
                     $sendmail = true;
 
+                    $licotestdb->prepare('SET autocommit=0;')->execute();
+                    $licotest->prepare('SET autocommit=0;')->execute();
+
                     if ($sendmail === true) {
                         $user = $userManager->createUser();
                         $user->setEnabled(true);
@@ -248,6 +251,16 @@ EOT
                     }
                     $z++;
                     echo ">>> $z \n";
+
+                    $licotest->prepare('COMMIT;')->execute();
+                    $lico->prepare('COMMIT;')->execute();
+                    $licotestdb->prepare('COMMIT;')->execute();
+
+                    $licotest->clear();
+                    $lico->clear();
+                    $licotestdb->clear();
+
+
                     gc_collect_cycles();
                 }
                 gc_collect_cycles();
