@@ -14,7 +14,7 @@ CREATE TABLE `dublicates2` (
 ENGINE=InnoDB;
 
 insert into dublicates1 SELECT users.f_key, users.email, users.state
-FROM users 
+FROM users
 INNER JOIN (
   SELECT email
   FROM users
@@ -25,7 +25,6 @@ ORDER BY users.email, users.f_key DESC;
 
 insert into dublicates2 (SELECT f_key
   FROM users
-  where state = 0 or state = 1 or state = 99
   GROUP BY email
   HAVING count(email) > 1
   order by email

@@ -325,7 +325,7 @@ EOT
                         $machine->setUptime(trim($row['uptime']));
                     }
                     if (true === isset($row['load']) && trim($row['load']) != "") {
-                        $machine->setLoad(trim($row['load']));
+                        $machine->setLoadAvg(trim($row['load']));
                     }
                     if (true === isset($row['f_ctime']) && trim($row['f_ctime']) != "") {
                         $machine->setCreatedAt(new \DateTime(trim($row['f_ctime'])));

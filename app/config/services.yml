@@ -19,11 +19,6 @@ services:
         arguments: [@router]
         tags:
             - { name: kernel.event_subscriber }
-    syw.login_success:
-        class: Syw\Front\MainBundle\EventListener\LoginListener
-        arguments: [@router]
-        tags:
-            - { name: kernel.event_subscriber }
     syw.form_success:
         class: Syw\Front\MainBundle\EventListener\FormSuccessListener
         arguments: [@router]

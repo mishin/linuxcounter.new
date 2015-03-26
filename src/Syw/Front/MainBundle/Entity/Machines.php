@@ -709,10 +709,10 @@ class Machines
     /**
      * Set user
      *
-     * @param \Syw\Front\MainBundle\Entity\FosUser $user
+     * @param \Syw\Front\MainBundle\Entity\User $user
      * @return Machines
      */
-    public function setUser(\Syw\Front\MainBundle\Entity\FosUser $user = null)
+    public function setUser(\Syw\Front\MainBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -722,7 +722,7 @@ class Machines
     /**
      * Get user
      *
-     * @return \Syw\Front\MainBundle\Entity\FosUser
+     * @return \Syw\Front\MainBundle\Entity\User
      */
     public function getUser()
     {
