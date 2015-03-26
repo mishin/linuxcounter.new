@@ -73,7 +73,8 @@ class ChangePasswordController extends BaseController
 
         return $this->render('FOSUserBundle:ChangePassword:changePassword.html.twig', array(
             'form' => $form->createView(),
-            'languages' => $languages
+            'languages' => $languages,
+            'user' => $user
         ));
     }
 }

@@ -21,7 +21,12 @@ class StatsController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
     }
 
     /**
@@ -36,6 +41,11 @@ class StatsController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
     }
 }

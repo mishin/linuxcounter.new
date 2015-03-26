@@ -39,6 +39,7 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'Account'|trans }} <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
             <li><a href="{{ url('fos_user_profile_show') }}">{{ 'Show Profile'|trans }}</a></li>
+            <li><a href="{{ url('syw_front_main_public_profile', {'counternumber': user.getId()}) }}">{{ 'Show public Profile'|trans }}</a></li>
             <li><a href="{{ url('fos_user_profile_edit') }}">{{ 'Edit Account'|trans }}</a></li>
             <li><a href="{{ url('syw_front_main_info_edit') }}">{{ 'Edit Profile'|trans }}</a></li>
             <li class="divider"></li>

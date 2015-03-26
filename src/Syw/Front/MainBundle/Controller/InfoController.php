@@ -113,6 +113,10 @@ class InfoController extends BaseController
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
-        return $this->render('SywFrontMainBundle:Info:edit.html.twig', array('form' => $form->createView(), 'languages' => $languages));
+        return $this->render('SywFrontMainBundle:Info:edit.html.twig', array(
+            'form' => $form->createView(),
+            'languages' => $languages,
+            'user' => $user
+        ));
     }
 }

@@ -23,7 +23,12 @@ class MainController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
     }
 
     /**
@@ -38,7 +43,12 @@ class MainController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
     }
 
     /**
@@ -53,7 +63,12 @@ class MainController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
     }
 
     /**
@@ -68,7 +83,12 @@ class MainController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
     }
 
     /**
@@ -83,7 +103,12 @@ class MainController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
     }
 
     /**
@@ -98,7 +123,12 @@ class MainController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
     }
 
     /**
@@ -114,6 +144,8 @@ class MainController extends BaseController
         if (true === isset($user) && true === is_object($user)) {
             $user->setLocale($locale);
             $userManager->updateUser($user);
+        } else {
+            $user = null;
         }
 
         $this->get('session')->set('_locale', $locale);
@@ -124,6 +156,6 @@ class MainController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
-        return array('languages' => $languages);
+        return array('languages' => $languages, 'user' => $user);
     }
 }

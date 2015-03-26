@@ -81,9 +81,15 @@ class ResettingController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
         return $this->render('FOSUserBundle:Resetting:checkEmail.html.twig', array(
             'email' => $email,
-            'languages' => $languages
+            'languages' => $languages,
+            'user' => $user
         ));
     }
 
@@ -140,7 +146,8 @@ class ResettingController extends BaseController
         return $this->render('FOSUserBundle:Resetting:reset.html.twig', array(
             'token' => $token,
             'form' => $form->createView(),
-            'languages' => $languages
+            'languages' => $languages,
+            'user' => $user
         ));
     }
 
