@@ -246,7 +246,8 @@ EOT
 
                         gc_collect_cycles();
                     }
-
+                    $z++;
+                    echo ">>> $z \n";
                     gc_collect_cycles();
                 }
                 gc_collect_cycles();
