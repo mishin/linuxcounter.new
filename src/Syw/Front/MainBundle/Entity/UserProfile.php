@@ -24,13 +24,13 @@ class UserProfile
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="profile")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="profile", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="user", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cities", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="Cities", inversedBy="users", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="city", referencedColumnName="id")
      */
     private $city;

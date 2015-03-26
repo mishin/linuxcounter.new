@@ -30,7 +30,7 @@ class User extends BaseUser
     protected $locale;
 
     /**
-     * @ORM\OneToOne(targetEntity="UserProfile", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="UserProfile", inversedBy="user", cascade={"persist", "remove"})
      */
     protected $profile;
 

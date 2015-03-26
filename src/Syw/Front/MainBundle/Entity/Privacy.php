@@ -27,7 +27,7 @@ class Privacy
     /**
      * @var \Syw\Front\MainBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\User", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })

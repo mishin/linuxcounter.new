@@ -191,7 +191,6 @@ EOT
                         continue;
                     }
 
-
                     $lastLogin = $row['logintime'];
                     $username  = $id;
                     $password = mt_rand(1000000000, 9999999999);
