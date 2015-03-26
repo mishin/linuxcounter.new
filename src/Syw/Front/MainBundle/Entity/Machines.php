@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Machines
  *
- * @ORM\Table(name="machines", indexes={@ORM\Index(name="user", columns={"user"}), @ORM\Index(name="country", columns={"country"}), @ORM\Index(name="cpu", columns={"cpu"}), @ORM\Index(name="distribution", columns={"distribution"}), @ORM\Index(name="architecture", columns={"architecture"}), @ORM\Index(name="kernel", columns={"kernel"}), @ORM\Index(name="class", columns={"class"}), @ORM\Index(name="purpose", columns={"purpose"}), @ORM\Index(name="key", columns={"key"}), @ORM\Index(name="created_at", columns={"created_at"}), @ORM\Index(name="online", columns={"online"}), @ORM\Index(name="user_online", columns={"user", "online"}), @ORM\Index(name="user_key", columns={"user", "key"})})
+ * @ORM\Table(name="machines", indexes={@ORM\Index(name="user", columns={"user"}), @ORM\Index(name="country", columns={"country"}), @ORM\Index(name="cpu", columns={"cpu"}), @ORM\Index(name="distribution", columns={"distribution"}), @ORM\Index(name="architecture", columns={"architecture"}), @ORM\Index(name="kernel", columns={"kernel"}), @ORM\Index(name="class", columns={"class"}), @ORM\Index(name="purpose", columns={"purpose"}), @ORM\Index(name="updatekey", columns={"updatekey"}), @ORM\Index(name="created_at", columns={"created_at"}), @ORM\Index(name="online", columns={"online"}), @ORM\Index(name="user_online", columns={"user", "online"}), @ORM\Index(name="user_key", columns={"user", "updatekey"})})
  * @ORM\Entity
  */
 class Machines
@@ -15,9 +15,9 @@ class Machines
     /**
      * @var string
      *
-     * @ORM\Column(name="key", type="string", length=48, nullable=true)
+     * @ORM\Column(name="updatekey", type="string", length=48, nullable=true)
      */
-    private $key;
+    private $updateKey;
 
     /**
      * @var string
@@ -113,23 +113,23 @@ class Machines
     /**
      * @var boolean
      *
-     * @ORM\Column(name="online", type="boolean", nullable=false)
+     * @ORM\Column(name="online", type="boolean", nullable=true)
      */
     private $online;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="uptime", type="integer", nullable=false)
+     * @ORM\Column(name="uptime", type="integer", nullable=true)
      */
     private $uptime;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="load", type="string", length=48, nullable=true)
+     * @ORM\Column(name="loadavg", type="string", length=48, nullable=true)
      */
-    private $load;
+    private $loadavg;
 
     /**
      * @var \DateTime
@@ -169,7 +169,7 @@ class Machines
      *
      * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\User", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id", nullable=false)
      * })
      */
     private $user;
@@ -237,26 +237,26 @@ class Machines
 
 
     /**
-     * Set key
+     * Set updateKey
      *
-     * @param string $key
+     * @param string $updateKey
      * @return Machines
      */
-    public function setKey($key)
+    public function setUpdateKey($updateKey)
     {
-        $this->key = $key;
+        $this->updateKey = $updateKey;
 
         return $this;
     }
 
     /**
-     * Get key
+     * Get updateKey
      *
      * @return string
      */
-    public function getKey()
+    public function getUpdateKey()
     {
-        return $this->key;
+        return $this->updateKey;
     }
 
     /**
@@ -605,26 +605,26 @@ class Machines
     }
 
     /**
-     * Set load
+     * Set loadavg
      *
-     * @param string $load
+     * @param string $loadavg
      * @return Machines
      */
-    public function setLoad($load)
+    public function setLoadAvg($loadavg)
     {
-        $this->load = $load;
+        $this->loadavg = $loadavg;
 
         return $this;
     }
 
     /**
-     * Get load
+     * Get loadavg
      *
      * @return string
      */
-    public function getLoad()
+    public function getLoadAvg()
     {
-        return $this->load;
+        return $this->loadavg;
     }
 
     /**

@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `machines`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `machines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) DEFAULT NULL,
+  `user` int(11) NOT NULL,
   `country` int(11) DEFAULT NULL,
   `cpu` int(11) DEFAULT NULL,
   `distribution` int(11) DEFAULT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE `machines` (
   `kernel` int(11) DEFAULT NULL,
   `class` int(11) DEFAULT NULL,
   `purpose` int(11) DEFAULT NULL,
-  `key` varchar(48) DEFAULT NULL,
+  `updatekey` varchar(48) DEFAULT NULL,
   `hostname` varchar(128) DEFAULT NULL,
   `cores` int(3) DEFAULT NULL,
   `flags` varchar(255) DEFAULT NULL,
@@ -46,9 +46,9 @@ CREATE TABLE `machines` (
   `distversion` varchar(24) DEFAULT NULL,
   `mailer` varchar(24) DEFAULT NULL,
   `network` varchar(24) DEFAULT NULL,
-  `online` tinyint(1) NOT NULL,
-  `uptime` int(11) NOT NULL,
-  `load` varchar(48) DEFAULT NULL,
+  `online` tinyint(1) DEFAULT NULL,
+  `uptime` int(11) DEFAULT NULL,
+  `loadavg` varchar(48) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `modified_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -60,17 +60,17 @@ CREATE TABLE `machines` (
   KEY `kernel` (`kernel`),
   KEY `class` (`class`),
   KEY `purpose` (`purpose`),
-  KEY `key` (`key`),
+  KEY `key` (`updatekey`),
   KEY `created_at` (`created_at`),
   KEY `online` (`online`),
   KEY `user_online` (`user`,`online`),
-  KEY `user_key` (`user`,`key`),
-  CONSTRAINT `FK_F1CE8DEDB887B3EB` FOREIGN KEY (`purpose`) REFERENCES `purposes` (`id`),
+  KEY `user_key` (`user`,`updatekey`),
   CONSTRAINT `FK_F1CE8DED5373C966` FOREIGN KEY (`country`) REFERENCES `countries` (`id`),
   CONSTRAINT `FK_F1CE8DED5DD29AAB` FOREIGN KEY (`kernel`) REFERENCES `kernels` (`id`),
   CONSTRAINT `FK_F1CE8DED74995EFA` FOREIGN KEY (`architecture`) REFERENCES `architectures` (`id`),
   CONSTRAINT `FK_F1CE8DED8D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`),
   CONSTRAINT `FK_F1CE8DEDA4483781` FOREIGN KEY (`distribution`) REFERENCES `distributions` (`id`),
+  CONSTRAINT `FK_F1CE8DEDB887B3EB` FOREIGN KEY (`purpose`) REFERENCES `purposes` (`id`),
   CONSTRAINT `FK_F1CE8DEDBA80502E` FOREIGN KEY (`cpu`) REFERENCES `cpus` (`id`),
   CONSTRAINT `FK_F1CE8DEDED4B199F` FOREIGN KEY (`class`) REFERENCES `classes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -94,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-26 10:17:06
+-- Dump completed on 2015-03-26 11:07:59
