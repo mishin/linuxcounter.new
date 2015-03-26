@@ -58,10 +58,17 @@ class AjaxAutocompleteJSONController extends BaseController
             $where_clause_rhs = 'LIKE :like';
         }
 
-        $sql = 'SELECT e.id, e.isoCountryCode, e.region, e.latitude, e.longitude, e.' . $property . '
-             FROM ' . $entity_inf['class'] . ' e ' .
-            $where_clause_lhs . ' ' . $where_clause_rhs . ' ' .
-            'ORDER BY e.' . $property;
+        if ($entity_inf['class'] == "SywFrontMainBundle:Cities") {
+            $sql = 'SELECT e.id, e.isoCountryCode, e.region, e.latitude, e.longitude, e.' . $property . '
+                 FROM ' . $entity_inf['class'] . ' e ' .
+                $where_clause_lhs . ' ' . $where_clause_rhs . ' ' .
+                'ORDER BY e.' . $property;
+        } else {
+            $sql = 'SELECT e.id, e.' . $property . '
+                 FROM ' . $entity_inf['class'] . ' e ' .
+                $where_clause_lhs . ' ' . $where_clause_rhs . ' ' .
+                'ORDER BY e.' . $property;
+        }
 
         $results = $em->createQuery($sql)
             ->setParameter('like', $like)
@@ -70,7 +77,11 @@ class AjaxAutocompleteJSONController extends BaseController
 
         $res = array();
         foreach ($results as $r) {
-            $res[] = $r[$entity_inf['property']]."   (Country:".$r['isoCountryCode'].", Region:".$r['region'].", Lat:".$r['latitude'].", Long:".$r['longitude'].", ID:".$r['id'].")";
+            if ($entity_inf['class'] == "SywFrontMainBundle:Cities") {
+                $res[] = $r[$entity_inf['property']] . "   (Country:" . $r['isoCountryCode'] . ", Region:" . $r['region'] . ", Lat:" . $r['latitude'] . ", Long:" . $r['longitude'] . ", ID:" . $r['id'] . ")";
+            } else {
+                $res[] = $r[$entity_inf['property']] . "   (ID:" . $r['id'] . ")";
+            }
         }
 
         return new Response(json_encode($res));

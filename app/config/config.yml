@@ -126,3 +126,31 @@ shtumi_useful:
             class: SywFrontMainBundle:Cities
             property: name
             case_insensitive: true
+        distributions:
+            class: SywFrontMainBundle:Distributions
+            property: name
+            case_insensitive: true
+        kernels:
+            class: SywFrontMainBundle:Kernels
+            property: name
+            case_insensitive: true
+        cpus:
+            class: SywFrontMainBundle:Cpus
+            property: name
+            case_insensitive: true
+        architectures:
+            class: SywFrontMainBundle:Architectures
+            property: name
+            case_insensitive: true
+        classes:
+            class: SywFrontMainBundle:Classes
+            property: name
+            case_insensitive: true
+        purposes:
+            class: SywFrontMainBundle:Purposes
+            property: name
+            case_insensitive: true
+        countries:
+            class: SywFrontMainBundle:Countries
+            property: name
+            case_insensitive: true

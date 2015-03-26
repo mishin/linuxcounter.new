@@ -6,22 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Syw\Front\MainBundle\Entity\User;
 use Syw\Front\MainBundle\Entity\UserProfile;
-use Syw\Front\MainBundle\Entity\Cities;
-use FOS\UserBundle\FOSUserEvents;
-use FOS\UserBundle\Event\FormEvent;
-use FOS\UserBundle\Event\FilterUserResponseEvent;
-use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\Model\UserInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class UserProfileFormType

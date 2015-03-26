@@ -138,12 +138,12 @@
                         <tbody>
                         {% for machine in machines %}
                             <tr>
-                                <td>{{ machine.getId() }}</td>
-                                <td>{{ machine.getUpdateKey() }}</td>
-                                <td>{{ machine.getHostname() }}</td>
-                                <td>{{ machine.getClass().getName()|capitalize }}</td>
-                                <td>{{ machine.getDistribution().getName()|capitalize }}</td>
-                                <td>{{ machine.getModifiedAt()|date('Y-m-d') }}</td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getId() }}</a></td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getUpdateKey() }}</a></td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getHostname() }}</a></td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getClass().getName()|capitalize }}</a></td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getDistribution().getName()|capitalize }}</a></td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getModifiedAt()|date('Y-m-d') }}</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
