@@ -117,15 +117,40 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-sm-12">
 
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ 'Registered Machines'|trans }}</h3>
+                </div>
+                <div id="profile_machine_table" class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>{{ 'ID'|trans }}</th>
+                            <th>{{ 'UpdateKey'|trans }}</th>
+                            <th>{{ 'Hostname'|trans }}</th>
+                            <th>{{ 'Class'|trans }}</th>
+                            <th>{{ 'Distribution'|trans }}</th>
+                            <th>{{ 'Last Update'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for machine in machines %}
+                            <tr>
+                                <td>{{ machine.getId() }}</td>
+                                <td>{{ machine.getUpdateKey() }}</td>
+                                <td>{{ machine.getHostname() }}</td>
+                                <td>{{ machine.getClass().getName()|capitalize }}</td>
+                                <td>{{ machine.getDistribution().getName()|capitalize }}</td>
+                                <td>{{ machine.getModifiedAt()|date('Y-m-d') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-
-
-
-
-
-
-
-
+</div>
     </div>
 </div>

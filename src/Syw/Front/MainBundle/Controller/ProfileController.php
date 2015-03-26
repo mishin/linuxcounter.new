@@ -46,16 +46,19 @@ class ProfileController extends BaseController
         $userProfile = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:UserProfile')
             ->findOneBy(array('user' => $user));
+        $machines = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Machines')
+            ->findBy(array('user' => $user));
         $language = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findOneBy(array('locale' => $locale));
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
-
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'userprofile' => $userProfile,
+            'machines' => $machines,
             'language' => $language->getLanguage(),
             'languages' => $languages
         ));

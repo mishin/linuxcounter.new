@@ -4,7 +4,7 @@
 
     {% if (thisprivacy.getSecretProfile() == 1) %}
         <div class="row">
-            This user has secured his profile.
+            This user has hidden his profile.
         </div>
     {% else %}
         <div class="row">
@@ -61,8 +61,8 @@
                                 <h3 class="panel-title">{{ 'Personal information'|trans }}</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="profile_personal_firstname">{{ 'Firstname'|trans }}: {{ thisuserprofile.firstName }}</div>
-                                <div id="profile_personal_lastname">{{ 'Lastname'|trans }}: {{ thisuserprofile.lastName }}</div>
+                                <div id="profile_personal_firstname">{{ 'Firstname'|trans }}: {% if (thisprivacy.getShowRealName() == 1) %}{{ thisuserprofile.firstName }}{% else %}<span class="privhidden">hidden</span>{% endif %}</div>
+                                <div id="profile_personal_lastname">{{ 'Lastname'|trans }}: {% if (thisprivacy.getShowRealName() == 1) %}{{ thisuserprofile.lastName }}{% else %}<span class="privhidden">hidden</span>{% endif %}</div>
                                 <div id="profile_personal_birthday">{{ 'Birthday'|trans }}: {{ thisuserprofile.birthDay|date('Y-m-d') }}</div>
                                 <div id="profile_personal_birthplace">{{ 'Birthplace'|trans }}: {{ thisuserprofile.birthPlace }}</div>
                                 <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: <a
@@ -151,8 +151,43 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-12">
 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ 'Registered Machines'|trans }}</h3>
+                    </div>
+                    <div id="profile_machine_table" class="panel-body">
+                        {% if (thisprivacy.getSecretMachines() == 1) %}
+                            <span style="text-align:center">This user has hidden his machines.</span>
+                        {% else %}
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ 'ID'|trans }}</th>
+                                <th>{{ 'Hostname'|trans }}</th>
+                                <th>{{ 'Class'|trans }}</th>
+                                <th>{{ 'Distribution'|trans }}</th>
+                                <th>{{ 'Last Update'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for machine in thismachines %}
+                                <tr>
+                                    <td>{{ machine.getId() }}</td>
+                                    <td>{% if (thisprivacy.getShowHostnames() == 1) %}{{ machine.getHostname() }}{% else %}<span class="privhidden">hidden</span>{% endif %}</td>
+                                    <td>{{ machine.getClass().getName()|capitalize }}</td>
+                                    <td>{% if (thisprivacy.getShowDistribution() == 1) %}{{ machine.getDistribution().getName()|capitalize }}{% else %}<span class="privhidden">hidden</span>{% endif %}</td>
+                                    <td>{{ machine.getModifiedAt()|date('Y-m-d') }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+                    </div>
+                </div>
 
+            </div>
         </div>
     {% endif %}
 </div>

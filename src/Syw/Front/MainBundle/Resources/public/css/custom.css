@@ -110,9 +110,16 @@ label > span {
     text-align: center;
 }
 
+#profile_machine_table {
+    padding-left: 0;
+    padding-right: 0;
+}
 
-
-
+.privhidden {
+    font-weight: normal;
+    font-style: italic;
+    color: #bcbcbc;
+}
 
 
 

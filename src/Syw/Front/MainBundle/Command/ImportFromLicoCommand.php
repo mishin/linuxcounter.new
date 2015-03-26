@@ -198,6 +198,7 @@ EOT
                     $sendmail = true;
 
                     $licotestdb->prepare('SET autocommit=0;')->execute();
+                    $lico->prepare('SET autocommit=0;')->execute();
 
                     if ($sendmail === true) {
                         $user = $userManager->createUser();
@@ -274,6 +275,10 @@ EOT
                 $rows = $lico->fetchAll('SELECT * FROM machines ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
                 foreach ($rows as $row) {
                     $userid  = $row['owner'];
+                    $machineid = $row['f_key'];
+
+                    $licotestdb->prepare('SET autocommit=0;')->execute();
+                    $lico->prepare('SET autocommit=0;')->execute();
 
                     $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $userid));
 
@@ -376,8 +381,16 @@ EOT
                     $licotest->persist($machine);
                     $licotest->flush();
 
+                    $id = $machine->getId();
+                    $licotestdb->query('UPDATE machines SET id=' . $machineid . ' WHERE id=\'' . $id . '\'');
+
                     unset($user);
                     unset($machine);
+
+                    $lico->prepare('COMMIT;')->execute();
+                    $licotestdb->prepare('COMMIT;')->execute();
+
+                    $licotest->clear();
 
                     gc_collect_cycles();
                 }

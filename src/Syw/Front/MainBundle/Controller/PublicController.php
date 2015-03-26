@@ -44,6 +44,9 @@ class PublicController extends BaseController
         $thisprivacy = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Privacy')
             ->findOneBy(array('user' => $thisuser));
+        $thismachines = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Machines')
+            ->findBy(array('user' => $thisuser));
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $user = $this->getUser();
         } else {
@@ -53,6 +56,7 @@ class PublicController extends BaseController
             'thisuser' => $thisuser,
             'thisuserprofile' => $thisuserProfile,
             'thisprivacy' => $thisprivacy,
+            'thismachines' => $thismachines,
             'language' => $language->getLanguage(),
             'languages' => $languages,
             'user' => $user
