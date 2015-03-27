@@ -57,8 +57,8 @@ EOT
     {
         $item = $input->getArgument('item');
 
-        $licotest = $this->getContainer()->get('doctrine')->getManager();
         $lico = $this->getContainer()->get('doctrine.dbal.lico_connection');
+        $licotest = $this->getContainer()->get('doctrine')->getManager();
         $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
 
         if ($item == "processors" || $item == "all") {
@@ -165,8 +165,6 @@ EOT
         }
 
         if ($item == "users" || $item == "all") {
-            $userManager = $this->getContainer()->get('fos_user.user_manager');
-
             gc_collect_cycles();
             gc_disable();
 
@@ -199,10 +197,13 @@ EOT
 
                     $sendmail = true;
 
+                    $licotest = $this->getContainer()->get('doctrine')->getManager();
+                    $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
+
                     $licotestdb->prepare('SET autocommit=0;')->execute();
-                    $lico->prepare('SET autocommit=0;')->execute();
 
                     if ($sendmail === true) {
+                        $userManager = $this->getContainer()->get('fos_user.user_manager');
                         $user = $userManager->createUser();
                         $user->setEnabled(true);
                         $user->setUsername($username);
@@ -245,24 +246,28 @@ EOT
                         $licotest->persist($privacy);
                         $licotest->flush();
 
-                        unset($user);
-                        $user = null;
-                        unset($userProfile);
-                        $userProfile = null;
-                        unset($privacy);
-                        $privacy = null;
-                        unset($userid);
-                        $userid = null;
-
-                        gc_collect_cycles();
                     }
+
+                    $licotestdb->prepare('COMMIT;')->execute();
+                    $licotest->clear();
+
+                    $user = null;
+                    unset($user);
+                    $userProfile = null;
+                    unset($userProfile);
+                    $privacy = null;
+                    unset($privacy);
+                    $userid = null;
+                    unset($userid);
+                    $userManager = null;
+                    unset($userManager);
+                    $licotestdb = null;
+                    unset($licotestdb);
+                    $licotest = null;
+                    unset($licotest);
+
                     $z++;
                     echo ">>> ".$z.":   ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n";
-
-                    $lico->prepare('COMMIT;')->execute();
-                    $licotestdb->prepare('COMMIT;')->execute();
-
-                    $licotest->clear();
 
                     gc_collect_cycles();
                 }
