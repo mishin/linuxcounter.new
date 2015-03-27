@@ -1,10 +1,8 @@
 <!-- /END THE FEATURETTES -->
 
-<div class="container">
+<div class="footercontainer">
     <a name="contact"></a>
-
     <div class="banner">
-
         <div class="content">
             <!-- ... -->
             <form action="{{ path('syw_front_main_main_lang') }}" method="post">
@@ -17,24 +15,42 @@
             </form>
         </div>
         <p> &nbsp; </p>
+        <div class="footerlinks">
+            <div class="content">
+                <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a> &middot;
+                <a href="{{ url('syw_front_main_main_about') }}">{{ 'About'|trans }}</a> &middot;
+                <a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics mainpage'|trans }}</a> &middot;
+                <a href="{{ url('syw_front_main_main_download') }}">{{ 'Download'|trans }}</a> &middot;
+                <a href="{{ url('syw_front_main_main_support') }}">{{ 'Support'|trans }}</a> &middot;
+                <a href="{{ url('syw_front_main_main_impressum') }}">{{ 'Imprint'|trans }}</a> &middot;
+                <a href="{{ url('syw_front_main_main_contact') }}">{{ 'Contact'|trans }}</a><br/>
+                <a href="https://github.com/alexloehner/linuxcounter.new/issues">{{ 'Bugtracker'|trans }}</a> &middot;
+                <a href="https://github.com/alexloehner/linuxcounter.new">{{ 'Code base'|trans }}</a> &middot;
+                <a href="https://travis-ci.org/alexloehner/linuxcounter.new">{{ 'Unittests'|trans }}</a> &middot;
+                <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
+                <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a>
+            </div>
+        </div>
+        <p> &nbsp; </p>
         <div class="container">
             <p> &nbsp; </p>
 
             <div class="row">
                 {{ include('SywFrontMainBundle:Common:_social.html.twig') }}
             </div>
-
         </div>
         <!-- /.container -->
-
     </div>
     <!-- /.banner -->
 
     <!-- FOOTER -->
     <footer>
-        <p> &nbsp; </p>
-        <p> &nbsp; </p>
-        <p class="copyright">LiCo, LinuxCounter.net, LiCo - The New Linux Counter Project - linuxcounter.net, Copyright © 2011 - 2015 by <a href="https://github.com/alexloehner">Alexander Löhner</a>. All rights reserved.<br>
+        <p>
+            <a href="https://travis-ci.org/alexloehner/linuxcounter.new"><img src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master"/></a> &nbsp;
+            <a href="https://coveralls.io/r/alexloehner/linuxcounter.new"><img src="https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg"/></a> &nbsp;
+            <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f"><img src="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat"/></a>
+        </p>
+        <p class="copyright">LiCo, LinuxCounter.net, LiCo - The New Linux Counter Project - linuxcounter.net, Copyright © 2011 - {{"now"|date('Y')}} by <a href="https://github.com/alexloehner">Alexander Löhner</a>. All rights reserved.<br>
         The code of The New Linux Counter Project is licensed under the <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">GPL v3</a>.<br>
         Original project counter.li.org © 1993 - 2011 by Harald Tveit Alvestrand &amp; the Linux Counter Project - Linux is a registered trademark of Linus Torvalds.</p>
     </footer>

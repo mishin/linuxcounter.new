@@ -19,7 +19,7 @@ body {
 }
 
 #main {
-    background-color: #fff;
+    background-color: #f9f9f9;
 }
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
@@ -147,13 +147,13 @@ body {
 
 .page {
     margin-top: 140px;
-    margin-bottom: 70px;
 }
 
 .copyright {
     text-align: center;
     font-size: 0.8em;
-    color: #aeaeae;
+    color: #595959;
+    padding: 40px;
 }
 
 .btn-default {
@@ -366,4 +366,44 @@ body {
     margin-bottom: 15px;
     min-height: 23px;
 }
+
+.footercontainer {
+    background-image: -webkit-linear-gradient(top,#fefefe 0,#dedede 100%);
+    background-image: -o-linear-gradient(top,#fefefe 0,#dedede 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fefefe),to(#dedede));
+    background-image: linear-gradient(to bottom,#fefefe 0,#dedede 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffefefe', endColorstr='#ffdedede', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-top: 1px solid #DADADA;
+    background-color: #dedede;
+    padding-top: 20px;
+}
+
+footer {
+    text-align: center;
+}
+
+.footerlinks {
+    text-align: center;
+}
+
+p {
+    margin: 0;
+}
+
+form {
+    margin-bottom: 10px;
+}
+
+input[type=submit] {
+    margin: 20px;
+}
+
+input[type=button] {
+    margin: 20px;
+}
+
+
+
 
