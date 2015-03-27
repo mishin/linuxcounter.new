@@ -166,7 +166,6 @@ EOT
 
         if ($item == "users" || $item == "all") {
             gc_collect_cycles();
-            gc_disable();
 
             $nums = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
             $numusers = $nums[0]['num'];
@@ -179,6 +178,7 @@ EOT
                 unset($rows);
                 $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
                 foreach ($rows as $row) {
+                    gc_collect_cycles();
                     $sendmail = false;
                     $id        = $row['f_key'];
                     $email     = $row['email'];
@@ -250,6 +250,8 @@ EOT
 
                     $licotestdb->prepare('COMMIT;')->execute();
                     $licotest->clear();
+
+                    gc_collect_cycles();
 
                     $user = null;
                     unset($user);
