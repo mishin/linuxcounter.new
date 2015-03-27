@@ -164,118 +164,140 @@ EOT
             }
         }
 
-        if ($item == "users" || $item == "all") {
+        if ($item == "users") {
+            $nums     = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
+            $numusers = $nums[0]['num'];
+
+            if (true === file_exists('import.db')) {
+                $start = file_get_contents('import.db');
+                $start = intval(trim($start));
+            } else {
+                $start    = $numusers;
+            }
+
+
+            @exec("php app/console syw:import:lico usersbg >/dev/null 2>&1 &");
+            exit(0);
+        }
+
+        if ($item == "usersbg") {
             gc_collect_cycles();
 
-            $nums = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
-            $numusers = $nums[0]['num'];
-            $start = $numusers;
-            $itemsperloop = 100;
+            if (true === file_exists('import.db')) {
+                $start = file_get_contents('import.db');
+                $start = intval(trim($start));
+            } else {
+                $nums     = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
+                $numusers = $nums[0]['num'];
+                $start    = $numusers;
+            }
+            $itemsperloop = 10;
 
             $z = 0;
+            $a = $start;
+            file_put_contents('import.db', ($a-$itemsperloop));
 
-            for ($a = $start; $a > 0; $a-=$itemsperloop) {
-                unset($rows);
-                $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
-                foreach ($rows as $row) {
-                    gc_collect_cycles();
-                    $sendmail = false;
-                    $id        = $row['f_key'];
-                    $email     = $row['email'];
+            unset($rows);
+            $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
+            foreach ($rows as $row) {
+                gc_collect_cycles();
+                $sendmail = false;
+                $id        = $row['f_key'];
+                $email     = $row['email'];
 
-                    if (preg_match("`^([a-z]{5,}[0-9]{2,}[\+]+[a-z0-9]{3,}@gmail\.com)$`i", strtolower($email))) {
-                        continue;
-                    }
-
-                    if (preg_match("`^(.*[a-z]+\.[a-z]+\.[a-z0-9]+\.[a-z0-9]+.*@gmail\.com)$`i", strtolower($email))) {
-                        continue;
-                    }
-
-                    $lastLogin = $row['logintime'];
-                    $username  = $id;
-                    $password = mt_rand(1000000000, 9999999999);
-
-                    $sendmail = true;
-
-                    $licotest = $this->getContainer()->get('doctrine')->getManager();
-                    $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
-
-                    $licotestdb->prepare('SET autocommit=0;')->execute();
-
-                    if ($sendmail === true) {
-                        $userManager = $this->getContainer()->get('fos_user.user_manager');
-                        $user = $userManager->createUser();
-                        $user->setEnabled(true);
-                        $user->setUsername($username);
-                        $user->setEmail($email);
-                        $user->setPlainPassword($password);
-                        $user->setLastLogin(new \DateTime($lastLogin));
-                        $user->setSuperAdmin(false);
-                        $user->setLocale('en');
-                        $userManager->updateUser($user);
-
-                        $userid = $user->getId();
-                        $licotestdb->query('UPDATE fos_user SET id=' . $id . ' WHERE id=\'' . $userid . '\'');
-
-                        unset($user);
-                        $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $id));
-
-                        $userProfile = new UserProfile();
-                        $userProfile->setUser($user);
-                        $licotest->persist($userProfile);
-                        $licotest->flush();
-
-                        $user->setProfile($userProfile);
-                        $userManager->updateUser($user);
-                        $licotest->flush();
-
-                        $privacy = new \Syw\Front\MainBundle\Entity\Privacy();
-                        $privacy->setUser($user);
-                        $privacy->setSecretProfile(0);
-                        $privacy->setSecretCounterData(0);
-                        $privacy->setSecretMachines(0);
-                        $privacy->setSecretContactInfo(0);
-                        $privacy->setSecretSocialInfo(0);
-                        $privacy->setShowRealName(0);
-                        $privacy->setShowEmail(0);
-                        $privacy->setShowLocation(1);
-                        $privacy->setShowHostnames(1);
-                        $privacy->setShowKernel(1);
-                        $privacy->setShowDistribution(1);
-                        $privacy->setShowVersions(1);
-                        $licotest->persist($privacy);
-                        $licotest->flush();
-
-                    }
-
-                    $licotestdb->prepare('COMMIT;')->execute();
-                    $licotest->clear();
-
-                    gc_collect_cycles();
-
-                    $user = null;
-                    unset($user);
-                    $userProfile = null;
-                    unset($userProfile);
-                    $privacy = null;
-                    unset($privacy);
-                    $userid = null;
-                    unset($userid);
-                    $userManager = null;
-                    unset($userManager);
-                    $licotestdb = null;
-                    unset($licotestdb);
-                    $licotest = null;
-                    unset($licotest);
-
-                    $z++;
-                    echo ">>> ".$z.":   ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n";
-
-                    gc_collect_cycles();
+                if (preg_match("`^([a-z]{5,}[0-9]{2,}[\+]+[a-z0-9]{3,}@gmail\.com)$`i", strtolower($email))) {
+                    continue;
                 }
+
+                if (preg_match("`^(.*[a-z]+\.[a-z]+\.[a-z0-9]+\.[a-z0-9]+.*@gmail\.com)$`i", strtolower($email))) {
+                    continue;
+                }
+
+                $lastLogin = $row['logintime'];
+                $username  = $id;
+                $password = mt_rand(1000000000, 9999999999);
+
+                $sendmail = true;
+
+                $licotest = $this->getContainer()->get('doctrine')->getManager();
+                $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
+
+                $licotestdb->prepare('SET autocommit=0;')->execute();
+
+                if ($sendmail === true) {
+                    $userManager = $this->getContainer()->get('fos_user.user_manager');
+                    $user = $userManager->createUser();
+                    $user->setEnabled(true);
+                    $user->setUsername($username);
+                    $user->setEmail($email);
+                    $user->setPlainPassword($password);
+                    $user->setLastLogin(new \DateTime($lastLogin));
+                    $user->setSuperAdmin(false);
+                    $user->setLocale('en');
+                    $userManager->updateUser($user);
+
+                    $userid = $user->getId();
+                    $licotestdb->query('UPDATE fos_user SET id=' . $id . ' WHERE id=\'' . $userid . '\'');
+
+                    unset($user);
+                    $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $id));
+
+                    $userProfile = new UserProfile();
+                    $userProfile->setUser($user);
+                    $licotest->persist($userProfile);
+                    $licotest->flush();
+
+                    $user->setProfile($userProfile);
+                    $userManager->updateUser($user);
+                    $licotest->flush();
+
+                    $privacy = new \Syw\Front\MainBundle\Entity\Privacy();
+                    $privacy->setUser($user);
+                    $privacy->setSecretProfile(0);
+                    $privacy->setSecretCounterData(0);
+                    $privacy->setSecretMachines(0);
+                    $privacy->setSecretContactInfo(0);
+                    $privacy->setSecretSocialInfo(0);
+                    $privacy->setShowRealName(0);
+                    $privacy->setShowEmail(0);
+                    $privacy->setShowLocation(1);
+                    $privacy->setShowHostnames(1);
+                    $privacy->setShowKernel(1);
+                    $privacy->setShowDistribution(1);
+                    $privacy->setShowVersions(1);
+                    $licotest->persist($privacy);
+                    $licotest->flush();
+
+                }
+
+                $licotestdb->prepare('COMMIT;')->execute();
+                $licotest->clear();
+
+                gc_collect_cycles();
+
+                $user = null;
+                unset($user);
+                $userProfile = null;
+                unset($userProfile);
+                $privacy = null;
+                unset($privacy);
+                $userid = null;
+                unset($userid);
+                $userManager = null;
+                unset($userManager);
+                $licotestdb = null;
+                unset($licotestdb);
+                $licotest = null;
+                unset($licotest);
+
+                $z++;
+                file_put_contents("import.log", ">>> ".$z.":   ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
+
                 gc_collect_cycles();
             }
             gc_collect_cycles();
+            @exec("php app/console syw:import:lico users >/dev/null 2>&1 &");
+            exit(0);
         }
 
         if ($item == "machines" || $item == "all") {

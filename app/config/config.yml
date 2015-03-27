@@ -110,6 +110,24 @@ easy_admin:
                 fields: ['transKey', 'translation', 'transLocale', 'messageDomain', 'dateCreated', 'dateUpdated']
         Languages:
             class: Syw\Front\MainBundle\Entity\Languages
+        Machines:
+            class: Syw\Front\MainBundle\Entity\Machines
+        Architectures:
+            class: Syw\Front\MainBundle\Entity\Architectures
+        Cities:
+            class: Syw\Front\MainBundle\Entity\Cities
+        Classes:
+            class: Syw\Front\MainBundle\Entity\Classes
+        Countries:
+            class: Syw\Front\MainBundle\Entity\Countries
+        Cpus:
+            class: Syw\Front\MainBundle\Entity\Cpus
+        Distributions:
+            class: Syw\Front\MainBundle\Entity\Distributions
+        Kernels:
+            class: Syw\Front\MainBundle\Entity\Kernels
+        Purposes:
+            class: Syw\Front\MainBundle\Entity\Purposes
 
 ornicar_gravatar:
     rating: pg
