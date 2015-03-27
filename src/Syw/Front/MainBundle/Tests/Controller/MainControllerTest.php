@@ -55,7 +55,7 @@ class MainControllerTest extends BaseControllerTest
     public function testMainImpressumContent()
     {
         $crawler = $this->client->request('GET', '/impressum');
-        $this->assertGreaterThan(0, $crawler->filter('html:contains("Impressum")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("Imprint")')->count());
     }
 
     /*
