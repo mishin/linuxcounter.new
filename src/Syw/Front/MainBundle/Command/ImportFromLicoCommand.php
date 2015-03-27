@@ -165,7 +165,7 @@ EOT
         }
 
         if ($item == "users") {
-            @exec("php app/console syw:import:lico usersbg >import.log 2>&1 3>&1 4>&1 &");
+            @exec("php app/console syw:import:lico usersbg >>import.log 2>&1 3>&1 4>&1 &");
             exit(0);
         }
 
@@ -183,7 +183,7 @@ EOT
                 $start    = $numusers;
                 $counter  = 0;
             }
-            $itemsperloop = 100;
+            $itemsperloop = 200;
 
             $z = 0;
             $a = $start;
@@ -289,7 +289,7 @@ EOT
             }
             file_put_contents('import.db', ($a-$itemsperloop)." ".$counter);
             gc_collect_cycles();
-            @exec("php app/console syw:import:lico users >import.log 2>&1 3>&1 4>&1 &");
+            @exec("php app/console syw:import:lico users >>import.log 2>&1 3>&1 4>&1 &");
             exit(0);
         }
 
