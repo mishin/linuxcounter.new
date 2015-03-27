@@ -36,3 +36,8 @@ services:
     syw.repository_helper:
         class: Syw\Front\MainBundle\Util\RepositoryHelper
         arguments: [ @doctrine.orm.entity_manager ]
+    propaganistas.emailObfuscator:
+        class: Propaganistas\Twig\Extension\EmailObfuscator
+        public: false
+        tags:
+            - { name: twig.extension }

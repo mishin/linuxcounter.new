@@ -1,5 +1,17 @@
 {% extends "SywFrontMainBundle::base.html.twig" %}
 
 {% block fos_user_content %}
-{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+    <!-- Page Content -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ 'Reset your password'|trans }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock fos_user_content %}

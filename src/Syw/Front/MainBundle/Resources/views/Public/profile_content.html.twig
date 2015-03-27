@@ -45,7 +45,7 @@
                     {% if (thisprivacy.getShowEmail() == 0) %}
                         <div class="profile_email"><span class="fa fa-envelope"></span> ~</div>
                     {% else %}
-                        <div class="profile_email"><span class="fa fa-envelope"></span> {{ thisuser.email }}</div>
+                        <div class="profile_email"><span class="fa fa-envelope"></span> {{ thisuser.email|obfuscateEmail }}</div>
                     {% endif %}
                     <div class="profile_homepage"><span
                                 class="fa fa-anchor"></span> {% if thisuserprofile.homepage %}{{ thisuserprofile.homepage }}{% else %}No homepage yet{% endif %}

@@ -25,7 +25,7 @@
                             class="fa fa-location-arrow"></span> {{ userprofile.city.getName() }} (<a
                             href="http://www.openstreetmap.org/#map=15/{{ userprofile.city.getLatitude() }}/{{ userprofile.city.getLongitude() }}">{{ 'Show on map'|trans }}</a>)
                     </div>{% endif %}
-                <div class="profile_email"><span class="fa fa-envelope"></span> {{ user.email }}</div>
+                <div class="profile_email"><span class="fa fa-envelope"></span> {{ user.email|obfuscateEmail }}</div>
                 <div class="profile_homepage"><span
                             class="fa fa-anchor"></span> {% if userprofile.homepage %}{{ userprofile.homepage }}{% else %}No homepage yet{% endif %}
                 </div>
