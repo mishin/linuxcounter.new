@@ -125,7 +125,9 @@ label > span {
 
 }
 
-
+.sr-only {
+    position: inherit;
+}
 
 
 

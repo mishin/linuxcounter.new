@@ -167,6 +167,8 @@ EOT
         if ($item == "users" || $item == "all") {
             $userManager = $this->getContainer()->get('fos_user.user_manager');
 
+            gc_collect_cycles();
+            gc_disable();
 
             $nums = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
             $numusers = $nums[0]['num'];
@@ -250,7 +252,7 @@ EOT
                         gc_collect_cycles();
                     }
                     $z++;
-                    echo ">>> $z \n";
+                    echo ">>> ".number_format(round((memory_get_usage()/1000), 2))." Mb \n";
 
                     $lico->prepare('COMMIT;')->execute();
                     $licotestdb->prepare('COMMIT;')->execute();
@@ -269,6 +271,9 @@ EOT
             $numusers = $nums[0]['num'];
             $start = $numusers;
             $itemsperloop = 100;
+
+            gc_collect_cycles();
+            gc_disable();
 
             for ($a = $start; $a > 0; $a-=$itemsperloop) {
                 unset($rows);

@@ -50,7 +50,7 @@
                     <div class="profile_homepage"><span
                                 class="fa fa-anchor"></span> {% if thisuserprofile.homepage %}{{ thisuserprofile.homepage }}{% else %}No homepage yet{% endif %}
                     </div>
-                    <div class="profile_language"><span class="fa fa-flag"></span> {{ language }}</div>
+                    <div class="profile_language"><span class="fa fa-flag"></span> {{ language.getLanguage() }}</div>
                 </div>
             </div>
             <div class="col-sm-9">
@@ -174,11 +174,11 @@
                             <tbody>
                             {% for machine in thismachines %}
                                 <tr>
-                                    <td>{{ machine.getId() }}</td>
-                                    <td>{% if (thisprivacy.getShowHostnames() == 1) %}{{ machine.getHostname() }}{% else %}<span class="privhidden">hidden</span>{% endif %}</td>
-                                    <td>{{ machine.getClass().getName()|capitalize }}</td>
-                                    <td>{% if (thisprivacy.getShowDistribution() == 1) %}{{ machine.getDistribution().getName()|capitalize }}{% else %}<span class="privhidden">hidden</span>{% endif %}</td>
-                                    <td>{{ machine.getModifiedAt()|date('Y-m-d') }}</td>
+                                    <td><a class="machinelink" href="{{ url('syw_front_main_public_machine', {'machinenumber': machine.getId()}) }}">{{ machine.getId() }}</a></td>
+                                    <td><a class="machinelink" href="{{ url('syw_front_main_public_machine', {'machinenumber': machine.getId()}) }}">{% if (thisprivacy.getShowHostnames() == 1) %}{{ machine.getHostname() }}{% else %}<span class="privhidden">hidden</span>{% endif %}</a></td>
+                                    <td><a class="machinelink" href="{{ url('syw_front_main_public_machine', {'machinenumber': machine.getId()}) }}">{{ machine.getClass().getName()|capitalize }}</a></td>
+                                    <td><a class="machinelink" href="{{ url('syw_front_main_public_machine', {'machinenumber': machine.getId()}) }}">{% if (thisprivacy.getShowDistribution() == 1) %}{{ machine.getDistribution().getName()|capitalize }}{% else %}<span class="privhidden">hidden</span>{% endif %}</a></td>
+                                    <td><a class="machinelink" href="{{ url('syw_front_main_public_machine', {'machinenumber': machine.getId()}) }}">{{ machine.getModifiedAt()|date('Y-m-d') }}</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>

@@ -62,4 +62,46 @@ class PublicController extends BaseController
             'user' => $user
         ));
     }
+
+    /**
+     * @Route("/machine/{machinenumber}")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function machineAction($machinenumber)
+    {
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+        $thismachine = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Machines')
+            ->findOneBy(array('id' => $machinenumber));
+        $thisuser = $thismachine->getUser();
+        $thisuserprofile = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:UserProfile')
+            ->findOneBy(array('user' => $thisuser));
+        $locale = $thisuser->getLocale();
+        $language = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findOneBy(array('locale' => $locale));
+        $thisprivacy = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Privacy')
+            ->findOneBy(array('user' => $thisuser));
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return $this->render('SywFrontMainBundle:Public:machine.html.twig', array(
+            'thisuser' => $thisuser,
+            'thisprivacy' => $thisprivacy,
+            'thismachine' => $thismachine,
+            'thisuserprofile' => $thisuserprofile,
+            'language' => $language,
+            'languages' => $languages,
+            'user' => $user
+        ));
+    }
 }
