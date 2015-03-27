@@ -42,10 +42,7 @@
             <li><a href="{{ url('syw_front_main_public_profile', {'counternumber': user.getId()}) }}">{{ 'Show public Profile'|trans }}</a></li>
             <li><a href="{{ url('fos_user_profile_edit') }}">{{ 'Edit Account'|trans }}</a></li>
             <li><a href="{{ url('syw_front_main_info_edit') }}">{{ 'Edit Profile'|trans }}</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">{{ 'Counter data'|trans }}</li>
-            <li><a href="#">{{ 'Show user information'|trans }}</a></li>
-            <li><a href="#">{{ 'Show machines'|trans }}</a></li>
+            <li><a href="{{ url('syw_front_main_machine_create') }}">{{ 'Register new machine'|trans }}</a></li>
         </ul>
     </li>
     <li class="footer-menu-divider">&sdot;</li>

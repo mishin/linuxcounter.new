@@ -22,7 +22,6 @@ use Syw\Front\MainBundle\Form\Type\MachineFormType;
  */
 class MachineController extends BaseController
 {
-
     private $oldCountry;
     private $oldClass;
     private $oldDist;
@@ -30,6 +29,129 @@ class MachineController extends BaseController
     private $oldKernel;
     private $oldCpu;
 
+
+    /**
+     * @Route("/profile/machine/new")
+     *
+     * @Template()
+     */
+    public function createAction(Request $request)
+    {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+        $machine = new Machines();
+
+        $form = $this->createForm(
+            new MachineFormType(
+                $machine
+            ),
+            $machine
+        );
+
+        $form->handleRequest($request);
+
+        if ($request->getMethod() == 'POST') {
+            $formData = $request->request->all();
+
+            $field = array('Countries', 'country');
+            if (true === isset($formData['machine'][$field[1]]) && trim($formData['machine'][$field[1]]) != "") {
+                $val = $formData['machine'][$field[1]];
+                $id   = preg_replace("`.*\(ID:([0-9]+)\)$`", "$1", $val);
+                if (true === isset($id) && true === is_numeric($id)) {
+                    $obj = $this->getDoctrine()
+                        ->getRepository('SywFrontMainBundle:'.$field[0])
+                        ->findOneBy(array('id' => $id));
+                    $machine->setCountry($obj);
+                }
+            }
+
+            $field = array('Classes', 'class');
+            if (true === isset($formData['machine'][$field[1]]) && trim($formData['machine'][$field[1]]) != "") {
+                $val = $formData['machine'][$field[1]];
+                $id   = preg_replace("`.*\(ID:([0-9]+)\)$`", "$1", $val);
+                if (true === isset($id) && true === is_numeric($id)) {
+                    $obj = $this->getDoctrine()
+                        ->getRepository('SywFrontMainBundle:'.$field[0])
+                        ->findOneBy(array('id' => $id));
+                    $machine->setClass($obj);
+                }
+            }
+
+            $field = array('Distributions', 'distribution');
+            if (true === isset($formData['machine'][$field[1]]) && trim($formData['machine'][$field[1]]) != "") {
+                $val = $formData['machine'][$field[1]];
+                $id   = preg_replace("`.*\(ID:([0-9]+)\)$`", "$1", $val);
+                if (true === isset($id) && true === is_numeric($id)) {
+                    $obj = $this->getDoctrine()
+                        ->getRepository('SywFrontMainBundle:'.$field[0])
+                        ->findOneBy(array('id' => $id));
+                    $machine->setDistribution($obj);
+                }
+            }
+
+            $field = array('Architectures', 'architecture');
+            if (true === isset($formData['machine'][$field[1]]) && trim($formData['machine'][$field[1]]) != "") {
+                $val = $formData['machine'][$field[1]];
+                $id   = preg_replace("`.*\(ID:([0-9]+)\)$`", "$1", $val);
+                if (true === isset($id) && true === is_numeric($id)) {
+                    $obj = $this->getDoctrine()
+                        ->getRepository('SywFrontMainBundle:'.$field[0])
+                        ->findOneBy(array('id' => $id));
+                    $machine->setArchitecture($obj);
+                }
+            }
+
+            $field = array('Kernels', 'kernel');
+            if (true === isset($formData['machine'][$field[1]]) && trim($formData['machine'][$field[1]]) != "") {
+                $val = $formData['machine'][$field[1]];
+                $id   = preg_replace("`.*\(ID:([0-9]+)\)$`", "$1", $val);
+                if (true === isset($id) && true === is_numeric($id)) {
+                    $obj = $this->getDoctrine()
+                        ->getRepository('SywFrontMainBundle:'.$field[0])
+                        ->findOneBy(array('id' => $id));
+                    $machine->setKernel($obj);
+                }
+            }
+
+            $field = array('Cpus', 'cpu');
+            if (true === isset($formData['machine'][$field[1]]) && trim($formData['machine'][$field[1]]) != "") {
+                $val = $formData['machine'][$field[1]];
+                $id   = preg_replace("`.*\(ID:([0-9]+)\)$`", "$1", $val);
+                if (true === isset($id) && true === is_numeric($id)) {
+                    $obj = $this->getDoctrine()
+                        ->getRepository('SywFrontMainBundle:'.$field[0])
+                        ->findOneBy(array('id' => $id));
+                    $machine->setCpu($obj);
+                }
+            }
+
+            $machine->setCreatedAt(new \DateTime());
+            $machine->setUser($user);
+            $updateKey = $password = mt_rand(10000000, 99999999);
+            $machine->setUpdateKey($updateKey);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($machine);
+            $em->flush();
+
+            $flashBag = $this->get('session')->getFlashBag();
+            $flashBag->set('success', 'Machine created!');
+
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
+
+        return $this->render('SywFrontMainBundle:Machine:create.html.twig', array(
+            'form' => $form->createView(),
+            'machine' => $machine,
+            'languages' => $languages,
+            'user' => $user
+        ));
+    }
 
     /**
      * @Route("/profile/machine/edit/{machinenumber}")

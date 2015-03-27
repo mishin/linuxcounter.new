@@ -96,19 +96,34 @@
                     </div>
                 </div>
             </div>
+            {% if userprofile.interests %}
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ 'Other information'|trans }}</h3>
+                            <h3 class="panel-title">{{ 'Interests'|trans }}</h3>
                         </div>
                         <div class="panel-body">
-                            <div id="profile_info_interests">{{ 'Interests'|trans }}: {{ userprofile.interests }}</div>
-                            <div id="profile_info_hobbies">{{ 'Hobbies'|trans }}: {{ userprofile.hobbies }}</div>
+                            {{ userprofile.interests }}
                         </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
+            {% if userprofile.hobbies %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ 'Hobbies'|trans }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ userprofile.hobbies }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="row">

@@ -50,7 +50,8 @@ class UserProfileFormType extends AbstractType
             ->add('twitter', 'text', array('label' => 'Twitter', 'required' => false))
             ->add('identica', 'text', array('label' => 'Identi.ca', 'required' => false))
 
-
+            ->add('interests', 'textarea', array('label' => 'Interests', 'required' => false))
+            ->add('hobbies', 'textarea', array('label' => 'Hobbies', 'required' => false))
 
             ->add('save', 'submit');
     }

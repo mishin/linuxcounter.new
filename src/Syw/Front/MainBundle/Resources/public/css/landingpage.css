@@ -3,6 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
+    overflow-x:hidden;
     font-family: monospace, courier new, serif;
     padding-bottom: 40px;
     padding-top: 0;
