@@ -140,9 +140,9 @@
                             <tr>
                                 <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getId() }}</a></td>
                                 <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getUpdateKey() }}</a></td>
-                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getHostname() }}</a></td>
-                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getClass().getName()|capitalize }}</a></td>
-                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getDistribution().getName()|capitalize }}</a></td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{% if machine.getHostname() %}{{ machine.getHostname() }}{% endif %}</a></td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{% if machine.getClass() %}{{ machine.getClass().getName()|capitalize }}{% endif %}</a></td>
+                                <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{% if machine.getDistribution() %}{{ machine.getDistribution().getName()|capitalize }}{% endif %}</a></td>
                                 <td><a class="machinelink" href="{{ url('syw_front_main_machine_edit', {'machinenumber': machine.getId()}) }}">{{ machine.getModifiedAt()|date('Y-m-d') }}</a></td>
                             </tr>
                         {% endfor %}

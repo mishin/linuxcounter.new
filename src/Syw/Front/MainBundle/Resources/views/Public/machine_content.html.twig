@@ -63,6 +63,7 @@
                             <div class="panel-body">
                                 <div id="profile_personal_firstname">{{ 'Hostname'|trans }}: {% if (thisprivacy.getShowHostnames() == 1) %}{{ thismachine.hostname }}{% else %}<span class="privhidden">hidden</span>{% endif %}</div>
                                 <div id="profile_personal_lastname">{{ 'Class'|trans }}: {{ thismachine.getClass().getName()|capitalize }}</div>
+                                <div id="profile_personal_lastname">{{ 'Distribution'|trans }}: {{ thismachine.getDistribution().getName()|capitalize }}{% if (thisprivacy.getShowVersions() == 1) %} {{ thismachine.distversion }}{% endif %}</div>
                                 <div id="profile_personal_birthday">{{ 'Country'|trans }}: {{ thismachine.getCountry().getName() }}</div>
                                 <div id="profile_personal_birthplace">{{ 'Online'|trans }}:
                                     {% if thismachine.online == 1 %}
@@ -98,34 +99,31 @@
                             <div class="panel-body">
                                 <div id="profile_contact_icq">
                                     {% if thismachine.diskspace == 0 %}
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span class="sr-only">No diskspace</span></div>
-                                        </div>
+                                        <span class="progress-description">No Diskspace</span>
                                     {% else %}
+                                        <span class="progress-description">{{ ((100/thismachine.diskspace)*thismachine.diskspaceFree)|round(2, 'common') }}% {{ 'Free diskspace'|trans }} (of {{ (thismachine.diskspace)|round(2, 'common')|number_format }} Mb)</span>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ ((100/thismachine.diskspace)*thismachine.diskspaceFree)|round(2, 'common') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((100/thismachine.diskspace)*thismachine.diskspaceFree)|round(2, 'common') }}%"><span class="sr-only">{{ ((100/thismachine.diskspace)*thismachine.diskspaceFree)|round(2, 'common') }}% {{ 'Free diskspace'|trans }} (of {{ (thismachine.diskspace/1000)|round(2, 'common')|number_format }} Mb)</span></div>
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ ((100/thismachine.diskspace)*thismachine.diskspaceFree)|round(2, 'common') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((100/thismachine.diskspace)*thismachine.diskspaceFree)|round(2, 'common') }}%"><span class="sr-only"></span></div>
                                     </div>
                                     {% endif %}
                                 </div>
                                 <div id="profile_contact_skype">
                                     {% if thismachine.memory == 0 %}
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span class="sr-only">No RAM</span></div>
-                                        </div>
+                                        <span class="progress-description">No RAM</span>
                                     {% else %}
+                                        <span class="progress-description">{{ ((100/thismachine.memory)*thismachine.memoryFree)|round(2, 'common') }}% {{ 'Free RAM'|trans }} (of {{ (thismachine.memory)|number_format }} Mb)</span>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ ((100/thismachine.memory)*thismachine.memoryFree)|round(2, 'common') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((100/thismachine.memory)*thismachine.memoryFree)|round(2, 'common') }}%"><span class="sr-only">{{ ((100/thismachine.memory)*thismachine.memoryFree)|round(2, 'common') }}% {{ 'Free RAM'|trans }} (of {{ (thismachine.memory)|number_format }} Mb)</span></div>
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ ((100/thismachine.memory)*thismachine.memoryFree)|round(2, 'common') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((100/thismachine.memory)*thismachine.memoryFree)|round(2, 'common') }}%"><span class="sr-only"></span></div>
                                     </div>
                                     {% endif %}
                                 </div>
                                 <div id="profile_contact_jabber">
                                     {% if thismachine.swap == 0 %}
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span class="sr-only">No swap</span></div>
-                                        </div>
+                                    <span class="progress-description">No Swap</span>
                                     {% else %}
+                                        <span class="progress-description">{{ ((100/thismachine.swap)*thismachine.swapFree)|round(2, 'common') }}% {{ 'Free Swap'|trans }} (of {{ (thismachine.swap)|round(2, 'common')|number_format }} Mb)</span>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ ((100/thismachine.swap)*thismachine.swapFree)|round(2, 'common') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((100/thismachine.swap)*thismachine.swapFree)|round(2, 'common') }}%"><span class="sr-only">{{ ((100/thismachine.swap)*thismachine.swapFree)|round(2, 'common') }}% {{ 'Free Swap'|trans }} (of {{ (thismachine.swap/1000)|round(2, 'common')|number_format }} Mb)</span></div>
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ ((100/thismachine.swap)*thismachine.swapFree)|round(2, 'common') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ((100/thismachine.swap)*thismachine.swapFree)|round(2, 'common') }}%"><span class="sr-only"></span></div>
                                     </div>
                                     {% endif %}
                                 </div>
@@ -140,8 +138,11 @@
                                 <h3 class="panel-title">{{ 'Other information'|trans }}</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="profile_info_interests">{{ 'Interests'|trans }}: {{ thisuserprofile.interests }}</div>
-                                <div id="profile_info_hobbies">{{ 'Hobbies'|trans }}: {{ thisuserprofile.hobbies }}</div>
+                                <div id="profile_info_interests">{{ 'Accounts'|trans }}: {{ thismachine.accounts }}</div>
+                                <div id="profile_info_hobbies">{{ 'Mailer'|trans }}: {{ thismachine.mailer }}</div>
+                                <div id="profile_info_hobbies">{{ 'Network'|trans }}: {{ thismachine.network }}</div>
+                                <div id="profile_info_hobbies">{{ 'Uptime'|trans }}: {{ uptime }}</div>
+                                <div id="profile_info_hobbies">{{ 'Load average'|trans }}: {{ thismachine.loadavg }}</div>
                             </div>
                         </div>
                     </div>

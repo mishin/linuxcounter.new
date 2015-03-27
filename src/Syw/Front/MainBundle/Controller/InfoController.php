@@ -85,14 +85,8 @@ class InfoController extends BaseController
 
             if (true === isset($formData['userprofile']['city']) && trim($formData['userprofile']['city']) != "") {
                 $cityfield = $formData['userprofile']['city'];
-
-                file_put_contents('/tmp/debug.log', $cityfield."\n\n", FILE_APPEND);
-
                 $city_id   = preg_replace("`.*, ID:([0-9]+)\)$`", "$1", $cityfield);
                 if (true === isset($city_id) && true === is_numeric($city_id)) {
-
-                    file_put_contents('/tmp/debug.log', $city_id."\n\n", FILE_APPEND);
-
                     $city = $this->getDoctrine()
                         ->getRepository('SywFrontMainBundle:Cities')
                         ->findOneBy(array('id' => $city_id));
@@ -100,8 +94,6 @@ class InfoController extends BaseController
                 } else {
                     $userProfile->setCity($this->oldcity);
                 }
-            } else {
-                file_put_contents('/tmp/debug.log', "else 2 \n\n", FILE_APPEND);
             }
             $em = $this->getDoctrine()->getManager();
             $em->persist($userProfile);
