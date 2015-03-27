@@ -246,13 +246,18 @@ EOT
                         $licotest->flush();
 
                         unset($user);
+                        $user = null;
                         unset($userProfile);
+                        $userProfile = null;
                         unset($privacy);
+                        $privacy = null;
+                        unset($userid);
+                        $userid = null;
 
                         gc_collect_cycles();
                     }
                     $z++;
-                    echo ">>> ".number_format(round((memory_get_usage()/1000), 2))." Mb \n";
+                    echo ">>> ".$z.":   ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n";
 
                     $lico->prepare('COMMIT;')->execute();
                     $licotestdb->prepare('COMMIT;')->execute();
@@ -398,6 +403,9 @@ EOT
                     $licotest->clear();
 
                     gc_collect_cycles();
+
+                    echo ">>> ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n";
+
                 }
                 gc_collect_cycles();
             }
