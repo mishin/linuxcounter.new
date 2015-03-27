@@ -2,19 +2,22 @@
 
 <div class="footercontainer">
     <a name="contact"></a>
+
     <div class="banner">
         <div class="content">
             <!-- ... -->
             <form action="{{ path('syw_front_main_main_lang') }}" method="post">
                 <select name="language" id="languages">
                     {% for language in languages %}
-                        <option value="{{ language.locale }}" {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}> {{ language.language }}</option>
+                        <option value="{{ language.locale }}"
+                                {% if app.request.getLocale() == language.locale %}selected="selected"{% endif %}> {{ language.language }}</option>
                     {% endfor %}
                 </select>
                 <input type="submit" value="{{ 'Choose language...'|trans }}">
             </form>
         </div>
         <p> &nbsp; </p>
+
         <div class="footerlinks">
             <div class="content">
                 <a href="{{ url('syw_front_main_main_index') }}">{{ 'Home'|trans }}</a> &middot;
@@ -28,10 +31,12 @@
                 <a href="https://github.com/alexloehner/linuxcounter.new">{{ 'Code base'|trans }}</a> &middot;
                 <a href="https://travis-ci.org/alexloehner/linuxcounter.new">{{ 'Unittests'|trans }}</a> &middot;
                 <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f">{{ 'Dependencies'|trans }}</a> &middot;
-                <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a>
+                <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">{{ 'License'|trans }}</a> &middot;
+                <a href="{{ url('syw_front_main_main_sponsor') }}">{{ 'Sponsor'|trans }}</a><br/>
             </div>
         </div>
         <p> &nbsp; </p>
+
         <div class="container">
             <p> &nbsp; </p>
 
@@ -46,13 +51,23 @@
     <!-- FOOTER -->
     <footer>
         <p>
-            <a href="https://travis-ci.org/alexloehner/linuxcounter.new"><img src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master"/></a> &nbsp;
-            <a href="https://coveralls.io/r/alexloehner/linuxcounter.new"><img src="https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg"/></a> &nbsp;
-            <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f"><img src="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat"/></a>
+            <a href="https://travis-ci.org/alexloehner/linuxcounter.new"><img
+                        src="https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master"/></a> &nbsp;
+            <a href="https://coveralls.io/r/alexloehner/linuxcounter.new"><img
+                        src="https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg"/></a> &nbsp;
+            <a href="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f"><img
+                        src="https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat"/></a>
         </p>
-        <p class="copyright">LiCo, LinuxCounter.net, LiCo - The New Linux Counter Project - linuxcounter.net, Copyright © 2011 - {{"now"|date('Y')}} by <a href="https://github.com/alexloehner">Alexander Löhner</a>. All rights reserved.<br>
-        The code of The New Linux Counter Project is licensed under the <a href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">GPL v3</a>.<br>
-        Original project counter.li.org © 1993 - 2011 by Harald Tveit Alvestrand &amp; the Linux Counter Project - Linux is a registered trademark of Linus Torvalds.</p>
+
+        <p class="copyright">LiCo is <a href="http://linuxcounter.net/sponsor.html">fully sponsored</a> by <a
+                    href="https://www.first-colo.net/" target="_blank">First Colo</a>.<br/>
+            LiCo, LinuxCounter.net, LiCo - The New Linux Counter Project - linuxcounter.net, Copyright © 2011
+            - {{ "now"|date('Y') }} by <a href="https://github.com/alexloehner">Alexander Löhner</a>. All rights
+            reserved.<br>
+            The code of The New Linux Counter Project is licensed under the <a
+                    href="https://github.com/alexloehner/linuxcounter.new/blob/master/LICENSE">GPL v3</a>.<br>
+            Original project counter.li.org © 1993 - 2011 by Harald Tveit Alvestrand &amp; the Linux Counter Project -
+            Linux is a registered trademark of Linus Torvalds.</p>
     </footer>
 
 </div>

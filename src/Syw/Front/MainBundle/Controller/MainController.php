@@ -132,6 +132,26 @@ class MainController extends BaseController
     }
 
     /**
+     * @Route("/sponsor")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function sponsorAction()
+    {
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+        return array('languages' => $languages, 'user' => $user);
+    }
+
+    /**
      * @Route("/lang")
      * @Method("POST")
      */
