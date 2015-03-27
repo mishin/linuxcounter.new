@@ -23,7 +23,7 @@ class MainControllerTest extends BaseControllerTest
     }
 
     /*
-     * @desc Check for the correct content on /
+     * @desc Check for the correct content on /contact
      */
     public function testMainContactContent()
     {
@@ -32,7 +32,7 @@ class MainControllerTest extends BaseControllerTest
     }
 
     /*
-     * @desc Check for the correct content on /
+     * @desc Check for the correct content on /about
      */
     public function testMainAboutContent()
     {
@@ -41,7 +41,7 @@ class MainControllerTest extends BaseControllerTest
     }
 
     /*
-     * @desc Check for the correct content on /
+     * @desc Check for the correct content on /download
      */
     public function testMainDownloadContent()
     {
@@ -50,7 +50,7 @@ class MainControllerTest extends BaseControllerTest
     }
 
     /*
-     * @desc Check for the correct content on /
+     * @desc Check for the correct content on /impressum
      */
     public function testMainImpressumContent()
     {
@@ -59,7 +59,7 @@ class MainControllerTest extends BaseControllerTest
     }
 
     /*
-     * @desc Check for the correct content on /
+     * @desc Check for the correct content on /support
      */
     public function testMainSupportContent()
     {
