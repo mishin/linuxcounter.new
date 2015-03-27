@@ -165,18 +165,7 @@ EOT
         }
 
         if ($item == "users") {
-            $nums     = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
-            $numusers = $nums[0]['num'];
-
-            if (true === file_exists('import.db')) {
-                $start = file_get_contents('import.db');
-                $start = intval(trim($start));
-            } else {
-                $start    = $numusers;
-            }
-
-
-            @exec("php app/console syw:import:lico usersbg >/dev/null 2>&1 &");
+            @exec("php app/console syw:import:lico usersbg >import.log 2>&1 3>&1 4>&1 &");
             exit(0);
         }
 
@@ -184,22 +173,25 @@ EOT
             gc_collect_cycles();
 
             if (true === file_exists('import.db')) {
-                $start = file_get_contents('import.db');
-                $start = intval(trim($start));
+                $data = file_get_contents('import.db');
+                $dataar = explode(" ", $data);
+                $start = intval(trim($dataar[0]));
+                $counter = intval(trim($dataar[1]));
             } else {
                 $nums     = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
                 $numusers = $nums[0]['num'];
                 $start    = $numusers;
+                $counter  = 0;
             }
-            $itemsperloop = 10;
+            $itemsperloop = 100;
 
             $z = 0;
             $a = $start;
-            file_put_contents('import.db', ($a-$itemsperloop));
 
             unset($rows);
             $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
             foreach ($rows as $row) {
+                $counter++;
                 gc_collect_cycles();
                 $sendmail = false;
                 $id        = $row['f_key'];
@@ -291,12 +283,13 @@ EOT
                 unset($licotest);
 
                 $z++;
-                file_put_contents("import.log", ">>> ".$z.":   ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
+                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id.":   ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
 
                 gc_collect_cycles();
             }
+            file_put_contents('import.db', ($a-$itemsperloop)." ".$counter);
             gc_collect_cycles();
-            @exec("php app/console syw:import:lico users >/dev/null 2>&1 &");
+            @exec("php app/console syw:import:lico users >import.log 2>&1 3>&1 4>&1 &");
             exit(0);
         }
 
