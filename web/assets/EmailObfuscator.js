@@ -1,1 +1,1 @@
-/daten/srv/test.linuxcounter.net/vendor/propaganistas/twig-emailobfuscator/EmailObfuscator.js
+../../vendor/propaganistas/twig-emailobfuscator/EmailObfuscator.js
