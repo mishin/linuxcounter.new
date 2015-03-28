@@ -2,6 +2,7 @@
 
 namespace Syw\Front\MainBundle\Util;
 
+use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Syw\Front\MainBundle\Entity\UserProfile;
 
@@ -55,6 +56,37 @@ class UserManipulator
         $user->setProfile($userProfile);
         $this->userManager->updateUser($user);
         */
+
+        return $user;
+    }
+
+    /**
+     * Deletes the given user.
+     *
+     * @param string $username
+     */
+    public function delete($username)
+    {
+        $user = $this->findUserByUsernameOrThrowException($username);
+        $this->userManager->deleteUser($user);
+    }
+
+    /**
+     * Finds a user by his username and throws an exception if we can't find it.
+     *
+     * @param string $username
+     *
+     * @throws \InvalidArgumentException When user does not exist
+     *
+     * @return UserInterface
+     */
+    private function findUserByUsernameOrThrowException($username)
+    {
+        $user = $this->userManager->findUserByUsername($username);
+
+        if (!$user) {
+            throw new \InvalidArgumentException(sprintf('User identified by "%s" username does not exist.', $username));
+        }
 
         return $user;
     }

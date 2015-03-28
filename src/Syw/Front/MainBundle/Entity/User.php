@@ -439,6 +439,16 @@ class User extends BaseUser
     }
 
     /**
+     * Get profile
+     *
+     * @return FosUser
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
      * Set id
      *
      * @param integer $id
