@@ -13,7 +13,22 @@
                     <div class="panel-body">
 
 
-                        [ ... coming soon ... ]
+                        {% for label, flashes in app.session.flashbag.all %}
+                            {% for flash in flashes %}
+                                <div class="alert alert-{{ label }}">
+                                    {{ flash }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+
+                        <form action="{{ url('syw_front_main_main_contact') }}" method="post" {{ form_enctype(form) }}>
+                        {{ form_widget(form) }}
+
+
+                        <button type="submit">Send</button>
+
+
+                        </form>
 
 
                     </div>

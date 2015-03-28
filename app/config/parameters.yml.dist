@@ -21,6 +21,7 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
+    admin_email: admin@linuxcounter.net
     locale:            en
 
     # A secret key that's used to generate certain security-related tokens
