@@ -72,7 +72,6 @@ EOT
                 $licotest->persist($obj);
                 $licotest->flush();
             }
-
         }
 
         if ($item == "countries" || $item == "all") {
@@ -88,7 +87,6 @@ EOT
                 $licotest->persist($obj);
                 $licotest->flush();
             }
-
         }
 
         if ($item == "distributions" || $item == "all") {
@@ -259,7 +257,6 @@ EOT
                     $privacy->setShowVersions(1);
                     $licotest->persist($privacy);
                     $licotest->flush();
-
                 }
 
                 $licotestdb->prepare('COMMIT;')->execute();

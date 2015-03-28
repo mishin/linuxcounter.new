@@ -53,7 +53,7 @@ class Cpus
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -76,7 +76,7 @@ class Cpus
     /**
      * Get hertz
      *
-     * @return integer 
+     * @return integer
      */
     public function getHertz()
     {
@@ -86,7 +86,7 @@ class Cpus
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

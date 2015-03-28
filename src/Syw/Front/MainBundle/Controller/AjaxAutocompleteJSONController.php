@@ -16,7 +16,6 @@ class AjaxAutocompleteJSONController extends BaseController
      */
     public function getJSONAction()
     {
-
         $em      = $this->get('doctrine')->getManager();
         $request = $this->getRequest();
 
@@ -85,6 +84,5 @@ class AjaxAutocompleteJSONController extends BaseController
         }
 
         return new Response(json_encode($res));
-
     }
 }

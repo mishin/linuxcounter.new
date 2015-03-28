@@ -60,7 +60,7 @@ class Countries
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -83,7 +83,7 @@ class Countries
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -106,7 +106,7 @@ class Countries
     /**
      * Get population
      *
-     * @return integer 
+     * @return integer
      */
     public function getPopulation()
     {
@@ -116,7 +116,7 @@ class Countries
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
