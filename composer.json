@@ -35,7 +35,8 @@
     "shtumi/useful-bundle": "dev-master",
     "propaganistas/twig-emailobfuscator": "dev-master",
     "friendsofsymfony/rest-bundle": "dev-master",
-    "jms/serializer-bundle": "dev-master"
+    "jms/serializer-bundle": "dev-master",
+    "mktcode/caitcha-bundle": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "dev-master",
