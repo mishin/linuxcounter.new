@@ -88,14 +88,30 @@ fos_user:
     firewall_name: main
     user_class: Syw\Front\MainBundle\Entity\User
     from_email:
-        address:        info@linuxcounter.net
-        sender_name:    The New Linux Counter
+        address:        noreply@linuxcounter.net
+        sender_name:    LiCo - The New Linux Counter Project
     registration:
         form:
             type: syw_user_registration
         confirmation:
             enabled:    true
             template:   FOSUserBundle:Registration:email.txt.twig
+
+fos_rest:
+    param_fetcher_listener: true
+    allowed_methods_listener: true
+    body_listener: true
+    format_listener: true
+    routing_loader:
+        default_format: json
+        include_format: false
+    view:
+        view_response_listener: 'force'
+        serialize_null: true
+        formats:
+            json: true
+            xml: false
+            html: false
 
 asm_translation_loader:
     history: true

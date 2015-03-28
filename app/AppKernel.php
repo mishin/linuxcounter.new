@@ -26,6 +26,8 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Shtumi\UsefulBundle\ShtumiUsefulBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
