@@ -240,16 +240,14 @@ EOT
                     $userProfile->setUser($user);
                     $licotest->persist($userProfile);
                     $licotest->flush();
-
-                    $userProfile = null;
-                    unset($userProfile);
-
                     $user->setProfile($userProfile);
                     $userManager->updateUser($user);
                     $licotest->flush();
 
                     $userManager = null;
                     unset($userManager);
+                    $userProfile = null;
+                    unset($userProfile);
 
                     $privacy = new \Syw\Front\MainBundle\Entity\Privacy();
                     $privacy->setUser($user);
