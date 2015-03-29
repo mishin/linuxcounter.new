@@ -5,7 +5,7 @@ This is the codebase for the new website of *LiCo - The New Linux Counter Projec
 It is based on Symfony 2 and will replace the old website somewhen in second half of 2015.
 
 [![Build Status](https://travis-ci.org/alexloehner/linuxcounter.new.svg?branch=master)](https://travis-ci.org/alexloehner/linuxcounter.new)
-[![GitHub issues](https://img.shields.io/github/issues/badges/shields.svg)](https://github.com/alexloehner/linuxcounter.new/issues)
+[![GitHub issues](https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg)](https://github.com/alexloehner/linuxcounter.new/issues)
 [![Coverage Status](https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg)](https://coveralls.io/r/alexloehner/linuxcounter.new)
 [![Dependency Status](https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5509756b4996ebef3300004f)
 
