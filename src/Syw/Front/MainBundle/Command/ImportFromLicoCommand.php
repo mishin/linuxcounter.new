@@ -288,10 +288,6 @@ EOT
                 unset($userid);
                 $userManager = null;
                 unset($userManager);
-                $licotestdb = null;
-                unset($licotestdb);
-                $licotest = null;
-                unset($licotest);
 
                 $z++;
 
