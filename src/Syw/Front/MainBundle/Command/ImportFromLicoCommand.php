@@ -351,11 +351,14 @@ EOT
             $rows = $lico->fetchAll('SELECT * FROM machines ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
             foreach ($rows as $row) {
                 $counter++;
+                gc_collect_cycles();
                 $userid  = $row['owner'];
                 $machineid = $row['f_key'];
 
                 $licotestdb->prepare('SET autocommit=0;')->execute();
                 $lico->prepare('SET autocommit=0;')->execute();
+
+                $licotestdb->prepare('SET autocommit=0;')->execute();
 
                 $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $userid));
 
@@ -461,7 +464,9 @@ EOT
                 $id = $machine->getId();
                 $licotestdb->query('UPDATE machines SET id=' . $machineid . ' WHERE id=\'' . $id . '\'');
 
+                $user = null;
                 unset($user);
+                $machine = null;
                 unset($machine);
 
                 $lico->prepare('COMMIT;')->execute();
@@ -475,8 +480,21 @@ EOT
                 $files = @exec('cat /proc/sys/fs/file-nr | cut -f 1');
                 file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$machineid." |   open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
             }
-            gc_collect_cycles();
             file_put_contents('import.db', ($a-$itemsperloop)." ".$counter);
+
+            $licotest->clear();
+
+            $licotest->close();
+            $licotestdb->close();
+            $lico->close();
+
+            $licotest = null;
+            unset($licotest);
+            $licotestdb = null;
+            unset($licotestdb);
+            $lico = null;
+            unset($lico);
+
             gc_collect_cycles();
             @exec("php app/console syw:import:lico machines >>import.log 2>&1 3>&1 4>&1 &");
             exit(0);

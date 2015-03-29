@@ -10,6 +10,8 @@ use Syw\Front\MainBundle\Manager\MachinesManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Syw\Front\MainBundle\Form\Type\MachineFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Class MachineController
@@ -290,5 +292,83 @@ class MachineController extends BaseController
             'languages' => $languages,
             'user' => $user
         ));
+    }
+
+    /**
+     * @Route("/profile/machine/confirm/{machinenumber}")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function confirmAction(Request $request, $machinenumber)
+    {
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+        $myobject   = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Machines')
+            ->findOneBy(array('user' => $user, 'id' => $machinenumber));
+
+        if (!$myobject) {
+            // throw error
+        } else {
+            // you can pass information about your object to the confirmation message
+            $myobjectInfo = array(
+                'yes' => 'syw_front_main_machine_delete', // path to the deleteAction, required
+                'no' => 'fos_user_profile_show', // path if cancel delete, required
+                // put any information here. I used type, name and id
+                // but you can add what you want
+                'type' => 'machine',
+                'id' => $myobject->getId(), // required for deleteAction path
+                'hostname' => $myobject->getHostname()
+            );
+            // add informations to session variable
+            $this->get('session')->set('confirmation', $myobjectInfo);
+            return $this->redirect($this->generateUrl('syw_front_main_machine_edit', array('machinenumber' => $myobject->getId())));
+        }
+    }
+
+    /**
+     * @Route("/profile/machine/delete/{id}")
+     * @Method("POST")
+     *
+     * @Template()
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $machinenumber = $id;
+
+        $user = $this->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+        $machine   = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Machines')
+            ->findOneBy(array('user' => $user, 'id' => $machinenumber));
+
+        $em = $this->getDoctrine()->getManager();
+        $machine->setClass(null);
+        $machine->setCpu(null);
+        $machine->setKernel(null);
+        $machine->setArchitecture(null);
+        $machine->setCountry(null);
+        $machine->setDistribution(null);
+        $machine->setPurpose(null);
+        $em->persist($machine);
+        $em->flush();
+        $em->remove($machine);
+        $em->flush();
+
+        $flashBag = $this->get('session')->getFlashBag();
+        $flashBag->set('success', 'Machine deleted!');
+
+        return $this->redirectToRoute('fos_user_profile_show');
     }
 }

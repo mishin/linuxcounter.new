@@ -185,9 +185,18 @@ label > span {
     border-radius: 5px;
 }
 
+#confirmdialog {
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
 
-
-
+#confirmdialog > p {
+    margin-bottom: 10px;
+}
 
 
 

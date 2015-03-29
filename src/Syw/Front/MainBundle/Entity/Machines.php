@@ -157,7 +157,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\Distributions
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Distributions", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Distributions")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="distribution", referencedColumnName="id")
      * })
@@ -167,7 +167,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\FosUser
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\User", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user", referencedColumnName="id", nullable=false)
      * })
@@ -177,7 +177,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\Kernels
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Kernels", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Kernels")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="kernel", referencedColumnName="id")
      * })
@@ -187,7 +187,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\Cpus
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Cpus", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Cpus")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="cpu", referencedColumnName="id")
      * })
@@ -197,7 +197,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\Countries
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Countries", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Countries")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="country", referencedColumnName="id")
      * })
@@ -207,7 +207,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\Architectures
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Architectures", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Architectures")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="architecture", referencedColumnName="id")
      * })
@@ -217,7 +217,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\Classes
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Classes", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Classes")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="class", referencedColumnName="id")
      * })
@@ -227,7 +227,7 @@ class Machines
     /**
      * @var \Syw\Front\MainBundle\Entity\Purposes
      *
-     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Purposes", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\Purposes")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="purpose", referencedColumnName="id")
      * })

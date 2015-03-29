@@ -33,6 +33,18 @@
 
     {% block body %}
         <div class="container page">
+            {% if app.session.get('confirmation') is defined and app.session.get('confirmation') is not null %}
+                <div id="confirmdialog">
+                    <p>
+                        Are you sure to delete the {{ app.session.get('confirmation').type }} with name {{ app.session.get('confirmation').hostname }} and ID {{ app.session.get('confirmation').id }}?
+                    </p>
+                    <form method="post" action="{{ url(app.session.get('confirmation').yes,{'id':app.session.get('confirmation').id }) }}">
+                        <button type="submit" class="btn red">confirm and delete</button>
+                        <a href="{{ path(app.session.get('confirmation').no) }}" class="btn blue">Cancel</a>
+                    </form>
+                </div>
+                {{ app.session.set('confirmation',null) }}
+            {% endif  %}
             {% block fos_user_content %}
                 {% trans_default_domain 'FOSUserBundle' %}
             {% endblock %}
