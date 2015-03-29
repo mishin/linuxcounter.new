@@ -2,3 +2,12 @@ checks:
     php:
         code_rating: true
         duplication: true
+filter:
+    paths: [src/Syw/*]
+    excluded_paths:
+        - tests/               # Everyhing in a root level "tests" directory
+        - tests                # Without ending "/", just ignores a single file name "tests"
+                               # in your root folder
+
+        - src/*Bundle/Tests/   # Wildcards can be placed anywhere
+        - */Tests/*            # Everything that has a "Tests" directory somewhere in the path
