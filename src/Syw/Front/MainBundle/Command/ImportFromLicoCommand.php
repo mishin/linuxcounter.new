@@ -303,6 +303,23 @@ EOT
                 gc_collect_cycles();
             }
             file_put_contents('import.db', ($a-$itemsperloop)." ".$counter);
+
+
+            $licotest->clear();
+            $licotestdb->clear();
+            $lico->clear();
+
+            $licotest->close();
+            $licotestdb->close();
+            $lico->close();
+
+            $licotest = null;
+            unset($licotest);
+            $licotestdb = null;
+            unset($licotestdb);
+            $lico = null;
+            unset($lico);
+
             gc_collect_cycles();
             @exec("php app/console syw:import:lico users >>import.log 2>&1 3>&1 4>&1 &");
             exit(0);
