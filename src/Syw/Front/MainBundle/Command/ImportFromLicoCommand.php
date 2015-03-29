@@ -241,9 +241,15 @@ EOT
                     $licotest->persist($userProfile);
                     $licotest->flush();
 
+                    $userProfile = null;
+                    unset($userProfile);
+
                     $user->setProfile($userProfile);
                     $userManager->updateUser($user);
                     $licotest->flush();
+
+                    $userManager = null;
+                    unset($userManager);
 
                     $privacy = new \Syw\Front\MainBundle\Entity\Privacy();
                     $privacy->setUser($user);
@@ -261,6 +267,12 @@ EOT
                     $privacy->setShowVersions(1);
                     $licotest->persist($privacy);
                     $licotest->flush();
+
+                    $user = null;
+                    unset($user);
+                    $privacy = null;
+                    unset($privacy);
+
                 }
 
                 $licotestdb->prepare('COMMIT;')->execute();
@@ -284,7 +296,9 @@ EOT
                 unset($licotest);
 
                 $z++;
-                $files = @exec('cat /proc/sys/fs/file-nr | cut -f 1');
+                $mypid = getmypid();
+
+                $files = @exec('lsof -p '.$mypid.' | wc -l');
                 file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id." |   open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
 
                 gc_collect_cycles();
