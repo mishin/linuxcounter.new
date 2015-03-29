@@ -294,10 +294,11 @@ EOT
                 unset($licotest);
 
                 $z++;
-                $mypid = getmypid();
 
-                $files = @exec('lsof -p '.$mypid.' | wc -l');
-                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id." |   open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
+                // $mypid = getmypid();
+                // $files = @exec('lsof -p '.$mypid.' | wc -l');
+                // file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id." |   open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
+                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id." \n", FILE_APPEND);
 
                 gc_collect_cycles();
             }
