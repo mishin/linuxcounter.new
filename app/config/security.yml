@@ -30,10 +30,20 @@ security:
                 csrf_provider: form.csrf_provider
             logout:       true
             anonymous:    true
+            form_login:
+                # login success redirecting options (read further below)
+                always_use_default_target_path: false
+                default_target_path:            fos_user_profile_show
+                use_referer:                    true
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
+            form_login:
+                # login success redirecting options (read further below)
+                always_use_default_target_path: false
+                default_target_path:            fos_user_profile_show
+                use_referer:                    true
 
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods

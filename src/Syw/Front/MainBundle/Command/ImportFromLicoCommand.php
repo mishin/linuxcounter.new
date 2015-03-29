@@ -171,8 +171,12 @@ EOT
             gc_collect_cycles();
 
             if (true === file_exists('import.db')) {
-                $data = file_get_contents('import.db');
-                $dataar = explode(" ", $data);
+                $fp = fopen('import.db', "r");
+                $data = fread($fp, 1024);
+                fclose($fp);
+                $fp = null;
+                unset($fp);
+                $dataar = explode(" ", trim($data));
                 $start = intval(trim($dataar[0]));
                 $counter = intval(trim($dataar[1]));
             } else {
@@ -280,7 +284,8 @@ EOT
                 unset($licotest);
 
                 $z++;
-                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id.":   ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
+                $files = @exec('cat /proc/sys/fs/file-nr | cut -f 1');
+                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id." |   open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
 
                 gc_collect_cycles();
             }
@@ -299,8 +304,12 @@ EOT
             gc_collect_cycles();
 
             if (true === file_exists('import.db')) {
-                $data = file_get_contents('import.db');
-                $dataar = explode(" ", $data);
+                $fp = fopen('import.db', "r");
+                $data = fread($fp, 1024);
+                fclose($fp);
+                $fp = null;
+                unset($fp);
+                $dataar = explode(" ", trim($data));
                 $start = intval(trim($dataar[0]));
                 $counter = intval(trim($dataar[1]));
             } else {
@@ -439,7 +448,8 @@ EOT
                 gc_collect_cycles();
 
                 $z++;
-                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$machineid.":   ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
+                $files = @exec('cat /proc/sys/fs/file-nr | cut -f 1');
+                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$machineid." |   open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
             }
             gc_collect_cycles();
             file_put_contents('import.db', ($a-$itemsperloop)." ".$counter);
