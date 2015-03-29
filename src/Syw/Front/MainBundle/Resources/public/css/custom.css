@@ -145,12 +145,45 @@ label > span {
     font-weight: normal;
 }
 
+#faq {
 
+}
 
+.faq {
 
+}
 
+.faqcontent {
 
+}
 
+.faqquestionbox {
+    background-color: #eaeaea;
+    padding: 0px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    font-weight: bolder;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.faqanswerbox {
+    display:none;
+    background-color: #ffffff;
+    padding: 10px;
+    border: 0;
+    font-weight: normal;
+    border-radius: 5px;
+}
+
+.faqquestion {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.faqanswer {
+    border-radius: 5px;
+}
 
 
 

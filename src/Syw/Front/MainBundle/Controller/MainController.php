@@ -126,7 +126,7 @@ class MainController extends BaseController
     }
 
     /**
-     * @Route("/impressum")
+     * @Route("/imprint")
      * @Method("GET")
      *
      * @Template()
@@ -146,12 +146,12 @@ class MainController extends BaseController
     }
 
     /**
-     * @Route("/support")
+     * @Route("/faq")
      * @Method("GET")
      *
      * @Template()
      */
-    public function supportAction()
+    public function faqAction()
     {
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
