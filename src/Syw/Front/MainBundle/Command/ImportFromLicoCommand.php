@@ -302,7 +302,6 @@ EOT
 
 
             $licotest->clear();
-            $licotestdb->clear();
             $lico->clear();
 
             $licotest->close();
