@@ -44,8 +44,8 @@
                             <div id="profile_personal_lastname">{{ 'Lastname'|trans }}: {{ userprofile.lastName }}</div>
                             <div id="profile_personal_birthday">{{ 'Birthday'|trans }}: {{ userprofile.birthDay|date('Y-m-d') }}</div>
                             <div id="profile_personal_birthplace">{{ 'Birthplace'|trans }}: {{ userprofile.birthPlace }}</div>
-                            <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: <a href="{{ userprofile.homepage }}">{{ userprofile.homepage|length > 30 ? userprofile.homepage|slice(0, 30) ~ '...' : userprofile.homepage }}</a>
-                            </div>
+                            <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: <a href="{{ userprofile.homepage }}">{{ userprofile.homepage|length > 30 ? userprofile.homepage|slice(0, 30) ~ '...' : userprofile.homepage }}</a></div>
+                            <div id="profile_personal_sincewhen">{{ 'Linux since when'|trans }}: {{ userprofile.sincewhen|date('Y-m-d') }}</div>
                         </div>
                     </div>
                 </div>

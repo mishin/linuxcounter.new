@@ -68,6 +68,7 @@
                                 <div id="profile_personal_homepage">{{ 'Homepage'|trans }}: <a
                                             href="{{ thisuserprofile.homepage }}">{{ thisuserprofile.homepage|length > 30 ? thisuserprofile.homepage|slice(0, 30) ~ '...' : thisuserprofile.homepage }}</a>
                                 </div>
+                                <div id="profile_personal_sincewhen">{{ 'Linux since when'|trans }}: {{ thisuserprofile.sincewhen|date('Y-m-d') }}</div>
                             </div>
                         </div>
                     </div>

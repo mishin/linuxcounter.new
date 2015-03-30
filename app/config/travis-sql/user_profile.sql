@@ -41,6 +41,7 @@ CREATE TABLE `user_profile` (
   `identica` varchar(255) DEFAULT NULL,
   `interests` varchar(2500) DEFAULT NULL,
   `hobbies` varchar(2500) DEFAULT NULL,
+  `sincewhen` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_D95AB4058D93D649` (`user`),
   KEY `city` (`city`),
@@ -67,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-29 21:12:28
+-- Dump completed on 2015-03-30  8:16:02

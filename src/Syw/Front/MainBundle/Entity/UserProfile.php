@@ -141,6 +141,13 @@ class UserProfile
     private $hobbies;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="sincewhen", type="datetime", nullable=true)
+     */
+    private $sincewhen;
+
+    /**
      * Get id
      *
      * @return integer
@@ -202,7 +209,7 @@ class UserProfile
      * @param \DateTime $birthDay
      * @return UserProfile
      */
-    public function setBirthDay($birthDay)
+    public function setBirthDay(\DateTime $birthDay)
     {
         $this->birthDay = $birthDay;
 
@@ -493,6 +500,30 @@ class UserProfile
     public function getHobbies()
     {
         return $this->hobbies;
+    }
+
+
+    /**
+     * Set sincewhen
+     *
+     * @param \DateTime $sincewhen
+     * @return UserProfile
+     */
+    public function setSinceWhen(\DateTime $sincewhen)
+    {
+        $this->sincewhen = $sincewhen;
+
+        return $this;
+    }
+
+    /**
+     * Get sincewhen
+     *
+     * @return \DateTime
+     */
+    public function getSinceWhen()
+    {
+        return $this->sincewhen;
     }
 
     /**
