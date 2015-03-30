@@ -95,6 +95,13 @@ EOT
         $obj->setShowKernel(1);
         $obj->setShowDistribution(1);
         $obj->setShowVersions(1);
+        $obj->setCreatedAt(new \DateTime());
+        $db->persist($obj);
+        $db->flush();
+
+        unset($obj);
+        $obj = new \Syw\Front\MainBundle\Entity\Mail();
+        $obj->setUser($user);
         $db->persist($obj);
         $db->flush();
 

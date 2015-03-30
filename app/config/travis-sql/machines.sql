@@ -50,7 +50,7 @@ CREATE TABLE `machines` (
   `uptime` int(11) DEFAULT NULL,
   `loadavg` varchar(48) DEFAULT NULL,
   `created_at` datetime NOT NULL,
-  `modified_at` timestamp NULL DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   KEY `country` (`country`),
@@ -94,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-30  8:16:02
+-- Dump completed on 2015-03-30 10:00:46

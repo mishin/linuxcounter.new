@@ -16,40 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `privacy`
+-- Table structure for table `mail`
 --
 
-DROP TABLE IF EXISTS `privacy`;
+DROP TABLE IF EXISTS `mail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `privacy` (
+CREATE TABLE `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
-  `secret_profile` int(11) NOT NULL,
-  `secret_counterdata` int(11) NOT NULL,
-  `secret_machines` int(11) NOT NULL,
-  `secret_contactinfo` int(11) NOT NULL,
-  `secret_socialinfo` int(11) NOT NULL,
-  `show_realname` int(11) NOT NULL,
-  `show_email` int(11) NOT NULL,
-  `show_location` int(11) NOT NULL,
-  `show_hostnames` int(11) NOT NULL,
-  `show_kernel` int(11) NOT NULL,
-  `show_distribution` int(11) NOT NULL,
-  `show_versions` int(11) NOT NULL,
+  `newsletter_allowed` tinyint(1) DEFAULT '1',
+  `admin_allowed` tinyint(1) DEFAULT '1',
+  `other_users_allowed` tinyint(1) DEFAULT '1',
+  `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
-  CONSTRAINT `FK_C38419088D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_mail_fos_user` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `privacy`
+-- Dumping data for table `mail`
 --
 
-LOCK TABLES `privacy` WRITE;
-/*!40000 ALTER TABLE `privacy` DISABLE KEYS */;
-/*!40000 ALTER TABLE `privacy` ENABLE KEYS */;
+LOCK TABLES `mail` WRITE;
+/*!40000 ALTER TABLE `mail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mail` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

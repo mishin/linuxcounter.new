@@ -35,6 +35,11 @@ class User extends BaseUser
     protected $profile;
 
     /**
+     * @ORM\OneToOne(targetEntity="Mail", inversedBy="user", cascade={"persist", "remove"})
+     */
+    protected $mailpref;
+
+    /**
      * Set username
      *
      * @param string $username
@@ -428,8 +433,8 @@ class User extends BaseUser
     /**
      * Set profile
      *
-     * @param string $locale
-     * @return FosUser
+     * @param \Syw\Front\MainBundle\Entity\UserProfile $userProfile
+     * @return UserProfile
      */
     public function setProfile(\Syw\Front\MainBundle\Entity\UserProfile $userProfile)
     {
@@ -441,11 +446,34 @@ class User extends BaseUser
     /**
      * Get profile
      *
-     * @return FosUser
+     * @return \Syw\Front\MainBundle\Entity\UserProfile
      */
     public function getProfile()
     {
         return $this->profile;
+    }
+
+    /**
+     * Set mailpref
+     *
+     * @param \Syw\Front\MainBundle\Entity\Mail $mailpref
+     * @return Mail
+     */
+    public function setMailPref(\Syw\Front\MainBundle\Entity\Mail $mailpref)
+    {
+        $this->mailpref = $mailpref;
+
+        return $this;
+    }
+
+    /**
+     * Get mailpref
+     *
+     * @return \Syw\Front\MainBundle\Entity\Mail
+     */
+    public function getMailPref()
+    {
+        return $this->mailpref;
     }
 
     /**

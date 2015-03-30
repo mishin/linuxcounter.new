@@ -238,6 +238,8 @@ EOT
 
                     $userProfile = new UserProfile();
                     $userProfile->setUser($user);
+                    $userProfile->setCreatedAt(new \DateTime($row['f_ctime']));
+                    $userProfile->setModifiedAt(new \DateTime($row['f_mtime']));
                     $licotest->persist($userProfile);
                     $licotest->flush();
                     $user->setProfile($userProfile);

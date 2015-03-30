@@ -87,9 +87,15 @@ class RegistrationController extends BaseController
             $obj->setShowKernel(1);
             $obj->setShowDistribution(1);
             $obj->setShowVersions(1);
+            $obj->setCreatedAt(new \DateTime());
             $em->persist($obj);
             $em->flush();
 
+            unset($obj);
+            $obj = new \Syw\Front\MainBundle\Entity\Mail();
+            $obj->setUser($user);
+            $em->persist($obj);
+            $em->flush();
 
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_registration_confirmed');

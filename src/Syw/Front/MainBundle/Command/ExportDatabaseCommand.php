@@ -57,6 +57,7 @@ EOT
         @exec('sed "/^INSERT INTO \`user_profile\`.*$/d" -i '.$folder.'/user_profile.sql');
         @exec('sed "/^INSERT INTO \`privacy\`.*$/d" -i '.$folder.'/privacy.sql');
         @exec('sed "/^INSERT INTO \`machines\`.*$/d" -i '.$folder.'/machines.sql');
+        @exec('sed "/^INSERT INTO \`mail\`.*$/d" -i '.$folder.'/mail.sql');
         $output->writeln(sprintf('Database structure and data exported to <comment>%s</comment>', $folder));
     }
 
