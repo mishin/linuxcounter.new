@@ -8,6 +8,7 @@ It is based on Symfony 2 and will replace the old website somewhen in second hal
 [![GitHub issues](https://img.shields.io/github/issues/alexloehner/linuxcounter.new.svg)](https://github.com/alexloehner/linuxcounter.new/issues)
 [![Coverage Status](https://coveralls.io/repos/alexloehner/linuxcounter.new/badge.svg)](https://coveralls.io/r/alexloehner/linuxcounter.new)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alexloehner/linuxcounter.new/?branch=master)
+[![Code Climate](https://codeclimate.com/github/alexloehner/linuxcounter.new/badges/gpa.svg)](https://codeclimate.com/github/alexloehner/linuxcounter.new)
 [![Dependency Status](https://www.versioneye.com/user/projects/5509756b4996ebef3300004f/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5509756b4996ebef3300004f)
 
 Description
