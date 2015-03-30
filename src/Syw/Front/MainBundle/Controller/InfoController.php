@@ -83,6 +83,8 @@ class InfoController extends BaseController
         if ($request->getMethod() == 'POST') {
             $formData = $request->request->all();
 
+            $em = $this->getDoctrine()->getManager();
+
             if (true === isset($formData['userprofile']['city']) && trim($formData['userprofile']['city']) != "") {
                 $cityfield = $formData['userprofile']['city'];
                 $city_id   = preg_replace("`.*, ID:([0-9]+)\)$`", "$1", $cityfield);
@@ -91,11 +93,17 @@ class InfoController extends BaseController
                         ->getRepository('SywFrontMainBundle:Cities')
                         ->findOneBy(array('id' => $city_id));
                     $userProfile->setCity($city);
+                    $city->setUserNum($city->getUserNum()+1);
+                    $em->persist($city);
+                    if (true === isset($this->oldcity) && is_object($this->oldcity)) {
+                        $this->oldcity->setUserNum($this->oldcity->getUserNum()-1);
+                        $em->persist($this->oldcity);
+                    }
                 } else {
                     $userProfile->setCity($this->oldcity);
                 }
             }
-            $em = $this->getDoctrine()->getManager();
+
             $em->persist($userProfile);
             $em->flush();
 

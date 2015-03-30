@@ -22,13 +22,41 @@ class Purposes
     /**
      * @var integer
      *
+     * @ORM\Column(name="machinesnum", type="integer", length=11, nullable=true)
+     */
+    private $machinesnum;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
+    /**
+     * Set machinesnum
+     *
+     * @param integer $machinesnum
+     * @return Architectures
+     */
+    public function setMachinesNum($machinesnum)
+    {
+        $this->machinesnum = $machinesnum;
 
+        return $this;
+    }
+
+    /**
+     * Get machinesnum
+     *
+     * @return integer
+     */
+    public function getMachinesNum()
+    {
+        return $this->machinesnum;
+    }
 
     /**
      * Set name

@@ -453,32 +453,44 @@ EOT
                 unset($obj);
                 if (true === isset($row['distribution']) && trim($row['distribution']) != "") {
                     $obj = $licotest->getRepository('SywFrontMainBundle:Distributions')->findOneBy(array("name" => trim($row['distribution'])));
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $licotest->persist($obj);
                     $machine->setDistribution($obj);
                 }
                 unset($obj);
                 if (true === isset($row['kernel']) && trim($row['kernel']) != "") {
                     $obj = $licotest->getRepository('SywFrontMainBundle:Kernels')->findOneBy(array("name" => trim($row['kernel'])));
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $licotest->persist($obj);
                     $machine->setKernel($obj);
                 }
                 unset($obj);
                 if (true === isset($row['cpu']) && trim($row['cpu']) != "" && intval($row['cpu']) >= 1) {
                     $line = $lico->fetchAll('SELECT name, herz FROM processors WHERE f_key=\''.trim($row['cpu']).'\'');
                     $obj = $licotest->getRepository('SywFrontMainBundle:Cpus')->findOneBy(array("name" => trim($line[0]['name']), "hertz" => trim($line[0]['herz'])));
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $licotest->persist($obj);
                     $machine->setCpu($obj);
                 }
                 unset($obj);
                 if (true === isset($row['country']) && trim($row['country']) != "") {
                     $obj = $licotest->getRepository('SywFrontMainBundle:Countries')->findOneBy(array("code" => strtolower(trim($row['country']))));
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $licotest->persist($obj);
                     $machine->setCountry($obj);
                 }
                 unset($obj);
                 if (true === isset($row['arch']) && trim($row['arch']) != "") {
                     $obj = $licotest->getRepository('SywFrontMainBundle:Architectures')->findOneBy(array("name" => trim($row['arch'])));
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $licotest->persist($obj);
                     $machine->setArchitecture($obj);
                 }
                 unset($obj);
                 if (true === isset($row['sysclass']) && trim($row['sysclass']) != "") {
                     $obj = $licotest->getRepository('SywFrontMainBundle:Classes')->findOneBy(array("name" => trim($row['sysclass'])));
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $licotest->persist($obj);
                     $machine->setClass($obj);
                 }
                 unset($obj);

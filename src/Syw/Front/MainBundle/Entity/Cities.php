@@ -89,6 +89,12 @@ class Cities
      */
     private $name;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="usernum", type="integer", length=11, nullable=true)
+     */
+    private $usernum;
 
     /**
      * Get id
@@ -98,6 +104,29 @@ class Cities
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set usernum
+     *
+     * @param integer $usernum
+     * @return Architectures
+     */
+    public function setUserNum($usernum)
+    {
+        $this->usernum = $usernum;
+
+        return $this;
+    }
+
+    /**
+     * Get usernum
+     *
+     * @return integer
+     */
+    public function getUserNum()
+    {
+        return $this->usernum;
     }
 
     /**

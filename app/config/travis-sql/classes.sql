@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `classes`;
 CREATE TABLE `classes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
+  `machinesnum` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -36,7 +37,7 @@ CREATE TABLE `classes` (
 
 LOCK TABLES `classes` WRITE;
 /*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (2,'1686'),(3,'asus'),(4,'barebone'),(5,'cluster'),(6,'d201gly2'),(7,'desktop'),(8,'desktop-pc'),(9,'diskless'),(10,'embedded'),(11,'fujitsu'),(12,'games'),(13,'handheld'),(14,'headless'),(15,'homebrew'),(16,'htpc'),(17,'itx'),(18,'laptop'),(19,'netbook'),(20,'nettop'),(21,'normalilla'),(22,'notebook'),(23,'other'),(24,'pc'),(25,'personal'),(26,'phone'),(27,'server'),(28,'server/workstation'),(29,'smartphone'),(30,'sobremesa'),(31,'study'),(32,'sub-notebook'),(33,'systemax'),(34,'various'),(35,'virtual'),(36,'virtualmachine'),(37,'vm'),(38,'workstation'),(39,'workstation/server');
+INSERT INTO `classes` VALUES (2,'1686',0),(3,'asus',0),(4,'barebone',0),(5,'cluster',0),(6,'d201gly2',0),(7,'desktop',0),(8,'desktop-pc',0),(9,'diskless',0),(10,'embedded',0),(11,'fujitsu',0),(12,'games',0),(13,'handheld',0),(14,'headless',0),(15,'homebrew',0),(16,'htpc',0),(17,'itx',0),(18,'laptop',0),(19,'netbook',0),(20,'nettop',0),(21,'normalilla',0),(22,'notebook',0),(23,'other',0),(24,'pc',0),(25,'personal',0),(26,'phone',0),(27,'server',0),(28,'server/workstation',0),(29,'smartphone',0),(30,'sobremesa',0),(31,'study',0),(32,'sub-notebook',0),(33,'systemax',0),(34,'various',0),(35,'virtual',0),(36,'virtualmachine',0),(37,'vm',0),(38,'workstation',0),(39,'workstation/server',0);
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-30 20:16:37
+-- Dump completed on 2015-03-30 21:03:17

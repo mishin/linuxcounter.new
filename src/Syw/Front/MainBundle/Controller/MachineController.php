@@ -60,6 +60,8 @@ class MachineController extends BaseController
         if ($request->getMethod() == 'POST') {
             $formData = $request->request->all();
 
+            $em = $this->getDoctrine()->getManager();
+
             $field = array('Countries', 'country');
             if (true === isset($formData['machine'][$field[1]]) && trim($formData['machine'][$field[1]]) != "") {
                 $val = $formData['machine'][$field[1]];
@@ -69,6 +71,8 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setCountry($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
                 }
             }
 
@@ -81,6 +85,8 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setClass($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
                 }
             }
 
@@ -93,6 +99,8 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setDistribution($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
                 }
             }
 
@@ -105,6 +113,8 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setArchitecture($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
                 }
             }
 
@@ -117,6 +127,8 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setKernel($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
                 }
             }
 
@@ -129,6 +141,8 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setCpu($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
                 }
             }
 
@@ -137,7 +151,6 @@ class MachineController extends BaseController
             $updateKey = $password = mt_rand(10000000, 99999999);
             $machine->setUpdateKey($updateKey);
 
-            $em = $this->getDoctrine()->getManager();
             $em->persist($machine);
             $em->flush();
 
@@ -192,6 +205,8 @@ class MachineController extends BaseController
         if ($request->getMethod() == 'POST') {
             $formData = $request->request->all();
 
+            $em = $this->getDoctrine()->getManager();
+
             $field = array('Countries', 'country', $this->oldCountry);
             if (true === isset($formData['machine'][$field[1]]) && trim($formData['machine'][$field[1]]) != "") {
                 $val = $formData['machine'][$field[1]];
@@ -201,6 +216,12 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setCountry($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
+                    if (true === isset($field[2]) && is_object($field[2])) {
+                        $field[2]->setMachinesNum($field[2]->getMachinesNum() - 1);
+                        $em->persist($field[2]);
+                    }
                 } else {
                     $machine->setCountry($field[2]);
                 }
@@ -215,6 +236,12 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setClass($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
+                    if (true === isset($field[2]) && is_object($field[2])) {
+                        $field[2]->setMachinesNum($field[2]->getMachinesNum() - 1);
+                        $em->persist($field[2]);
+                    }
                 } else {
                     $machine->setClass($field[2]);
                 }
@@ -229,6 +256,12 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setDistribution($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
+                    if (true === isset($field[2]) && is_object($field[2])) {
+                        $field[2]->setMachinesNum($field[2]->getMachinesNum() - 1);
+                        $em->persist($field[2]);
+                    }
                 } else {
                     $machine->setDistribution($field[2]);
                 }
@@ -243,6 +276,12 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setArchitecture($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
+                    if (true === isset($field[2]) && is_object($field[2])) {
+                        $field[2]->setMachinesNum($field[2]->getMachinesNum() - 1);
+                        $em->persist($field[2]);
+                    }
                 } else {
                     $machine->setArchitecture($field[2]);
                 }
@@ -257,6 +296,12 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setKernel($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
+                    if (true === isset($field[2]) && is_object($field[2])) {
+                        $field[2]->setMachinesNum($field[2]->getMachinesNum() - 1);
+                        $em->persist($field[2]);
+                    }
                 } else {
                     $machine->setKernel($field[2]);
                 }
@@ -271,12 +316,17 @@ class MachineController extends BaseController
                         ->getRepository('SywFrontMainBundle:'.$field[0])
                         ->findOneBy(array('id' => $id));
                     $machine->setCpu($obj);
+                    $obj->setMachinesNum($obj->getMachinesNum()+1);
+                    $em->persist($obj);
+                    if (true === isset($field[2]) && is_object($field[2])) {
+                        $field[2]->setMachinesNum($field[2]->getMachinesNum() - 1);
+                        $em->persist($field[2]);
+                    }
                 } else {
                     $machine->setCpu($field[2]);
                 }
             }
 
-            $em = $this->getDoctrine()->getManager();
             $em->persist($machine);
             $em->flush();
 
@@ -354,12 +404,54 @@ class MachineController extends BaseController
             ->findOneBy(array('user' => $user, 'id' => $machinenumber));
 
         $em = $this->getDoctrine()->getManager();
+        unset($obj);
+        $obj = $machine->getClass();
+        if (true === isset($obj) && is_object($obj)) {
+            $obj->setMachinesNum($obj->getMachinesNum() - 1);
+            $em->persist($obj);
+        }
         $machine->setClass(null);
+        unset($obj);
+        $obj = $machine->getCpu();
+        if (true === isset($obj) && is_object($obj)) {
+            $obj->setMachinesNum($obj->getMachinesNum() - 1);
+            $em->persist($obj);
+        }
         $machine->setCpu(null);
+        unset($obj);
+        $obj = $machine->getKernel();
+        if (true === isset($obj) && is_object($obj)) {
+            $obj->setMachinesNum($obj->getMachinesNum() - 1);
+            $em->persist($obj);
+        }
         $machine->setKernel(null);
+        unset($obj);
+        $obj = $machine->getArchitecture();
+        if (true === isset($obj) && is_object($obj)) {
+            $obj->setMachinesNum($obj->getMachinesNum() - 1);
+            $em->persist($obj);
+        }
         $machine->setArchitecture(null);
+        unset($obj);
+        $obj = $machine->getCountry();
+        if (true === isset($obj) && is_object($obj)) {
+            $obj->setMachinesNum($obj->getMachinesNum() - 1);
+            $em->persist($obj);
+        }
         $machine->setCountry(null);
+        unset($obj);
+        $obj = $machine->getDistribution();
+        if (true === isset($obj) && is_object($obj)) {
+            $obj->setMachinesNum($obj->getMachinesNum() - 1);
+            $em->persist($obj);
+        }
         $machine->setDistribution(null);
+        unset($obj);
+        $obj = $machine->getPurpose();
+        if (true === isset($obj) && is_object($obj)) {
+            $obj->setMachinesNum($obj->getMachinesNum() - 1);
+            $em->persist($obj);
+        }
         $machine->setPurpose(null);
         $em->persist($machine);
         $em->flush();
