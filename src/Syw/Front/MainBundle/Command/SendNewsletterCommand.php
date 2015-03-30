@@ -49,8 +49,22 @@ EOT
     {
         $file = $input->getArgument('file');
 
+
+
+
         $output->writeln(sprintf('Mail sending disabled! Remove the exit in order to send the mail!'));
         exit(0);
+
+
+
+
+        $SUBJECT = "";
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         $mailbody = "";
@@ -63,6 +77,10 @@ EOT
             $output->writeln(sprintf('Mailbody is empty! Mail not sent!'));
             exit(1);
         }
+        if ($SUBJECT == "") {
+            $output->writeln(sprintf('Subject is empty! Mail not sent!'));
+            exit(1);
+        }
 
         $db = $this->getContainer()->get('doctrine')->getManager();
         $userrepo = $db->getRepository('SywFrontMainBundle:User');
@@ -72,7 +90,7 @@ EOT
 
         $mailer = $this->getContainer()->get('mailer');
         $message = $mailer->createMessage()
-            ->setSubject('Just a simple email test to some bcc addresses')
+            ->setSubject($SUBJECT)
             ->setFrom('noreply@linuxcounter.net')
             ->setTo('noreply@linuxcounter.net')
             ->setBody(
