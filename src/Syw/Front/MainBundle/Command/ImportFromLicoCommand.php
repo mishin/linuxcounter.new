@@ -199,14 +199,18 @@ EOT
                 $id        = $row['f_key'];
                 $email     = $row['email'];
 
-                /*
                 $userex = null;
                 unset($userex);
                 $userex = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $id));
                 if (true === isset($userex) && true === is_object($userex)) {
                     continue;
                 }
-                */
+                $userex = null;
+                unset($userex);
+                $userex = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("email" => $email));
+                if (true === isset($userex) && true === is_object($userex)) {
+                    continue;
+                }
 
                 if (preg_match("`^([a-z]{5,}[0-9]{2,}[\+]+[a-z0-9]{3,}@gmail\.com)$`i", strtolower($email))) {
                     continue;

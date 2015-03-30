@@ -28,7 +28,7 @@ class AppKernel extends Kernel
             new Shtumi\UsefulBundle\ShtumiUsefulBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            // new MktCode\CaitchaBundle\MktcodeCaitchaBundle(),
+            new MktCode\CaitchaBundle\MktCodeCaitchaBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
         );
 

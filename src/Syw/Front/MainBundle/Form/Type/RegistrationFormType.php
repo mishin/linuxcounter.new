@@ -5,6 +5,7 @@ namespace Syw\Front\MainBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use MktCode\CaitchaBundle\MktCodeCaitchaBundle;
 
 /**
  * Class RegistrationFormType
@@ -24,6 +25,7 @@ class RegistrationFormType extends AbstractType
                     'data' => 'en'
                 )
             );
+        // $builder->add('caitcha', 'caitcha');
     }
 
     public function getParent()
