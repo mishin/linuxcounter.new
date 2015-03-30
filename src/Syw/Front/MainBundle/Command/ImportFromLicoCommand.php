@@ -242,7 +242,18 @@ EOT
                     $userProfile->setModifiedAt(new \DateTime($row['f_mtime']));
                     $licotest->persist($userProfile);
                     $licotest->flush();
+
+                    $mailpref = new \Syw\Front\MainBundle\Entity\Mail();
+                    $mailpref->setUser($user);
+                    $mailpref->setNewsletterAllowed(1);
+                    $mailpref->setAdminAllowed(1);
+                    $mailpref->setOtherUsersAllowed(1);
+                    $mailpref->setModifiedAt(new \DateTime());
+                    $licotest->persist($mailpref);
+                    $licotest->flush();
+
                     $user->setProfile($userProfile);
+                    $user->setMailPref($mailpref);
                     $userManager->updateUser($user);
                     $licotest->flush();
 

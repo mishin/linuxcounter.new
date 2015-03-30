@@ -62,15 +62,26 @@ class RegistrationController extends BaseController
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
+            $em = $this->getDoctrine()->getManager();
             $userManager->updateUser($user);
 
             $userProfile = new UserProfile();
             $userProfile->setUser($user);
-            $em = $this->getDoctrine()->getManager();
+            $userProfile->setCreatedAt(new \DateTime());
             $em->persist($userProfile);
             $em->flush();
 
+            $mailpref = new \Syw\Front\MainBundle\Entity\Mail();
+            $mailpref->setUser($user);
+            $mailpref->setNewsletterAllowed(1);
+            $mailpref->setAdminAllowed(1);
+            $mailpref->setOtherUsersAllowed(1);
+            $mailpref->setModifiedAt(new \DateTime());
+            $em->persist($mailpref);
+            $em->flush();
+
             $user->setProfile($userProfile);
+            $user->setMailPref($mailpref);
             $userManager->updateUser($user);
 
             $obj = new \Syw\Front\MainBundle\Entity\Privacy();
@@ -87,13 +98,6 @@ class RegistrationController extends BaseController
             $obj->setShowKernel(1);
             $obj->setShowDistribution(1);
             $obj->setShowVersions(1);
-            $obj->setCreatedAt(new \DateTime());
-            $em->persist($obj);
-            $em->flush();
-
-            unset($obj);
-            $obj = new \Syw\Front\MainBundle\Entity\Mail();
-            $obj->setUser($user);
             $em->persist($obj);
             $em->flush();
 

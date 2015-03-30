@@ -72,13 +72,23 @@ EOT
 
         $user = $db->getRepository('SywFrontMainBundle:User')->findOneBy(array("username" => $username, "email" => $email));
 
-        $obj = new \Syw\Front\MainBundle\Entity\UserProfile();
-        $obj->setUser($user);
-        $db->persist($obj);
+        $userProfile = new \Syw\Front\MainBundle\Entity\UserProfile();
+        $userProfile->setUser($user);
+        $userProfile->setCreatedAt(new \DateTime());
+        $db->persist($userProfile);
         $db->flush();
 
-        $userProfile = $db->getRepository('SywFrontMainBundle:UserProfile')->findOneBy(array("user" => $user));
+        $mailpref = new \Syw\Front\MainBundle\Entity\Mail();
+        $mailpref->setUser($user);
+        $mailpref->setNewsletterAllowed(1);
+        $mailpref->setAdminAllowed(1);
+        $mailpref->setOtherUsersAllowed(1);
+        $mailpref->setModifiedAt(new \DateTime());
+        $db->persist($mailpref);
+        $db->flush();
+
         $user->setProfile($userProfile);
+        $user->setMailPref($mailpref);
         $db->flush();
 
         $obj = new \Syw\Front\MainBundle\Entity\Privacy();
@@ -95,13 +105,6 @@ EOT
         $obj->setShowKernel(1);
         $obj->setShowDistribution(1);
         $obj->setShowVersions(1);
-        $obj->setCreatedAt(new \DateTime());
-        $db->persist($obj);
-        $db->flush();
-
-        unset($obj);
-        $obj = new \Syw\Front\MainBundle\Entity\Mail();
-        $obj->setUser($user);
         $db->persist($obj);
         $db->flush();
 

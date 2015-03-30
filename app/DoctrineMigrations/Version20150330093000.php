@@ -18,7 +18,7 @@ class Version20150330093000 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE `user_profile` ADD COLUMN `created_at` DATETIME NOT NULL AFTER `sincewhen');
         $this->addSql('ALTER TABLE `user_profile` ADD COLUMN `modified_at` DATETIME NULL AFTER `created_at');
-        $this->addSql('ALTER TABLE `fos_user` ADD COLUMN `mailpref` int(11) NOT NULL AFTER `profile_id');
+        $this->addSql('ALTER TABLE `fos_user` ADD COLUMN `mailpref_id` int(11) NULL AFTER `profile_id');
 
         $this->addSql('CREATE TABLE `mail` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -43,7 +43,7 @@ ENGINE=InnoDB');
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE `user_profile` DROP `created_at`');
         $this->addSql('ALTER TABLE `user_profile` DROP `modified_at`');
-        $this->addSql('ALTER TABLE `fos_user` DROP `mailpref`');
+        $this->addSql('ALTER TABLE `fos_user` DROP `mailpref_id`');
         $this->addSql('DROP TABLE `mail`');
     }
 }
