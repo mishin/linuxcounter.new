@@ -182,7 +182,7 @@ EOT
             } else {
                 $nums     = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
                 $numusers = $nums[0]['num'];
-                $start    = $numusers;
+                $start    = 0; // $numusers;
                 $counter  = 0;
             }
             $itemsperloop = 200;
@@ -191,7 +191,7 @@ EOT
             $a = $start;
 
             unset($rows);
-            $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
+            $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.$a.','.$itemsperloop.'');
             foreach ($rows as $row) {
                 $counter++;
                 gc_collect_cycles();
@@ -199,12 +199,14 @@ EOT
                 $id        = $row['f_key'];
                 $email     = $row['email'];
 
+                /*
                 $userex = null;
                 unset($userex);
                 $userex = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $id));
                 if (true === isset($userex) && true === is_object($userex)) {
                     continue;
                 }
+                */
 
                 if (preg_match("`^([a-z]{5,}[0-9]{2,}[\+]+[a-z0-9]{3,}@gmail\.com)$`i", strtolower($email))) {
                     continue;
@@ -228,6 +230,7 @@ EOT
                 if ($sendmail === true) {
                     $userManager = $this->getContainer()->get('fos_user.user_manager');
                     $user = $userManager->createUser();
+                    $user->setId($row['f_key']);
                     $user->setEnabled(true);
                     $user->setUsername($username);
                     $user->setEmail($email);
@@ -238,10 +241,11 @@ EOT
                     $userManager->updateUser($user);
 
                     $userid = $user->getId();
-                    $licotestdb->query('UPDATE fos_user SET id=' . $id . ' WHERE id=\'' . $userid . '\'');
+                    $id = $userid;
+                    // $licotestdb->query('UPDATE fos_user SET id=' . $id . ' WHERE id=\'' . $userid . '\'');
 
-                    unset($user);
-                    $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $id));
+                    // unset($user);
+                    // $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $id));
 
                     $userProfile = new UserProfile();
                     $userProfile->setUser($user);
@@ -318,7 +322,7 @@ EOT
 
                 gc_collect_cycles();
             }
-            file_put_contents('import.db', ($a-$itemsperloop)." ".$counter);
+            file_put_contents('import.db', ($a+$itemsperloop)." ".$counter);
 
 
             $licotest->clear();
