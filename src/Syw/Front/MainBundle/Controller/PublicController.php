@@ -52,7 +52,12 @@ class PublicController extends BaseController
         } else {
             $user = null;
         }
+
+        $metatitle = $this->get('translator')->trans('Public user profile page');
+        $title = $metatitle;
         return $this->render('SywFrontMainBundle:Public:profile.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'thisuser' => $thisuser,
             'thisuserprofile' => $thisuserProfile,
             'thisprivacy' => $thisprivacy,
@@ -141,7 +146,11 @@ class PublicController extends BaseController
         } else {
             $user = null;
         }
+        $metatitle = $this->get('translator')->trans('Public machine profile page');
+        $title = $metatitle;
         return $this->render('SywFrontMainBundle:Public:machine.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'thisuser' => $thisuser,
             'thisprivacy' => $thisprivacy,
             'thismachine' => $thismachine,

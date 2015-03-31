@@ -21,10 +21,6 @@ class HelloListener extends CommandListener
         // get list of arguments passed after command
         $args = $event->getArguments();
 
-
-        file_put_contents('/tmp/debug.log', print_r(get_class_methods($event), true));
-
-
         $msg = 'Hi, '.(isset($args[0]) ? $args[0] : 'nobody').' !';
 
         // write to the current channel

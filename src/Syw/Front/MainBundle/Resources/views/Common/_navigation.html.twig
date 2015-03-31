@@ -6,11 +6,11 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'Statistics'|trans }} <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
         <li><a href="{{ url('syw_front_main_stats_index') }}">{{ 'Statistics mainpage'|trans }}</a></li>
-        <li><a href="#">{{ 'User statistics'|trans }}</a></li>
-        <li><a href="#">{{ 'Machine statistics'|trans }}</a></li>
-        <li><a href="#">{{ 'Distribution statistics'|trans }}</a></li>
-        <li><a href="#">{{ 'Kernel statistics'|trans }}</a></li>
-        <li><a href="#">{{ 'Uptime statistics'|trans }}</a></li>
+        <li><a href="{{ url('syw_front_main_stats_users') }}">{{ 'User statistics'|trans }}</a></li>
+        <li><a href="{{ url('syw_front_main_stats_machines') }}">{{ 'Machine statistics'|trans }}</a></li>
+        <li><a href="{{ url('syw_front_main_stats_distributions') }}">{{ 'Distribution statistics'|trans }}</a></li>
+        <li><a href="{{ url('syw_front_main_stats_kernels') }}">{{ 'Kernel statistics'|trans }}</a></li>
+        <li><a href="{{ url('syw_front_main_stats_uptimes') }}">{{ 'Uptime statistics'|trans }}</a></li>
     </ul>
 </li>
 <li class="footer-menu-divider">&sdot;</li>

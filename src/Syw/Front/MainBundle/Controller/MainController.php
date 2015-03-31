@@ -29,7 +29,16 @@ class MainController extends BaseController
         } else {
             $user = null;
         }
-        return array('languages' => $languages, 'user' => $user);
+        $stats = array();
+        $metatitle = "";
+        $title = $metatitle;
+        return array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+            'stats' => $stats
+        );
     }
 
     /**
@@ -78,10 +87,14 @@ class MainController extends BaseController
             }
         }
 
+        $metatitle = $this->get('translator')->trans('Contact us by sending us an email');
+        $title = $metatitle;
         return array(
             'form' => $form->createView(),
+            'metatitle' => $metatitle,
+            'title' => $title,
             'languages' => $languages,
-            'user' => $user
+            'user' => $user,
         );
     }
 
@@ -102,7 +115,15 @@ class MainController extends BaseController
         } else {
             $user = null;
         }
-        return array('languages' => $languages, 'user' => $user);
+
+        $metatitle = $this->get('translator')->trans('About the Linux Counter');
+        $title = $metatitle;
+        return array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
     }
 
     /**
@@ -122,7 +143,15 @@ class MainController extends BaseController
         } else {
             $user = null;
         }
-        return array('languages' => $languages, 'user' => $user);
+
+        $metatitle = $this->get('translator')->trans('Get the free update script for your machine');
+        $title = $metatitle;
+        return array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
     }
 
     /**
@@ -142,7 +171,15 @@ class MainController extends BaseController
         } else {
             $user = null;
         }
-        return array('languages' => $languages, 'user' => $user);
+
+        $metatitle = $this->get('translator')->trans('Our Imprint');
+        $title = $metatitle;
+        return array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
     }
 
     /**
@@ -162,7 +199,15 @@ class MainController extends BaseController
         } else {
             $user = null;
         }
-        return array('languages' => $languages, 'user' => $user);
+
+        $metatitle = $this->get('translator')->trans('FAQ - Frequently Asked Questions');
+        $title = $metatitle;
+        return array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
     }
 
     /**
@@ -182,7 +227,15 @@ class MainController extends BaseController
         } else {
             $user = null;
         }
-        return array('languages' => $languages, 'user' => $user);
+
+        $metatitle = $this->get('translator')->trans('The Linux Counter is fully sponsored by FIRST COLO');
+        $title = $metatitle;
+        return array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+        );
     }
 
     /**

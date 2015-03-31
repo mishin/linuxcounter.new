@@ -1,7 +1,8 @@
-<title>{% block title %}LiCo - The New Linux Counter Project - linuxcounter.net{% endblock %}</title>
+<title>{% if metatitle %}{{ metatitle }} - {% endif %}LiCo - The New Linux Counter Project - linuxcounter.net</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta name="HandheldFriendly" content="true"/>
+<meta name="title" content="{% if metatitle %}{{ metatitle }} - {% endif %}LiCo - The New Linux Counter Project - linuxcounter.net"/>
 <meta name="description" content="The New Linux Counter Project replaces the good old counter.li.org project. It counts and generates statistics about all linux users and machines."/>
 <meta name="keywords" content="linux,linux statistics,linux user statistics,linux user count,linux stats,linux download,linux os,linux operating system,linux commands,linux distros,linux kernel,linux server,linux user counter"/>
 <meta name="robots" content="index, follow"/>

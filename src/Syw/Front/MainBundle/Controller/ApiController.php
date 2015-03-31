@@ -24,6 +24,18 @@ class ApiController extends BaseController
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $user = $this->getUser();
         }
-        return array('languages' => $languages, 'user' => $user);
+
+
+
+        $stats = array();
+        $metatitle = $this->get('translator')->trans('General Statistics');
+        $title = $metatitle;
+        return array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+            'stats' => $stats
+        );
     }
 }
