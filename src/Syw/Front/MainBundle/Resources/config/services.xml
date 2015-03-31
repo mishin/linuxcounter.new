@@ -4,4 +4,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+
+
+    <services>
+        <service id="whisnet_irc_bot.bot_command_hello_listener" class="Syw\Front\MainBundle\EventListener\HelloListener">
+            <tag name="whisnet_irc_bot.bot_command" command="hello" help="Say hello to user" arguments="(username)"/>
+            <tag name="kernel.event_listener" event="whisnet_irc_bot.bot_command_hello" method="onCommand"/>
+            <argument type="service" id="whisnet_irc_bot.connection"/>
+        </service>
+    </services>
+
 </container>

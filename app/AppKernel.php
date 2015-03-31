@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new MktCode\CaitchaBundle\MktCodeCaitchaBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
+            new Whisnet\IrcBotBundle\WhisnetIrcBotBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

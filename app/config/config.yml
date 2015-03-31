@@ -190,3 +190,13 @@ shtumi_useful:
             class: SywFrontMainBundle:Countries
             property: name
             case_insensitive: true
+
+whisnet_irc_bot:
+    connection_class: Whisnet\IrcBotBundle\Connection\Socket
+    host: irc.freenode.net
+    port: 6667
+    command_prefix: !bot
+    user:
+        username: linuxcounter
+        mode: 8
+    channels: ["#linuxcounter"]
