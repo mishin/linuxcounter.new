@@ -49,15 +49,12 @@ EOT
         $tables = array();
         @exec('mysql -u'.$mysql_user.' -p'.$mysql_passwd.' '.$mysql_database.' -e \'SHOW TABLES;\'', $tables);
         for ($a=1; $a<count($tables); $a++) {
-            if ($tables[$a] != "cities") {
+            if (false === in_array($tables[$a], array('cities', 'fos_user', 'user_profile', 'privacy', 'machines', 'mail'))) {
                 @exec('mysqldump -u' . $mysql_user . ' -p' . $mysql_passwd . ' --opt --quote-names --add-drop-table ' . $mysql_database . ' ' . $tables[$a] . ' | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > ' . $folder . '/' . $tables[$a] . '.sql');
+            } else {
+                @exec('mysqldump -u' . $mysql_user . ' -p' . $mysql_passwd . ' -d --quote-names --add-drop-table ' . $mysql_database . ' ' . $tables[$a] . ' | sed "s/ AUTO_INCREMENT=[0-9]*\b//" > ' . $folder . '/' . $tables[$a] . '.sql');
             }
         }
-        @exec('sed "/^INSERT INTO \`fos_user\`.*$/d" -i '.$folder.'/fos_user.sql');
-        @exec('sed "/^INSERT INTO \`user_profile\`.*$/d" -i '.$folder.'/user_profile.sql');
-        @exec('sed "/^INSERT INTO \`privacy\`.*$/d" -i '.$folder.'/privacy.sql');
-        @exec('sed "/^INSERT INTO \`machines\`.*$/d" -i '.$folder.'/machines.sql');
-        @exec('sed "/^INSERT INTO \`mail\`.*$/d" -i '.$folder.'/mail.sql');
         $output->writeln(sprintf('Database structure and data exported to <comment>%s</comment>', $folder));
     }
 

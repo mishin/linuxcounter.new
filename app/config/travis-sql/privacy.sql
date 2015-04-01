@@ -42,15 +42,6 @@ CREATE TABLE `privacy` (
   CONSTRAINT `FK_C38419088D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `privacy`
---
-
-LOCK TABLES `privacy` WRITE;
-/*!40000 ALTER TABLE `privacy` DISABLE KEYS */;
-/*!40000 ALTER TABLE `privacy` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -61,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-01  9:01:51
+-- Dump completed on 2015-04-01  9:14:37

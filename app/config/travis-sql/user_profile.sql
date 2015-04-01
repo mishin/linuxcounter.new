@@ -51,15 +51,6 @@ CREATE TABLE `user_profile` (
   CONSTRAINT `FK_D95AB4058D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_profile`
---
-
-LOCK TABLES `user_profile` WRITE;
-/*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_profile` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -70,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-01  9:01:52
+-- Dump completed on 2015-04-01  9:14:37
