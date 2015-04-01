@@ -1,3 +1,21 @@
+truncate table `machines`;
+delete from fos_user;
+update architectures set machinesnum = 0;
+update cities set usernum = 0;
+update classes set machinesnum = 0;
+update countries set machinesnum = 0;
+update cpus set machinesnum = 0;
+update distributions set machinesnum = 0;
+update kernels set machinesnum = 0;
+update purposes set machinesnum = 0;
+ALTER TABLE `fos_user` AUTO_INCREMENT=0;
+ALTER TABLE `mail` AUTO_INCREMENT=0;
+ALTER TABLE `privacy` AUTO_INCREMENT=0;
+ALTER TABLE `user_profile` AUTO_INCREMENT=0;
+
+
+
+
 
 DROP TABLE IF EXISTS `dublicates1`;
 CREATE TABLE `dublicates1` (

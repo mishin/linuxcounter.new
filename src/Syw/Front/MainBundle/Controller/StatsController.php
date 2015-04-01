@@ -108,14 +108,21 @@ class StatsController extends BaseController
             $user = null;
         }
         $stats = array();
-        $users = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:User')
-            ->findAll();
-        $stats['usernum'] = count($users);
-        $machines = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Machines')
-            ->findAll();
-        $stats['machinenum'] = count($machines);
+
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('count(user.id)');
+        $qb->from('SywFrontMainBundle:User', 'user');
+        $uCount = $qb->getQuery()->getSingleScalarResult();
+        $stats['usernum'] = $uCount;
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('count(machines.id)');
+        $qb->from('SywFrontMainBundle:Machines', 'machines');
+        $mCount = $qb->getQuery()->getSingleScalarResult();
+        $stats['machinenum'] = $mCount;
+
         $mostcity = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Cities')
             ->findBy(

@@ -14,16 +14,26 @@ use Whisnet\IrcBotBundle\Event\BotCommandFoundEvent;
  * @license  GPL v3
  * @link     https://github.com/alexloehner/linuxcounter.new
  */
-class HelloListener extends CommandListener
+class IrcBotImportListener extends CommandListener
 {
     public function onCommand(BotCommandFoundEvent $event)
     {
         // get list of arguments passed after command
-        $args = $event->getArguments();
+        // $args = $event->getArguments();
 
-        $msg = 'Hi, '.(isset($args[0]) ? $args[0] : 'nobody').' !';
 
-        // write to the current channel
-        $this->sendMessage(array($event->getChannel()), $msg);
+        $running = @exec('ps ax | grep "syw:import:lico" | grep -v grep');
+        if (trim($running) == "") {
+            $msg = "There is actually no import running.";
+            $this->sendMessage(array($event->getChannel()), $msg);
+        } else {
+
+
+
+
+
+
+
+        }
     }
 }

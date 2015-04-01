@@ -37,7 +37,7 @@ CREATE TABLE `classes` (
 
 LOCK TABLES `classes` WRITE;
 /*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (2,'1686',0),(3,'asus',0),(4,'barebone',0),(5,'cluster',0),(6,'d201gly2',1),(7,'desktop',1),(8,'desktop-pc',0),(9,'diskless',0),(10,'embedded',15),(11,'fujitsu',0),(12,'games',0),(13,'handheld',9),(14,'headless',0),(15,'homebrew',0),(16,'htpc',0),(17,'itx',0),(18,'laptop',204),(19,'netbook',0),(20,'nettop',0),(21,'normalilla',0),(22,'notebook',0),(23,'other',2),(24,'pc',0),(25,'personal',0),(26,'phone',0),(27,'server',243),(28,'server/workstation',0),(29,'smartphone',5),(30,'sobremesa',0),(31,'study',0),(32,'sub-notebook',0),(33,'systemax',0),(34,'various',0),(35,'virtual',0),(36,'virtualmachine',8),(37,'vm',0),(38,'workstation',429),(39,'workstation/server',0);
+INSERT INTO `classes` VALUES (2,'1686',0),(3,'asus',0),(4,'barebone',0),(5,'cluster',0),(6,'d201gly2',1),(7,'desktop',1),(8,'desktop-pc',0),(9,'diskless',0),(10,'embedded',15),(11,'fujitsu',0),(12,'games',0),(13,'handheld',10),(14,'headless',0),(15,'homebrew',0),(16,'htpc',0),(17,'itx',0),(18,'laptop',241),(19,'netbook',0),(20,'nettop',0),(21,'normalilla',0),(22,'notebook',0),(23,'other',5),(24,'pc',0),(25,'personal',0),(26,'phone',0),(27,'server',275),(28,'server/workstation',0),(29,'smartphone',5),(30,'sobremesa',0),(31,'study',0),(32,'sub-notebook',0),(33,'systemax',0),(34,'various',0),(35,'virtual',0),(36,'virtualmachine',8),(37,'vm',0),(38,'workstation',463),(39,'workstation/server',0);
 /*!40000 ALTER TABLE `classes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-01  9:14:36
+-- Dump completed on 2015-04-01 17:32:00
