@@ -2,8 +2,11 @@
 
 namespace Syw\Front\MainBundle\EventListener;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Whisnet\IrcBotBundle\EventListener\Plugins\Commands\CommandListener;
 use Whisnet\IrcBotBundle\Event\BotCommandFoundEvent;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
  * Class HelloListener
@@ -16,6 +19,13 @@ use Whisnet\IrcBotBundle\Event\BotCommandFoundEvent;
  */
 class IrcBotImportListener extends CommandListener
 {
+    protected $em;
+
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     public function onCommand(BotCommandFoundEvent $event)
     {
         // get list of arguments passed after command
@@ -27,13 +37,18 @@ class IrcBotImportListener extends CommandListener
             $msg = "There is actually no import running.";
             $this->sendMessage(array($event->getChannel()), $msg);
         } else {
+            $qb = $this->em->createQueryBuilder();
+            $qb->select('count(user.id)');
+            $qb->from('SywFrontMainBundle:User', 'user');
+            $uCount = $qb->getQuery()->getSingleScalarResult();
 
+            $qb = $this->em->createQueryBuilder();
+            $qb->select('count(machines.id)');
+            $qb->from('SywFrontMainBundle:Machines', 'machines');
+            $mCount = $qb->getQuery()->getSingleScalarResult();
 
-
-
-
-
-
+            $msg = "There are actually ".number_format($uCount)." users and ".number_format($mCount)." machines imported, out of around 600,000 users.";
+            $this->sendMessage(array($event->getChannel()), $msg);
         }
     }
 }

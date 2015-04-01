@@ -41,3 +41,7 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+    syw.irclistener.importlistener:
+        class: Syw\Front\MainBundle\EventListener\IrcBotImportListener
+        calls:
+        - [setEntityManager, ["@doctrine.orm.entity_manager"]]
