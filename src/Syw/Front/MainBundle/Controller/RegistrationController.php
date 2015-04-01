@@ -111,7 +111,11 @@ class RegistrationController extends BaseController
             return $response;
         }
 
+        $metatitle = $this->get('translator')->trans('User Account Registration');
+        $title = $metatitle;
         return $this->render('FOSUserBundle:Registration:register.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'form' => $form->createView(),
             'languages' => $languages,
             'user' => $user
@@ -134,7 +138,11 @@ class RegistrationController extends BaseController
             throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
         }
 
+        $metatitle = $this->get('translator')->trans('User Account Registration');
+        $title = $metatitle;
         return $this->render('FOSUserBundle:Registration:checkEmail.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'user' => $user,
             'languages' => $languages
         ));
@@ -191,7 +199,11 @@ class RegistrationController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
+        $metatitle = $this->get('translator')->trans('User Account Registration');
+        $title = $metatitle;
         return $this->render('FOSUserBundle:Registration:confirmed.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'user' => $user,
             'languages' => $languages
         ));

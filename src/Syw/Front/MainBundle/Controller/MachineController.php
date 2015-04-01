@@ -160,7 +160,11 @@ class MachineController extends BaseController
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
+        $metatitle = $this->get('translator')->trans('New Machine Creation');
+        $title = $metatitle;
         return $this->render('SywFrontMainBundle:Machine:create.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'form' => $form->createView(),
             'machine' => $machine,
             'languages' => $languages,
@@ -336,7 +340,11 @@ class MachineController extends BaseController
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
+        $metatitle = $this->get('translator')->trans('Edit Machine');
+        $title = $metatitle;
         return $this->render('SywFrontMainBundle:Machine:edit.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'form' => $form->createView(),
             'machine' => $machine,
             'languages' => $languages,

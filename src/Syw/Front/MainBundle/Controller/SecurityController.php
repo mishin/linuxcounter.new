@@ -39,7 +39,11 @@ class SecurityController extends BaseController
             ? $this->get('form.csrf_provider')->generateCsrfToken('authenticate')
             : null;
 
+        $metatitle = $this->get('translator')->trans('User Login');
+        $title = $metatitle;
         return $this->renderLogin(array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'last_username' => $lastUsername,
             'error'         => $error,
             'csrf_token' => $csrfToken,

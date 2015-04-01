@@ -55,7 +55,11 @@ class ProfileController extends BaseController
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
+        $metatitle = $this->get('translator')->trans('The user profile');
+        $title = $metatitle;
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'user' => $user,
             'userprofile' => $userProfile,
             'machines' => $machines,
@@ -115,7 +119,11 @@ class ProfileController extends BaseController
             return $response;
         }
 
+        $metatitle = $this->get('translator')->trans('The user profile');
+        $title = $metatitle;
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'form' => $form->createView(),
             'languages' => $languages,
             'user' => $user

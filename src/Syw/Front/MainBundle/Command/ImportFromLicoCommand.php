@@ -57,16 +57,16 @@ EOT
     {
         $item = $input->getArgument('item');
 
-        $lico = $this->getContainer()->get('doctrine.dbal.lico_connection');
-        $licotest = $this->getContainer()->get('doctrine')->getManager();
+        $lico       = $this->getContainer()->get('doctrine.dbal.lico_connection');
+        $licotest   = $this->getContainer()->get('doctrine')->getManager();
         $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
 
         if ($item == "processors" || $item == "all") {
             $rows = $lico->fetchAll('SELECT p.name, p.herz FROM processors p ORDER BY p.name ASC');
             foreach ($rows as $row) {
-                $name = $row['name'];
+                $name  = $row['name'];
                 $hertz = $row['herz'];
-                $obj = new \Syw\Front\MainBundle\Entity\Cpus();
+                $obj   = new \Syw\Front\MainBundle\Entity\Cpus();
                 $obj->setName($name);
                 $obj->setHertz($hertz);
                 $licotest->persist($obj);
@@ -77,10 +77,10 @@ EOT
         if ($item == "countries" || $item == "all") {
             $rows = $lico->fetchAll('SELECT p.name, p.code, p.population FROM places p ORDER BY p.name ASC');
             foreach ($rows as $row) {
-                $name = $row['name'];
-                $code = $row['code'];
+                $name       = $row['name'];
+                $code       = $row['code'];
                 $population = $row['population'];
-                $obj = new \Syw\Front\MainBundle\Entity\Countries();
+                $obj        = new \Syw\Front\MainBundle\Entity\Countries();
                 $obj->setName($name);
                 $obj->setCode(strtolower($code));
                 $obj->setPopulation($population);
@@ -93,7 +93,7 @@ EOT
             $rows = $lico->fetchAll('SELECT DISTINCT m.distribution AS name FROM machines m ORDER BY m.distribution');
             foreach ($rows as $row) {
                 $name = $row['name'];
-                $obj = new \Syw\Front\MainBundle\Entity\Distributions();
+                $obj  = new \Syw\Front\MainBundle\Entity\Distributions();
                 $obj->setName($name);
                 $licotest->persist($obj);
                 $licotest->flush();
@@ -104,7 +104,7 @@ EOT
             $rows = $lico->fetchAll('SELECT DISTINCT m.arch AS name FROM machines m ORDER BY m.arch');
             foreach ($rows as $row) {
                 $name = $row['name'];
-                $obj = new \Syw\Front\MainBundle\Entity\Architectures();
+                $obj  = new \Syw\Front\MainBundle\Entity\Architectures();
                 $obj->setName($name);
                 $licotest->persist($obj);
                 $licotest->flush();
@@ -115,7 +115,7 @@ EOT
             $rows = $lico->fetchAll('SELECT DISTINCT m.kernel AS name FROM machines m ORDER BY m.kernel');
             foreach ($rows as $row) {
                 $name = $row['name'];
-                $obj = new \Syw\Front\MainBundle\Entity\Kernels();
+                $obj  = new \Syw\Front\MainBundle\Entity\Kernels();
                 $obj->setName($name);
                 $licotest->persist($obj);
                 $licotest->flush();
@@ -126,7 +126,7 @@ EOT
             $rows = $lico->fetchAll('SELECT DISTINCT m.sysclass AS name FROM machines m ORDER BY m.sysclass');
             foreach ($rows as $row) {
                 $name = $row['name'];
-                $obj = new \Syw\Front\MainBundle\Entity\Classes();
+                $obj  = new \Syw\Front\MainBundle\Entity\Classes();
                 $obj->setName($name);
                 $licotest->persist($obj);
                 $licotest->flush();
@@ -171,13 +171,13 @@ EOT
             gc_collect_cycles();
 
             if (true === file_exists('import.db')) {
-                $fp = fopen('import.db', "r");
+                $fp   = fopen('import.db', "r");
                 $data = fread($fp, 1024);
                 fclose($fp);
                 $fp = null;
                 unset($fp);
-                $dataar = explode(" ", trim($data));
-                $start = intval(trim($dataar[0]));
+                $dataar  = explode(" ", trim($data));
+                $start   = intval(trim($dataar[0]));
                 $counter = intval(trim($dataar[1]));
             } else {
                 $nums     = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM users');
@@ -191,13 +191,13 @@ EOT
             $a = $start;
 
             unset($rows);
-            $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT '.$a.','.$itemsperloop.'');
+            $rows = $lico->fetchAll('SELECT * FROM users ORDER BY f_key LIMIT ' . $a . ',' . $itemsperloop . '');
             foreach ($rows as $row) {
                 $counter++;
                 gc_collect_cycles();
                 $sendmail = false;
-                $id        = $row['f_key'];
-                $email     = $row['email'];
+                $id       = $row['f_key'];
+                $email    = $row['email'];
 
                 $userex = null;
                 unset($userex);
@@ -222,18 +222,18 @@ EOT
 
                 $lastLogin = $row['logintime'];
                 $username  = $id;
-                $password = mt_rand(1000000000, 9999999999);
+                $password  = mt_rand(1000000000, 9999999999);
 
                 $sendmail = true;
 
-                $licotest = $this->getContainer()->get('doctrine')->getManager();
+                $licotest   = $this->getContainer()->get('doctrine')->getManager();
                 $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
 
                 $licotestdb->prepare('SET autocommit=0;')->execute();
 
                 if ($sendmail === true) {
                     $userManager = $this->getContainer()->get('fos_user.user_manager');
-                    $user = $userManager->createUser();
+                    $user        = $userManager->createUser();
                     $user->setId($row['f_key']);
                     $user->setEnabled(true);
                     $user->setUsername($username);
@@ -245,7 +245,7 @@ EOT
                     $userManager->updateUser($user);
 
                     $userid = $user->getId();
-                    $id = $userid;
+                    $id     = $userid;
                     // $licotestdb->query('UPDATE fos_user SET id=' . $id . ' WHERE id=\'' . $userid . '\'');
 
                     // unset($user);
@@ -294,6 +294,147 @@ EOT
                     $licotest->persist($privacy);
                     $licotest->flush();
 
+                    $mrows = $lico->fetchAll('SELECT * FROM machines WHERE owner = \'' . $userid . '\' ORDER BY f_key');
+                    foreach ($mrows as $mrow) {
+                        gc_collect_cycles();
+                        $userid    = $mrow['owner'];
+                        $machineid = $mrow['f_key'];
+
+                        $machine = new \Syw\Front\MainBundle\Entity\Machines();
+                        $machine->setUser($user);
+                        $machine->setId($machineid);
+
+                        if (true === isset($mrow['update_key']) && trim($mrow['update_key']) != "") {
+                            $machine->setUpdateKey(trim($mrow['update_key']));
+                        }
+                        if (true === isset($mrow['name']) && trim($mrow['name']) != "") {
+                            $machine->setHostname(trim($mrow['name']));
+                        }
+                        if (true === isset($mrow['cpunum']) && trim($mrow['cpunum']) != "") {
+                            $machine->setCores(trim($mrow['cpunum']));
+                        }
+                        if (true === isset($mrow['cpuflags']) && trim($mrow['cpuflags']) != "") {
+                            $machine->setFlags(trim($mrow['cpuflags']));
+                        }
+                        if (true === isset($mrow['accounts']) && trim($mrow['accounts']) != "") {
+                            $machine->setAccounts(trim($mrow['accounts']));
+                        }
+                        if (true === isset($mrow['disk']) && trim($mrow['disk']) != "") {
+                            $machine->setDiskspace(trim($mrow['disk']));
+                        }
+                        if (true === isset($mrow['diskfree']) && trim($mrow['diskfree']) != "") {
+                            $machine->setDiskspaceFree(trim($mrow['diskfree']));
+                        }
+                        if (true === isset($mrow['memory']) && trim($mrow['memory']) != "") {
+                            $machine->setMemory(trim($mrow['memory']));
+                        }
+                        if (true === isset($mrow['memfree']) && trim($mrow['memfree']) != "") {
+                            $machine->setMemoryFree(trim($mrow['memfree']));
+                        }
+                        if (true === isset($mrow['swap']) && trim($mrow['swap']) != "") {
+                            $machine->setSwap(trim($mrow['swap']));
+                        }
+                        if (true === isset($mrow['swapfree']) && trim($mrow['swapfree']) != "") {
+                            $machine->setSwapFree(trim($mrow['swapfree']));
+                        }
+                        if (true === isset($mrow['distversion']) && trim($mrow['distversion']) != "") {
+                            $machine->setDistversion(trim($mrow['distversion']));
+                        }
+                        if (true === isset($mrow['mailer']) && trim($mrow['mailer']) != "") {
+                            $machine->setMailer(trim($mrow['mailer']));
+                        }
+                        if (true === isset($mrow['network']) && trim($mrow['network']) != "") {
+                            $machine->setNetwork(trim($mrow['network']));
+                        }
+                        if (true === isset($mrow['online']) && trim($mrow['online']) != "") {
+                            if (trim($mrow['online']) == "online") {
+                                $machine->setOnline(1);
+                            } else {
+                                $machine->setOnline(0);
+                            }
+                        }
+                        if (true === isset($mrow['uptime']) && trim($mrow['uptime']) != "") {
+                            $machine->setUptime(trim($mrow['uptime']));
+                        }
+                        if (true === isset($mrow['load']) && trim($mrow['load']) != "") {
+                            $machine->setLoadAvg(trim($mrow['load']));
+                        }
+                        if (true === isset($mrow['f_ctime']) && trim($mrow['f_ctime']) != "") {
+                            $machine->setCreatedAt(new \DateTime(trim($mrow['f_ctime'])));
+                        }
+                        if (true === isset($mrow['f_mtime']) && trim($mrow['f_mtime']) != "") {
+                            $machine->setModifiedAt(new \DateTime(trim($mrow['f_mtime'])));
+                        }
+                        unset($obj);
+                        if (true === isset($mrow['distribution']) && trim($mrow['distribution']) != "") {
+                            $obj = $licotest->getRepository('SywFrontMainBundle:Distributions')->findOneBy(array("name" => trim($mrow['distribution'])));
+                            if (true === isset($obj) && true === is_object($obj)) {
+                                $obj->setMachinesNum($obj->getMachinesNum() + 1);
+                                $licotest->persist($obj);
+                                $machine->setDistribution($obj);
+                            }
+                        }
+                        unset($obj);
+                        if (true === isset($mrow['kernel']) && trim($mrow['kernel']) != "") {
+                            $obj = $licotest->getRepository('SywFrontMainBundle:Kernels')->findOneBy(array("name" => trim($mrow['kernel'])));
+                            if (true === isset($obj) && true === is_object($obj)) {
+                                $obj->setMachinesNum($obj->getMachinesNum() + 1);
+                                $licotest->persist($obj);
+                                $machine->setKernel($obj);
+                            }
+                        }
+                        unset($obj);
+                        if (true === isset($mrow['cpu']) && trim($mrow['cpu']) != "" && intval($mrow['cpu']) >= 1) {
+                            unset($line);
+                            $line = $lico->fetchAll('SELECT name, herz FROM processors WHERE f_key=\'' . trim($mrow['cpu']) . '\'');
+                            if (true === isset($line) && true === is_array($line) && true === isset($line[0]) && true === is_array($line[0]) && true === isset($line[0]['name']) && true === isset($line[0]['herz'])) {
+                                unset($obj);
+                                $obj = $licotest->getRepository('SywFrontMainBundle:Cpus')->findOneBy(array(
+                                    "name" => trim($line[0]['name']),
+                                    "hertz" => trim($line[0]['herz'])
+                                ));
+                                if (true === isset($obj) && true === is_object($obj)) {
+                                    $obj->setMachinesNum($obj->getMachinesNum() + 1);
+                                    $licotest->persist($obj);
+                                    $machine->setCpu($obj);
+                                }
+                            }
+                        }
+                        unset($obj);
+                        if (true === isset($mrow['country']) && trim($mrow['country']) != "") {
+                            $obj = $licotest->getRepository('SywFrontMainBundle:Countries')->findOneBy(array("code" => strtolower(trim($mrow['country']))));
+                            if (true === isset($obj) && true === is_object($obj)) {
+                                $obj->setMachinesNum($obj->getMachinesNum() + 1);
+                                $licotest->persist($obj);
+                                $machine->setCountry($obj);
+                            }
+                        }
+                        unset($obj);
+                        if (true === isset($mrow['arch']) && trim($mrow['arch']) != "") {
+                            $obj = $licotest->getRepository('SywFrontMainBundle:Architectures')->findOneBy(array("name" => trim($mrow['arch'])));
+                            if (true === isset($obj) && true === is_object($obj)) {
+                                $obj->setMachinesNum($obj->getMachinesNum() + 1);
+                                $licotest->persist($obj);
+                                $machine->setArchitecture($obj);
+                            }
+                        }
+                        unset($obj);
+                        if (true === isset($mrow['sysclass']) && trim($mrow['sysclass']) != "") {
+                            $obj = $licotest->getRepository('SywFrontMainBundle:Classes')->findOneBy(array("name" => trim($mrow['sysclass'])));
+                            if (true === isset($obj) && true === is_object($obj)) {
+                                $obj->setMachinesNum($obj->getMachinesNum() + 1);
+                                $licotest->persist($obj);
+                                $machine->setClass($obj);
+                            }
+                        }
+                        unset($obj);
+                        $licotest->persist($machine);
+                        $licotest->flush();
+
+                        $mid = $machine->getId();
+                    }
+
+
                     $user = null;
                     unset($user);
                     $privacy = null;
@@ -322,11 +463,15 @@ EOT
                 // $mypid = getmypid();
                 // $files = @exec('lsof -p '.$mypid.' | wc -l');
                 // file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id." |   open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
-                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$id." | ".$row['f_key']." \n", FILE_APPEND);
+                file_put_contents(
+                    "import.log",
+                    ">>> " . $counter . " | " . $z . " | " . $id . " | " . $row['f_key'] . " \n",
+                    FILE_APPEND
+                );
 
                 gc_collect_cycles();
             }
-            file_put_contents('import.db', ($a+$itemsperloop)." ".$counter);
+            file_put_contents('import.db', ($a + $itemsperloop) . " " . $counter);
 
 
             $licotest->clear();
@@ -346,219 +491,6 @@ EOT
             @exec("php app/console syw:import:lico users >>import.log 2>&1 3>&1 4>&1 &");
             exit(0);
         }
-
-        if ($item == "machines") {
-            @exec("php app/console syw:import:lico machinesbg >>import.log 2>&1 3>&1 4>&1 &");
-            exit(0);
-        }
-
-        if ($item == "machinesbg") {
-            gc_collect_cycles();
-
-            if (true === file_exists('import.db')) {
-                $fp = fopen('import.db', "r");
-                $data = fread($fp, 1024);
-                fclose($fp);
-                $fp = null;
-                unset($fp);
-                $dataar = explode(" ", trim($data));
-                $start = intval(trim($dataar[0]));
-                $counter = intval(trim($dataar[1]));
-            } else {
-                $nums = $lico->fetchAll('SELECT COUNT(f_key) AS num FROM machines WHERE isactive=\'YES\'');
-                $numusers = $nums[0]['num'];
-                $start    = $numusers;
-                $counter  = 0;
-            }
-            $itemsperloop = 200;
-
-            $z = 0;
-            $a = $start;
-
-            unset($rows);
-            $rows = $lico->fetchAll('SELECT * FROM machines ORDER BY f_key LIMIT '.($a-$itemsperloop).','.$itemsperloop.'');
-            foreach ($rows as $row) {
-                $counter++;
-                gc_collect_cycles();
-                $userid  = $row['owner'];
-                $machineid = $row['f_key'];
-
-                $licotestdb->prepare('SET autocommit=0;')->execute();
-                $lico->prepare('SET autocommit=0;')->execute();
-
-                $licotestdb->prepare('SET autocommit=0;')->execute();
-
-                $user = $licotest->getRepository('SywFrontMainBundle:User')->findOneBy(array("id" => $userid));
-
-                $machine = new \Syw\Front\MainBundle\Entity\Machines();
-                $machine->setUser($user);
-
-                if (true === isset($row['update_key']) && trim($row['update_key']) != "") {
-                    $machine->setUpdateKey(trim($row['update_key']));
-                }
-                if (true === isset($row['name']) && trim($row['name']) != "") {
-                    $machine->setHostname(trim($row['name']));
-                }
-                if (true === isset($row['cpunum']) && trim($row['cpunum']) != "") {
-                    $machine->setCores(trim($row['cpunum']));
-                }
-                if (true === isset($row['cpuflags']) && trim($row['cpuflags']) != "") {
-                    $machine->setFlags(trim($row['cpuflags']));
-                }
-                if (true === isset($row['accounts']) && trim($row['accounts']) != "") {
-                    $machine->setAccounts(trim($row['accounts']));
-                }
-                if (true === isset($row['disk']) && trim($row['disk']) != "") {
-                    $machine->setDiskspace(trim($row['disk']));
-                }
-                if (true === isset($row['diskfree']) && trim($row['diskfree']) != "") {
-                    $machine->setDiskspaceFree(trim($row['diskfree']));
-                }
-                if (true === isset($row['memory']) && trim($row['memory']) != "") {
-                    $machine->setMemory(trim($row['memory']));
-                }
-                if (true === isset($row['memfree']) && trim($row['memfree']) != "") {
-                    $machine->setMemoryFree(trim($row['memfree']));
-                }
-                if (true === isset($row['swap']) && trim($row['swap']) != "") {
-                    $machine->setSwap(trim($row['swap']));
-                }
-                if (true === isset($row['swapfree']) && trim($row['swapfree']) != "") {
-                    $machine->setSwapFree(trim($row['swapfree']));
-                }
-                if (true === isset($row['distversion']) && trim($row['distversion']) != "") {
-                    $machine->setDistversion(trim($row['distversion']));
-                }
-                if (true === isset($row['mailer']) && trim($row['mailer']) != "") {
-                    $machine->setMailer(trim($row['mailer']));
-                }
-                if (true === isset($row['network']) && trim($row['network']) != "") {
-                    $machine->setNetwork(trim($row['network']));
-                }
-                if (true === isset($row['online']) && trim($row['online']) != "") {
-                    if (trim($row['online']) == "online") {
-                        $machine->setOnline(1);
-                    } else {
-                        $machine->setOnline(0);
-                    }
-                }
-                if (true === isset($row['uptime']) && trim($row['uptime']) != "") {
-                    $machine->setUptime(trim($row['uptime']));
-                }
-                if (true === isset($row['load']) && trim($row['load']) != "") {
-                    $machine->setLoadAvg(trim($row['load']));
-                }
-                if (true === isset($row['f_ctime']) && trim($row['f_ctime']) != "") {
-                    $machine->setCreatedAt(new \DateTime(trim($row['f_ctime'])));
-                }
-                if (true === isset($row['f_mtime']) && trim($row['f_mtime']) != "") {
-                    $machine->setModifiedAt(new \DateTime(trim($row['f_mtime'])));
-                }
-                unset($obj);
-                if (true === isset($row['distribution']) && trim($row['distribution']) != "") {
-                    $obj = $licotest->getRepository('SywFrontMainBundle:Distributions')->findOneBy(array("name" => trim($row['distribution'])));
-                    $obj->setMachinesNum($obj->getMachinesNum()+1);
-                    $licotest->persist($obj);
-                    $machine->setDistribution($obj);
-                }
-                unset($obj);
-                if (true === isset($row['kernel']) && trim($row['kernel']) != "") {
-                    $obj = $licotest->getRepository('SywFrontMainBundle:Kernels')->findOneBy(array("name" => trim($row['kernel'])));
-                    $obj->setMachinesNum($obj->getMachinesNum()+1);
-                    $licotest->persist($obj);
-                    $machine->setKernel($obj);
-                }
-                unset($obj);
-                if (true === isset($row['cpu']) && trim($row['cpu']) != "" && intval($row['cpu']) >= 1) {
-                    $line = $lico->fetchAll('SELECT name, herz FROM processors WHERE f_key=\''.trim($row['cpu']).'\'');
-                    $obj = $licotest->getRepository('SywFrontMainBundle:Cpus')->findOneBy(array("name" => trim($line[0]['name']), "hertz" => trim($line[0]['herz'])));
-                    $obj->setMachinesNum($obj->getMachinesNum()+1);
-                    $licotest->persist($obj);
-                    $machine->setCpu($obj);
-                }
-                unset($obj);
-                if (true === isset($row['country']) && trim($row['country']) != "") {
-                    $obj = $licotest->getRepository('SywFrontMainBundle:Countries')->findOneBy(array("code" => strtolower(trim($row['country']))));
-                    $obj->setMachinesNum($obj->getMachinesNum()+1);
-                    $licotest->persist($obj);
-                    $machine->setCountry($obj);
-                }
-                unset($obj);
-                if (true === isset($row['arch']) && trim($row['arch']) != "") {
-                    $obj = $licotest->getRepository('SywFrontMainBundle:Architectures')->findOneBy(array("name" => trim($row['arch'])));
-                    $obj->setMachinesNum($obj->getMachinesNum()+1);
-                    $licotest->persist($obj);
-                    $machine->setArchitecture($obj);
-                }
-                unset($obj);
-                if (true === isset($row['sysclass']) && trim($row['sysclass']) != "") {
-                    $obj = $licotest->getRepository('SywFrontMainBundle:Classes')->findOneBy(array("name" => trim($row['sysclass'])));
-                    $obj->setMachinesNum($obj->getMachinesNum()+1);
-                    $licotest->persist($obj);
-                    $machine->setClass($obj);
-                }
-                unset($obj);
-                $licotest->persist($machine);
-                $licotest->flush();
-
-                $id = $machine->getId();
-                $licotestdb->query('UPDATE machines SET id=' . $machineid . ' WHERE id=\'' . $id . '\'');
-
-                $user = null;
-                unset($user);
-                $machine = null;
-                unset($machine);
-
-                $lico->prepare('COMMIT;')->execute();
-                $licotestdb->prepare('COMMIT;')->execute();
-
-                $licotest->clear();
-
-                gc_collect_cycles();
-
-                $z++;
-                $files = @exec('cat /proc/sys/fs/file-nr | cut -f 1');
-                file_put_contents("import.log", ">>> ".$counter." | ".$z." | ".$machineid." |   open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
-            }
-            file_put_contents('import.db', ($a-$itemsperloop)." ".$counter);
-
-            $licotest->clear();
-
-            $licotest->close();
-            $licotestdb->close();
-            $lico->close();
-
-            $licotest = null;
-            unset($licotest);
-            $licotestdb = null;
-            unset($licotestdb);
-            $lico = null;
-            unset($lico);
-
-            gc_collect_cycles();
-            @exec("php app/console syw:import:lico machines >>import.log 2>&1 3>&1 4>&1 &");
-            exit(0);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $output->writeln(sprintf('Data of <comment>%s</comment> imported', $item));
     }
 
     /**

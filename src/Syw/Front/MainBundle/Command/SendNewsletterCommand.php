@@ -87,25 +87,37 @@ EOT
         $userprofilerepo = $db->getRepository('SywFrontMainBundle:UserProfile');
 
         $mails = $db->getRepository('SywFrontMainBundle:Mail')->findBy(array("newsletterAllowed" => 1));
+        $numusers = count($mails);
+        $a = 0;
+        $itemsperloop = 2;
+        $counter = 0;
 
-        $mailer = $this->getContainer()->get('mailer');
-        $message = $mailer->createMessage()
-            ->setSubject($SUBJECT)
-            ->setFrom('noreply@linuxcounter.net')
-            ->setTo('noreply@linuxcounter.net')
-            ->setBody(
-                $mailbody,
-                'text/plain'
-            )
-        ;
-        foreach ($mails as $mail) {
-            $user           = $userrepo->findOneBy(array("mailpref" => $mail->getId()));
-            $userprofile    = $userprofilerepo->findOneBy(array("user" => $user));
-            $message->addBcc($user->getEmail(), $userprofile->getFirstName().''.$userprofile->getLastName());
+        for ($a = 0; ($a+$itemsperloop)<$numusers; $a+=$itemsperloop) {
+            unset($mails);
+            $counter++;
+            $mails   = $db->getRepository('SywFrontMainBundle:Mail')->findBy(
+                array("newsletterAllowed" => 1),
+                array(),
+                $itemsperloop,
+                $a
+            );
+            $mailer  = $this->getContainer()->get('mailer');
+            $message = $mailer->createMessage()
+                ->setSubject($SUBJECT)
+                ->setFrom('noreply@linuxcounter.net')
+                ->setTo('noreply@linuxcounter.net')
+                ->setBody(
+                    $mailbody,
+                    'text/plain'
+                );
+            foreach ($mails as $mail) {
+                $userprofile = $userprofilerepo->findOneBy(array("user" => $mail->getUser()));
+                $message->addBcc($user->getEmail(), $userprofile->getFirstName() . '' . $userprofile->getLastName());
+            }
+            $mailer->send($message);
         }
-        $mailer->send($message);
 
-        $output->writeln(sprintf('Newsletter successfully sent!'));
+        $output->writeln(sprintf(''.$counter.' Newsletter to '.$numusers.' emails successfully sent!'));
     }
 
     /**

@@ -28,7 +28,13 @@ class ResettingController extends BaseController
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
-        return $this->render('FOSUserBundle:Resetting:request.html.twig', array('languages' => $languages));
+        $metatitle = $this->get('translator')->trans('Password reset');
+        $title = $metatitle;
+        return $this->render('FOSUserBundle:Resetting:request.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages
+        ));
     }
 
     /**
@@ -61,7 +67,8 @@ class ResettingController extends BaseController
         $user->setPasswordRequestedAt(new \DateTime());
         $this->get('fos_user.user_manager')->updateUser($user);
 
-        return new RedirectResponse($this->generateUrl('fos_user_resetting_check_email',
+        return new RedirectResponse($this->generateUrl(
+            'fos_user_resetting_check_email',
             array('email' => $this->getObfuscatedEmail($user))
         ));
     }
@@ -86,7 +93,11 @@ class ResettingController extends BaseController
         } else {
             $user = null;
         }
+        $metatitle = $this->get('translator')->trans('Password reset');
+        $title = $metatitle;
         return $this->render('FOSUserBundle:Resetting:checkEmail.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'email' => $email,
             'languages' => $languages,
             'user' => $user
@@ -143,7 +154,11 @@ class ResettingController extends BaseController
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
 
+        $metatitle = $this->get('translator')->trans('Password reset');
+        $title = $metatitle;
         return $this->render('FOSUserBundle:Resetting:reset.html.twig', array(
+            'metatitle' => $metatitle,
+            'title' => $title,
             'token' => $token,
             'form' => $form->createView(),
             'languages' => $languages,

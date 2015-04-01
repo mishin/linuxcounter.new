@@ -12,3 +12,6 @@
 /web/coverage
 /web/css
 /web/js
+
+import.db
+import.log
