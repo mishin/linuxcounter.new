@@ -30,24 +30,103 @@ class StatsController extends BaseController
             $user = null;
         }
 
-        // Chart
+
+
+        // Chart about User registrations per Day
+        unset($data);
+        $registrations = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsRegistration')
+            ->findBy(array(), array('day' => 'ASC'));
+        foreach ($registrations as $reg) {
+            $y = $reg->getDay()->format('Y');
+            $m = $reg->getDay()->format('m');
+            $d = $reg->getDay()->format('d');
+            $data[] = array(
+                (($reg->getDay()->format('U') + 86400) * 1000),
+                $reg->getNum()
+            );
+        }
         $series = array(
-            array("name" => "Data Serie Name",    "data" => array(1,2,4,5,6,3,8))
+            array(
+                "type" => "area",
+                "pointStart" => ((time() - (86400*30))*1000),
+                "name" => $this->get('translator')->trans('Registrations'),
+                "data" => $data
+            )
         );
-        $ob = new Highchart();
-        $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
-        $ob->chart->type('area');
-        $ob->title->text('Chart Title');
-        $ob->xAxis->title(array('text'  => "Horizontal axis title"));
-        $ob->yAxis->title(array('text'  => "Vertical axis title"));
-        $ob->legend->enabled(false);
-        $ob->plotOptions->area(array(
+        $chart_registrations_per_day = new Highchart();
+        $chart_registrations_per_day->chart->renderTo('chart_registrations_per_day');
+        $chart_registrations_per_day->chart->zoomType('x');
+        $chart_registrations_per_day->chart->type('area');
+        $chart_registrations_per_day->title->text($this->get('translator')->trans('User registrations per day'));
+        $chart_registrations_per_day->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
+        $chart_registrations_per_day->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
+        $chart_registrations_per_day->xAxis->type('datetime');
+        $chart_registrations_per_day->xAxis->minRange(14 * 24 * 3600000);
+        $chart_registrations_per_day->yAxis->title(array('text'  => $this->get('translator')->trans('User registrations per day')));
+        $chart_registrations_per_day->legend->enabled(true);
+        $chart_registrations_per_day->plotOptions->area(array(
             'allowPointSelect'  => true,
-            'cursor'    => 'pointer',
             'dataLabels'    => array('enabled' => false),
             'showInLegend'  => true
         ));
-        $ob->series($series);
+        $chart_registrations_per_day->series($series);
+        // end of chart
+
+
+
+
+        // Chart about Machine registrations per Day
+        unset($data);
+        $registrations = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsMachines')
+            ->findBy(array(), array('day' => 'ASC'));
+        foreach ($registrations as $reg) {
+            $y = $reg->getDay()->format('Y');
+            $m = $reg->getDay()->format('m');
+            $d = $reg->getDay()->format('d');
+            $data[] = array(
+                (($reg->getDay()->format('U') + 86400) * 1000),
+                $reg->getNum()
+            );
+        }
+        $series = array(
+            array(
+                "type" => "area",
+                "pointStart" => ((time() - (86400*30))*1000),
+                "name" => $this->get('translator')->trans('Registrations'),
+                "data" => $data
+            )
+        );
+        $chart_machines_per_day = new Highchart();
+        $chart_machines_per_day->chart->renderTo('chart_machines_per_day');
+        $chart_machines_per_day->chart->zoomType('x');
+        $chart_machines_per_day->chart->type('area');
+        $chart_machines_per_day->title->text($this->get('translator')->trans('Machine registrations per day'));
+        $chart_machines_per_day->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
+        $chart_machines_per_day->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
+        $chart_machines_per_day->xAxis->type('datetime');
+        $chart_machines_per_day->xAxis->minRange(14 * 24 * 3600000);
+        $chart_machines_per_day->yAxis->title(array('text'  => $this->get('translator')->trans('Machine registrations per day')));
+        $chart_machines_per_day->legend->enabled(true);
+        $chart_machines_per_day->plotOptions->area(array(
+            'allowPointSelect'  => true,
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $chart_machines_per_day->series($series);
+        // end of chart
+
+
+
+
+
+
+
+
+
+
+
         $stats = array();
         $metatitle = $this->get('translator')->trans('General Statistics');
         $title = $metatitle;
@@ -56,7 +135,8 @@ class StatsController extends BaseController
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
-            'chart' => $ob
+            'chart_registrations_per_day' => $chart_registrations_per_day,
+            'chart_machines_per_day' => $chart_machines_per_day
         );
     }
 

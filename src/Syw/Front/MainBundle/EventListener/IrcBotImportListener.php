@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Whisnet\IrcBotBundle\EventListener\Plugins\Commands\CommandListener;
 use Whisnet\IrcBotBundle\Event\BotCommandFoundEvent;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
@@ -31,6 +32,7 @@ class IrcBotImportListener extends CommandListener
         // get list of arguments passed after command
         // $args = $event->getArguments();
 
+        $em = $this->getManager();
 
         $running = @exec('ps ax | grep "syw:import:lico" | grep -v grep');
         if (trim($running) == "") {
@@ -49,6 +51,10 @@ class IrcBotImportListener extends CommandListener
 
             $msg = "There are actually ".number_format($uCount)." users and ".number_format($mCount)." machines imported, out of around 600,000 users.";
             $this->sendMessage(array($event->getChannel()), $msg);
+
+
+
+
         }
     }
 }
