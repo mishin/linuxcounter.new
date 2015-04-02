@@ -53,6 +53,9 @@ EOT
             $range[1] = new \DateTime("1970-1-1 00:00:00");
             foreach ($machines as $machine) {
                 $createdAt = $machine->getCreatedAt();
+                if ($createdAt <= new \DateTime('1993-01-01')) {
+                    continue;
+                }
                 $rtmp = $this->dayRange($createdAt);
                 $pexist = $db->getRepository('SywFrontMainBundle:StatsMachines')->findOneBy(array('day' => $rtmp[0]));
                 if (true === isset($pexist) && true === is_object($pexist)) {
