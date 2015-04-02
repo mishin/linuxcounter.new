@@ -37,28 +37,45 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $db = $this->getContainer()->get('doctrine')->getManager();
-
-        $machines = $db->getRepository('SywFrontMainBundle:Machines')->findBy(array(), array('createdAt' => 'ASC'));
-
-        $range[0] = new \DateTime("1970-1-1 00:00:00");
-        $range[1] = new \DateTime("1970-1-1 00:00:00");
-        foreach ($machines as $machine) {
-            $createdAt = $machine->getCreatedAt();
-            if (($createdAt >= $range[0]) && ($createdAt <= $range[1])) {
-                $statsReg->setNum($statsReg->getNum()+1);
-                continue;
-            }
-            if (true === isset($statsReg) && true === is_object($statsReg)) {
+        $qb = $db->createQueryBuilder();
+        $qb->select('count(m.id)');
+        $qb->from('SywFrontMainBundle:Machines', 'm');
+        $mCount = $qb->getQuery()->getSingleScalarResult();
+        $ipl   = 1000;
+        for ($start = 0; $start <  $mCount; $start+=$ipl) {
+            $machines = $db->getRepository('SywFrontMainBundle:Machines')->findBy(
+                array(),
+                array('createdAt' => 'ASC'),
+                $ipl,
+                $start
+            );
+            $range[0] = new \DateTime("1970-1-1 00:00:00");
+            $range[1] = new \DateTime("1970-1-1 00:00:00");
+            foreach ($machines as $machine) {
+                $createdAt = $machine->getCreatedAt();
+                $rtmp = $this->dayRange($createdAt);
+                $pexist = $db->getRepository('SywFrontMainBundle:StatsMachines')->findOneBy(array('day' => $rtmp[0]));
+                if (true === isset($pexist) && true === is_object($pexist)) {
+                    $statsReg = $pexist;
+                    $range = $rtmp;
+                    unset($pexist);
+                }
+                if (($createdAt >= $range[0]) && ($createdAt <= $range[1])) {
+                    $statsReg->setNum($statsReg->getNum() + 1);
+                    continue;
+                }
+                if (true === isset($statsReg) && true === is_object($statsReg)) {
+                    $db->persist($statsReg);
+                    $db->flush();
+                }
+                unset($statsReg);
+                $range    = $this->dayRange($createdAt);
+                $statsReg = new StatsMachines();
+                $statsReg->setDay($range[0]);
+                $statsReg->setNum(1);
                 $db->persist($statsReg);
                 $db->flush();
             }
-            unset($statsReg);
-            $range = $this->dayRange($createdAt);
-            $statsReg = new StatsMachines();
-            $statsReg->setDay($range[0]);
-            $statsReg->setNum(1);
-            $db->persist($statsReg);
-            $db->flush();
         }
 
         $output->writeln(sprintf('Machines statistics created', ''));
