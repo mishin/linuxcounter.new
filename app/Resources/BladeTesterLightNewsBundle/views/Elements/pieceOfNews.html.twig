@@ -1,0 +1,8 @@
+<div class="panel panel-default pieceOfNews">
+    <div class="panel-heading">
+        <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}"><h3 class="panel-title newsTitle">[{{ pieceOfNews.createdAt|date('Y-m-d H:i') }}]  {{ pieceOfNews.title }}</h3></a>
+    </div>
+    <div class="panel-body newsBody">
+        {{ pieceOfNews.body|length > 50 ? pieceOfNews.body|slice(0, 400) ~ '...' : pieceOfNews.body|raw|nl2br }}
+    </div>
+</div>

@@ -200,3 +200,10 @@ whisnet_irc_bot:
         username: linuxcounter
         mode: 8
     channels: ["#linuxcounter"]
+
+blade_tester_light_news:
+    driver: doctrine/orm
+    engine: twig
+    classes:
+        news:
+            entity: 'Syw\Front\NewsBundle\Entity\News'

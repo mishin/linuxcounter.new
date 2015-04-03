@@ -38,7 +38,8 @@
     "jms/serializer-bundle": "dev-master",
     "mktcode/caitcha-bundle": "dev-master",
     "ob/highcharts-bundle": "dev-master",
-    "whisller/irc-bot-bundle": "dev-master"
+    "whisller/irc-bot-bundle": "dev-master",
+    "carlescliment/light-news-bundle": "dev-master"
   },
   "require-dev": {
     "sensio/generator-bundle": "dev-master",

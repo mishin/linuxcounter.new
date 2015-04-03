@@ -2,6 +2,10 @@
     <a href="{{ url('syw_front_main_main_index') }}"><span class="fa fa-home"></span>{{ 'Home'|trans }}</a>
 </li>
 <li class="footer-menu-divider">&sdot;</li>
+<li>
+    <a href="{{ url('news_homepage') }}"><span class="fa fa-newspaper-o"></span>{{ 'News'|trans }}</a>
+</li>
+<li class="footer-menu-divider">&sdot;</li>
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'Statistics'|trans }} <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
@@ -51,12 +55,6 @@
     <li>
         <a href="{{ url('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
     </li>
-    {% if is_granted('ROLE_ADMIN') %}
-        <li class="footer-menu-divider">&sdot;</li>
-        <li>
-            <a href="{{ url('admin') }}"><span class="fa fa-exclamation-triangle"></span>{{ 'Admin'|trans }}</a>
-        </li>
-    {% endif %}
 {% else %}
     <li>
         <a href="{{ url('fos_user_security_login') }}">{{ 'Sign in'|trans }}</a>

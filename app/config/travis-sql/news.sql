@@ -16,40 +16,20 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_profile`
+-- Table structure for table `news`
 --
 
-DROP TABLE IF EXISTS `user_profile`;
+DROP TABLE IF EXISTS `news`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_profile` (
+CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) DEFAULT NULL,
-  `city` int(11) DEFAULT NULL,
-  `firstname` varchar(128) DEFAULT NULL,
-  `lastname` varchar(128) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
-  `birthplace` varchar(128) DEFAULT NULL,
-  `homepage` varchar(255) DEFAULT NULL,
-  `icq` varchar(15) DEFAULT NULL,
-  `skype` varchar(128) DEFAULT NULL,
-  `jabber` varchar(255) DEFAULT NULL,
-  `msn` varchar(255) DEFAULT NULL,
-  `facebook` varchar(255) DEFAULT NULL,
-  `google` varchar(255) DEFAULT NULL,
-  `twitter` varchar(255) DEFAULT NULL,
-  `identica` varchar(255) DEFAULT NULL,
-  `interests` varchar(2500) DEFAULT NULL,
-  `hobbies` varchar(2500) DEFAULT NULL,
-  `sincewhen` datetime DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `body` longtext COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
-  `modified_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_D95AB4058D93D649` (`user`),
-  KEY `city` (`city`),
-  CONSTRAINT `FK_D95AB4058D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`),
-  CONSTRAINT `FK_D95AB4052D5B0234` FOREIGN KEY (`city`) REFERENCES `cities` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

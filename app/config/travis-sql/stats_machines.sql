@@ -27,7 +27,6 @@ CREATE TABLE `stats_machines` (
   `month` datetime NOT NULL,
   `num` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `num` (`num`),
   KEY `month` (`month`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,4 +40,4 @@ CREATE TABLE `stats_machines` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-03 21:19:43
+-- Dump completed on 2015-04-03 22:40:52

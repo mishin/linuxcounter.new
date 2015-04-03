@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Syw\Front\MainBundle\SywFrontMainBundle(),
+            new Syw\Front\NewsBundle\SywFrontNewsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Asm\TranslationLoaderBundle\AsmTranslationLoaderBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
@@ -31,6 +32,7 @@ class AppKernel extends Kernel
             new MktCode\CaitchaBundle\MktCodeCaitchaBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
             new Whisnet\IrcBotBundle\WhisnetIrcBotBundle(),
+            new BladeTester\LightNewsBundle\BladeTesterLightNewsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

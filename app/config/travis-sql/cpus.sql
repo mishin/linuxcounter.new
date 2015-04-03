@@ -26,7 +26,7 @@ CREATE TABLE `cpus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `hertz` int(11) NOT NULL,
-  `machinesnum` int(11) DEFAULT '0',
+  `machinesnum` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `hertz` (`hertz`)
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-03 21:19:43
+-- Dump completed on 2015-04-03 22:40:52

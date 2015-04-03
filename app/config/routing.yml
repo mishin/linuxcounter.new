@@ -13,3 +13,8 @@ easy_admin_bundle:
 
 shtumi_useful:
     resource: '@ShtumiUsefulBundle/Resources/config/routing.xml'
+
+blade_tester_light_news_bundle:
+    resource: "@BladeTesterLightNewsBundle/Resources/config/routing.yml"
+    prefix:   /news
+

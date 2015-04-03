@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `mail`;
 CREATE TABLE `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
-  `newsletter_allowed` tinyint(1) DEFAULT '1',
-  `admin_allowed` tinyint(1) DEFAULT '1',
-  `other_users_allowed` tinyint(1) DEFAULT '1',
+  `newsletter_allowed` int(11) NOT NULL DEFAULT '1',
+  `admin_allowed` int(11) NOT NULL DEFAULT '1',
+  `other_users_allowed` int(11) NOT NULL DEFAULT '1',
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `user` (`user`),
-  CONSTRAINT `FK_mail_fos_user` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  UNIQUE KEY `UNIQ_5126AC488D93D649` (`user`),
+  CONSTRAINT `FK_5126AC488D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -44,4 +44,4 @@ CREATE TABLE `mail` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-03 21:19:43
+-- Dump completed on 2015-04-03 22:40:52
