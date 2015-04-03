@@ -24,11 +24,11 @@ DROP TABLE IF EXISTS `stats_machines`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stats_machines` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `day` datetime NOT NULL,
+  `month` datetime NOT NULL,
   `num` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `day` (`day`),
-  KEY `num` (`num`)
+  KEY `num` (`num`),
+  KEY `month` (`month`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -41,4 +41,4 @@ CREATE TABLE `stats_machines` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-02 21:01:51
+-- Dump completed on 2015-04-03 11:48:16

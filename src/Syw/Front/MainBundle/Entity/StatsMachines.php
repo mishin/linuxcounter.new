@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Cpus
  *
- * @ORM\Table(name="stats_machines", indexes={@ORM\Index(name="day", columns={"day"})})
+ * @ORM\Table(name="stats_machines", indexes={@ORM\Index(name="month", columns={"month"})})
  * @ORM\Entity
  */
 class StatsMachines
@@ -21,9 +21,9 @@ class StatsMachines
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="day", type="datetime", nullable=false)
+     * @ORM\Column(name="month", type="datetime", nullable=false)
      */
-    private $day;
+    private $month;
 
     /**
      * @var integer
@@ -34,26 +34,26 @@ class StatsMachines
 
 
     /**
-     * Set day
+     * Set month
      *
-     * @param \DateTime $day
+     * @param \DateTime $month
      * @return StatsRegistration
      */
-    public function setDay(\DateTime $day)
+    public function setMonth(\DateTime $month)
     {
-        $this->day = $day;
+        $this->month = $month;
 
         return $this;
     }
 
     /**
-     * Get day
+     * Get month
      *
      * @return \DateTime
      */
-    public function getDay()
+    public function getMonth()
     {
-        return $this->day;
+        return $this->month;
     }
 
     /**

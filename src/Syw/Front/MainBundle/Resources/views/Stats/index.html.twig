@@ -18,8 +18,8 @@
                         <script type="text/javascript">
                             $(function(){
 
-                                {{ chart(chart_registrations_per_day, false) }}
-                                {{ chart(chart_machines_per_day, false) }}
+                                {{ chart(chart_registrations_per_month, false) }}
+                                {{ chart(chart_machines_per_month, false) }}
 
                                 Highcharts.theme = {
                                     chart: {
@@ -44,12 +44,12 @@
                                 };
 
                                 Highcharts.setOptions(Highcharts.theme);
-                                /* chart_machines_per_day.setOptions(Highcharts.theme); */
+                                /* chart_machines_per_month.setOptions(Highcharts.theme); */
 
                             });
                         </script>
-                        <div id="chart_registrations_per_day" style=""></div>
-                        <div id="chart_machines_per_day" style=""></div>
+                        <div id="chart_registrations_per_month" style=""></div>
+                        <div id="chart_machines_per_month" style=""></div>
 
                     </div>
                 </div>

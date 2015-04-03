@@ -53,8 +53,8 @@ EOT
             $range[1] = new \DateTime("1970-1-1 00:00:00");
             foreach ($profiles as $profile) {
                 $createdAt = $profile->getCreatedAt();
-                $rtmp = $this->dayRange($createdAt);
-                $pexist = $db->getRepository('SywFrontMainBundle:StatsRegistration')->findOneBy(array('day' => $rtmp[0]));
+                $rtmp = $this->monthRange($createdAt);
+                $pexist = $db->getRepository('SywFrontMainBundle:StatsRegistration')->findOneBy(array('month' => $rtmp[0]));
                 if (true === isset($pexist) && true === is_object($pexist)) {
                     $statsReg = $pexist;
                     $range = $rtmp;
@@ -69,9 +69,9 @@ EOT
                     $db->flush();
                 }
                 unset($statsReg);
-                $range    = $this->dayRange($createdAt);
+                $range    = $this->monthRange($createdAt);
                 $statsReg = new StatsRegistration();
-                $statsReg->setDay($range[0]);
+                $statsReg->setMonth($range[0]);
                 $statsReg->setNum(1);
                 $db->persist($statsReg);
                 $db->flush();
@@ -81,11 +81,16 @@ EOT
         $output->writeln(sprintf('Registration statistics created', ''));
     }
 
-    protected function dayRange($date)
+    protected function monthRange($date)
     {
-        $dayar = explode(" ", $date->format('Y-m-d H:i:s'));
-        $day = $dayar[0];
-        return array(new \DateTime($day." 00:00:00"), new \DateTime($day." 23:59:59"));
+        //First day of month
+        $date->modify('first day of this month');
+        $firstday = $date->format('Y-m-d 00:00:00');
+        //Last day of month
+        $date->modify('last day of this month');
+        $lastday = $date->format('Y-m-d 23:59:59');
+
+        return array(new \DateTime($firstday), new \DateTime($lastday));
     }
 
     /**
