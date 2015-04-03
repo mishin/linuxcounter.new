@@ -18,7 +18,7 @@ class StatsController extends BaseController
      */
     public function indexAction()
     {
-        $metatitle = $this->get('translator')->trans('General Statistics');
+        $metatitle = $this->get('translator')->trans('Statistics mainpage');
         $title = $metatitle;
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
@@ -29,114 +29,13 @@ class StatsController extends BaseController
         } else {
             $user = null;
         }
-
-
-
-        // Chart about User registrations per Month
-        unset($data);
-        $registrations = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsRegistration')
-            ->findBy(array(), array('month' => 'ASC'));
-        foreach ($registrations as $reg) {
-            $y = $reg->getMonth()->format('Y');
-            $m = $reg->getMonth()->format('m');
-            $d = $reg->getMonth()->format('d');
-            $data[] = array(
-                (($reg->getMonth()->format('U') + 86400) * 1000),
-                $reg->getNum()
-            );
-        }
-        $series = array(
-            array(
-                "type" => "area",
-                "pointStart" => ((time() - (86400*30))*1000),
-                "name" => $this->get('translator')->trans('Registrations'),
-                "data" => $data
-            )
-        );
-        $chart_registrations_per_month = new Highchart();
-        $chart_registrations_per_month->chart->renderTo('chart_registrations_per_month');
-        $chart_registrations_per_month->chart->zoomType('x');
-        $chart_registrations_per_month->chart->type('area');
-        $chart_registrations_per_month->title->text($this->get('translator')->trans('User registrations per month'));
-        $chart_registrations_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
-        $chart_registrations_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
-        $chart_registrations_per_month->xAxis->type('datetime');
-        $chart_registrations_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
-        $chart_registrations_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('User registrations per month')));
-        $chart_registrations_per_month->legend->enabled(true);
-        $chart_registrations_per_month->plotOptions->area(array(
-            'allowPointSelect'  => true,
-            'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
-        ));
-        $chart_registrations_per_month->series($series);
-        // end of chart
-
-
-
-
-        // Chart about Machine registrations per Month
-        unset($data);
-        $registrations = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsMachines')
-            ->findBy(array(), array('month' => 'ASC'));
-        foreach ($registrations as $reg) {
-            $y = $reg->getMonth()->format('Y');
-            $m = $reg->getMonth()->format('m');
-            $d = $reg->getMonth()->format('d');
-            $data[] = array(
-                (($reg->getMonth()->format('U') + 86400) * 1000),
-                $reg->getNum()
-            );
-        }
-        $series = array(
-            array(
-                "type" => "area",
-                "pointStart" => ((time() - (86400*30))*1000),
-                "name" => $this->get('translator')->trans('Registrations'),
-                "data" => $data
-            )
-        );
-        $chart_machines_per_month = new Highchart();
-        $chart_machines_per_month->chart->renderTo('chart_machines_per_month');
-        $chart_machines_per_month->chart->zoomType('x');
-        $chart_machines_per_month->chart->type('area');
-        $chart_machines_per_month->title->text($this->get('translator')->trans('Machine registrations per month'));
-        $chart_machines_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
-        $chart_machines_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
-        $chart_machines_per_month->xAxis->type('datetime');
-        $chart_machines_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
-        $chart_machines_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('Machine registrations per month')));
-        $chart_machines_per_month->legend->enabled(true);
-        $chart_machines_per_month->plotOptions->area(array(
-            'allowPointSelect'  => true,
-            'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
-        ));
-        $chart_machines_per_month->series($series);
-        // end of chart
-
-
-
-
-
-
-
-
-
-
-
         $stats = array();
-        $metatitle = $this->get('translator')->trans('General Statistics');
-        $title = $metatitle;
         return array(
             'metatitle' => $metatitle,
             'title' => $title,
             'languages' => $languages,
             'user' => $user,
-            'chart_registrations_per_month' => $chart_registrations_per_month,
-            'chart_machines_per_month' => $chart_machines_per_month
+            'stats' => $stats
         );
     }
 
@@ -351,6 +250,187 @@ class StatsController extends BaseController
             'languages' => $languages,
             'user' => $user,
             'stats' => $stats
+        );
+    }
+
+    /**
+     * @Route("/statistics/counter")
+     * @Method("GET")
+     *
+     * @Template()
+     */
+    public function counterAction()
+    {
+        $metatitle = $this->get('translator')->trans('Statistics about the Linux Counter itself');
+        $title = $metatitle;
+        $languages = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Languages')
+            ->findBy(array('active' => 1), array('language' => 'ASC'));
+
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $this->getUser();
+        } else {
+            $user = null;
+        }
+
+
+        /**
+        // Chart about User registrations per Month
+        unset($data);
+        $registrations = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsRegistration')
+            ->findBy(array(), array('month' => 'ASC'));
+        foreach ($registrations as $reg) {
+            $y = $reg->getMonth()->format('Y');
+            $m = $reg->getMonth()->format('m');
+            $d = $reg->getMonth()->format('d');
+            $data[] = array(
+                (($reg->getMonth()->format('U') + 86400) * 1000),
+                $reg->getNum()
+            );
+        }
+        $series = array(
+            array(
+                "type" => "area",
+                "pointStart" => ((time() - (86400*30))*1000),
+                "name" => $this->get('translator')->trans('Registrations'),
+                "data" => $data
+            )
+        );
+        $chart_registrations_per_month = new Highchart();
+        $chart_registrations_per_month->chart->renderTo('chart_registrations_per_month');
+        $chart_registrations_per_month->chart->zoomType('x');
+        $chart_registrations_per_month->chart->type('area');
+        $chart_registrations_per_month->title->text($this->get('translator')->trans('User registrations per month'));
+        $chart_registrations_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
+        $chart_registrations_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
+        $chart_registrations_per_month->xAxis->type('datetime');
+        $chart_registrations_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
+        $chart_registrations_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('User registrations per month')));
+        $chart_registrations_per_month->legend->enabled(true);
+        $chart_registrations_per_month->plotOptions->area(array(
+            'allowPointSelect'  => true,
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $chart_registrations_per_month->series($series);
+        // end of chart
+
+
+
+
+        // Chart about Machine registrations per Month
+        unset($data);
+        $registrations = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsMachines')
+            ->findBy(array(), array('month' => 'ASC'));
+        foreach ($registrations as $reg) {
+            $y = $reg->getMonth()->format('Y');
+            $m = $reg->getMonth()->format('m');
+            $d = $reg->getMonth()->format('d');
+            $data[] = array(
+                (($reg->getMonth()->format('U') + 86400) * 1000),
+                $reg->getNum()
+            );
+        }
+        $series = array(
+            array(
+                "type" => "area",
+                "pointStart" => ((time() - (86400*30))*1000),
+                "name" => $this->get('translator')->trans('Registrations'),
+                "data" => $data
+            )
+        );
+        $chart_machines_per_month = new Highchart();
+        $chart_machines_per_month->chart->renderTo('chart_machines_per_month');
+        $chart_machines_per_month->chart->zoomType('x');
+        $chart_machines_per_month->chart->type('area');
+        $chart_machines_per_month->title->text($this->get('translator')->trans('Machine registrations per month'));
+        $chart_machines_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
+        $chart_machines_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
+        $chart_machines_per_month->xAxis->type('datetime');
+        $chart_machines_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
+        $chart_machines_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('Machine registrations per month')));
+        $chart_machines_per_month->legend->enabled(true);
+        $chart_machines_per_month->plotOptions->area(array(
+            'allowPointSelect'  => true,
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $chart_machines_per_month->series($series);
+        // end of chart
+        **/
+
+
+
+
+        // Chart about User registrations per Month
+        unset($data1);
+        $registrations = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsMachines')
+            ->findBy(array(), array('month' => 'ASC'));
+        foreach ($registrations as $reg) {
+            $y = $reg->getMonth()->format('Y');
+            $m = $reg->getMonth()->format('m');
+            $d = $reg->getMonth()->format('d');
+            $data1[] = array(
+                (($reg->getMonth()->format('U') + 86400) * 1000),
+                $reg->getNum()
+            );
+        }
+        unset($data2);
+        $registrations = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:StatsRegistration')
+            ->findBy(array(), array('month' => 'ASC'));
+        foreach ($registrations as $reg) {
+            $y = $reg->getMonth()->format('Y');
+            $m = $reg->getMonth()->format('m');
+            $d = $reg->getMonth()->format('d');
+            $data2[] = array(
+                (($reg->getMonth()->format('U') + 86400) * 1000),
+                $reg->getNum()
+            );
+        }
+        $series = array(
+            array(
+                "name" => $this->get('translator')->trans('Machine Registrations'),
+                "data" => $data1
+            ),
+            array(
+                "name" => $this->get('translator')->trans('User Registrations'),
+                "data" => $data2
+            )
+        );
+        $chart_registrations_per_month = new Highchart();
+        $chart_registrations_per_month->chart->renderTo('chart_registrations_per_month');
+        $chart_registrations_per_month->chart->zoomType('x');
+        $chart_registrations_per_month->chart->type('line');
+        $chart_registrations_per_month->title->text($this->get('translator')->trans('Registrations per month'));
+        $chart_registrations_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
+        $chart_registrations_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
+        $chart_registrations_per_month->xAxis->type('datetime');
+        $chart_registrations_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
+        $chart_registrations_per_month->yAxis->min(0);
+        $chart_registrations_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('Registrations per month')));
+        $chart_registrations_per_month->legend->enabled(true);
+        $chart_registrations_per_month->plotOptions->area(array(
+            'allowPointSelect'  => true,
+            'dataLabels'    => array('enabled' => false),
+            'showInLegend'  => true
+        ));
+        $chart_registrations_per_month->series($series);
+        // end of chart
+
+
+
+
+
+        return array(
+            'metatitle' => $metatitle,
+            'title' => $title,
+            'languages' => $languages,
+            'user' => $user,
+            'chart' => $chart_registrations_per_month
         );
     }
 }

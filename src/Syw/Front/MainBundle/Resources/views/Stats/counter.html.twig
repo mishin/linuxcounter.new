@@ -1,0 +1,56 @@
+{% extends "SywFrontMainBundle::base.html.twig" %}
+
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container page">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ title }}</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <script src="//code.highcharts.com/highcharts.js"></script>
+                        <script src="//code.highcharts.com/modules/exporting.js"></script>
+
+                        <script type="text/javascript">
+                            $(function(){
+
+                                {{ chart(chart, false) }}
+
+                                Highcharts.theme = {
+                                    chart: {
+                                        fillColor: {
+                                            linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+                                            stops: [
+                                                [0, Highcharts.getOptions().colors[0]],
+                                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                            ]
+                                        },
+                                        marker: {
+                                            radius: 2
+                                        },
+                                        lineWidth: 1,
+                                        states: {
+                                            hover: {
+                                                lineWidth: 1
+                                            }
+                                        },
+                                        threshold: null
+                                    }
+                                };
+
+                                chart.setOptions(Highcharts.theme);
+
+                            });
+                        </script>
+                        <div id="chart_registrations_per_month" style=""></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
