@@ -41,7 +41,8 @@ EOT
         $qb->select('count(up.id)');
         $qb->from('SywFrontMainBundle:UserProfile', 'up');
         $uCount = $qb->getQuery()->getSingleScalarResult();
-        $ipl   = 1000;
+        $ipl   = 100;
+        gc_collect_cycles();
         for ($start = 0; $start <  $uCount; $start+=$ipl) {
             $profiles = $db->getRepository('SywFrontMainBundle:UserProfile')->findBy(
                 array(),
@@ -51,6 +52,7 @@ EOT
             );
             $range[0] = new \DateTime("1970-1-1 00:00:00");
             $range[1] = new \DateTime("1970-1-1 00:00:00");
+            gc_collect_cycles();
             foreach ($profiles as $profile) {
                 $createdAt = $profile->getCreatedAt();
                 $rtmp = $this->monthRange($createdAt);
@@ -75,8 +77,19 @@ EOT
                 $statsReg->setNum(1);
                 $db->persist($statsReg);
                 $db->flush();
+
+                $pexist = null;
+                unset($pexist);
+
+                gc_collect_cycles();
             }
+            $profiles = null;
+            unset($profiles);
+            gc_collect_cycles();
         }
+
+        $db->clear();
+        $db->close();
 
         $output->writeln(sprintf('Registration statistics created', ''));
     }
