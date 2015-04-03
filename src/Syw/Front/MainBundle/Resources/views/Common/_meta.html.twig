@@ -20,5 +20,29 @@
 <meta http-equiv="content-language" content="en"/>
 <meta http-equiv="cache-control" content="10"/>
 <meta http-equiv="expires" content="10"/>
+
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="{% if metatitle %}{{ metatitle }} - {% endif %}LiCo - The New Linux Counter Project - linuxcounter.net">
+<meta itemprop="description" content="The New Linux Counter Project replaces the good old counter.li.org project. It counts and generates statistics about all linux users and machines.">
+<meta itemprop="image" content="{{ url('syw_front_main_main_index') }}bundles/sywfrontmain/images/social-image.png">
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="Alexander Löhner">
+<meta name="twitter:title" content="{% if metatitle %}{{ metatitle }} - {% endif %}LiCo - The New Linux Counter Project - linuxcounter.net">
+<meta name="twitter:description" content="The New Linux Counter Project replaces the good old counter.li.org project. It counts and generates statistics about all linux users and machines.">
+<meta name="twitter:creator" content="Alexander Löhner">
+<meta name="twitter:image:src" content="{{ url('syw_front_main_main_index') }}bundles/sywfrontmain/images/social-image.png">
+
+<meta property="og:title" content="{% if metatitle %}{{ metatitle }} - {% endif %}LiCo - The New Linux Counter Project - linuxcounter.net" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{{ url('syw_front_main_main_index') }}" />
+<meta property="og:description" content="The New Linux Counter Project replaces the good old counter.li.org project. It counts and generates statistics about all linux users and machines." />
+<meta property="og:image" content="{{ url('syw_front_main_main_index') }}bundles/sywfrontmain/images/social-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+
 <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
+
