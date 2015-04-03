@@ -393,12 +393,12 @@ class StatsController extends BaseController
         }
         $series = array(
             array(
-                "name" => $this->get('translator')->trans('Machine Registrations'),
-                "data" => $data1
-            ),
-            array(
                 "name" => $this->get('translator')->trans('User Registrations'),
                 "data" => $data2
+            ),
+            array(
+                "name" => $this->get('translator')->trans('Machine Registrations'),
+                "data" => $data1
             )
         );
         $chart_registrations_per_month = new Highchart();
