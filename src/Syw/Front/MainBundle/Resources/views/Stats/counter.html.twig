@@ -6,9 +6,22 @@
     <div class="container page">
         <div class="row">
             <div class="col-sm-12">
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ title }}</h3>
+                        <h3 class="panel-title">{{ title1 }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Actually there are {{ stats.usernum|number_format }} users with {{ stats.machinenum|number_format }} machines registered in our database.</p>
+                        <p>The city with the most registered users is {{ stats.mostcity }} in {{ stats.citycountry }} ({{ stats.cityusernum|number_format }} users).</p>
+
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ title2 }}</h3>
                     </div>
                     <div class="panel-body">
 

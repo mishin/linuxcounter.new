@@ -87,47 +87,6 @@ class StatsController extends BaseController
             $user = null;
         }
         $stats = array();
-
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $qb = $em->createQueryBuilder();
-        $qb->select('count(user.id)');
-        $qb->from('SywFrontMainBundle:User', 'user');
-        $uCount = $qb->getQuery()->getSingleScalarResult();
-        $stats['usernum'] = $uCount;
-
-        $qb = $em->createQueryBuilder();
-        $qb->select('count(machines.id)');
-        $qb->from('SywFrontMainBundle:Machines', 'machines');
-        $mCount = $qb->getQuery()->getSingleScalarResult();
-        $stats['machinenum'] = $mCount;
-
-        $mostcity = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Cities')
-            ->findBy(
-                array(),
-                array('usernum' => 'DESC'),
-                1,
-                0
-            );
-        $stats['mostcity'] = $mostcity[0]->getName();
-        $stats['cityusernum'] = $mostcity[0]->getUserNum();
-        $code = $mostcity[0]->getIsoCountryCode();
-        $country = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Countries')
-            ->findOneBy(array('code' => strtolower($code)));
-        $stats['citycountry'] = $country->getName();
-
-
-
-
-
-
-
-
-
-
-
         return array(
             'metatitle' => $metatitle,
             'title' => $title,
@@ -262,7 +221,8 @@ class StatsController extends BaseController
     public function counterAction()
     {
         $metatitle = $this->get('translator')->trans('Statistics about the Linux Counter itself');
-        $title = $metatitle;
+        $title1 = $metatitle;
+        $title2 = $this->get('translator')->trans('Statistics about the registrations');
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
@@ -273,96 +233,35 @@ class StatsController extends BaseController
             $user = null;
         }
 
+        $em = $this->getDoctrine()->getEntityManager();
 
-        /**
-        // Chart about User registrations per Month
-        unset($data);
-        $registrations = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsRegistration')
-            ->findBy(array(), array('month' => 'ASC'));
-        foreach ($registrations as $reg) {
-            $y = $reg->getMonth()->format('Y');
-            $m = $reg->getMonth()->format('m');
-            $d = $reg->getMonth()->format('d');
-            $data[] = array(
-                (($reg->getMonth()->format('U') + 86400) * 1000),
-                $reg->getNum()
+        $qb = $em->createQueryBuilder();
+        $qb->select('count(user.id)');
+        $qb->from('SywFrontMainBundle:User', 'user');
+        $uCount = $qb->getQuery()->getSingleScalarResult();
+        $stats['usernum'] = $uCount;
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('count(machines.id)');
+        $qb->from('SywFrontMainBundle:Machines', 'machines');
+        $mCount = $qb->getQuery()->getSingleScalarResult();
+        $stats['machinenum'] = $mCount;
+
+        $mostcity = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Cities')
+            ->findBy(
+                array(),
+                array('usernum' => 'DESC'),
+                1,
+                0
             );
-        }
-        $series = array(
-            array(
-                "type" => "area",
-                "pointStart" => ((time() - (86400*30))*1000),
-                "name" => $this->get('translator')->trans('Registrations'),
-                "data" => $data
-            )
-        );
-        $chart_registrations_per_month = new Highchart();
-        $chart_registrations_per_month->chart->renderTo('chart_registrations_per_month');
-        $chart_registrations_per_month->chart->zoomType('x');
-        $chart_registrations_per_month->chart->type('area');
-        $chart_registrations_per_month->title->text($this->get('translator')->trans('User registrations per month'));
-        $chart_registrations_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
-        $chart_registrations_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
-        $chart_registrations_per_month->xAxis->type('datetime');
-        $chart_registrations_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
-        $chart_registrations_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('User registrations per month')));
-        $chart_registrations_per_month->legend->enabled(true);
-        $chart_registrations_per_month->plotOptions->area(array(
-            'allowPointSelect'  => true,
-            'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
-        ));
-        $chart_registrations_per_month->series($series);
-        // end of chart
-
-
-
-
-        // Chart about Machine registrations per Month
-        unset($data);
-        $registrations = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:StatsMachines')
-            ->findBy(array(), array('month' => 'ASC'));
-        foreach ($registrations as $reg) {
-            $y = $reg->getMonth()->format('Y');
-            $m = $reg->getMonth()->format('m');
-            $d = $reg->getMonth()->format('d');
-            $data[] = array(
-                (($reg->getMonth()->format('U') + 86400) * 1000),
-                $reg->getNum()
-            );
-        }
-        $series = array(
-            array(
-                "type" => "area",
-                "pointStart" => ((time() - (86400*30))*1000),
-                "name" => $this->get('translator')->trans('Registrations'),
-                "data" => $data
-            )
-        );
-        $chart_machines_per_month = new Highchart();
-        $chart_machines_per_month->chart->renderTo('chart_machines_per_month');
-        $chart_machines_per_month->chart->zoomType('x');
-        $chart_machines_per_month->chart->type('area');
-        $chart_machines_per_month->title->text($this->get('translator')->trans('Machine registrations per month'));
-        $chart_machines_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
-        $chart_machines_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
-        $chart_machines_per_month->xAxis->type('datetime');
-        $chart_machines_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
-        $chart_machines_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('Machine registrations per month')));
-        $chart_machines_per_month->legend->enabled(true);
-        $chart_machines_per_month->plotOptions->area(array(
-            'allowPointSelect'  => true,
-            'dataLabels'    => array('enabled' => false),
-            'showInLegend'  => true
-        ));
-        $chart_machines_per_month->series($series);
-        // end of chart
-        **/
-
-
-
+        $stats['mostcity'] = $mostcity[0]->getName();
+        $stats['cityusernum'] = $mostcity[0]->getUserNum();
+        $code = $mostcity[0]->getIsoCountryCode();
+        $country = $this->get('doctrine')
+            ->getRepository('SywFrontMainBundle:Countries')
+            ->findOneBy(array('code' => strtolower($code)));
+        $stats['citycountry'] = $country->getName();
 
         // Chart about User registrations per Month
         unset($data1);
@@ -421,14 +320,12 @@ class StatsController extends BaseController
         $chart_registrations_per_month->series($series);
         // end of chart
 
-
-
-
-
         return array(
             'metatitle' => $metatitle,
-            'title' => $title,
+            'title1' => $title1,
+            'title2' => $title2,
             'languages' => $languages,
+            'stats' => $stats,
             'user' => $user,
             'chart' => $chart_registrations_per_month
         );
