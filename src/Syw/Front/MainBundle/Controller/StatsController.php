@@ -62,7 +62,7 @@ class StatsController extends BaseController
         $chart_registrations_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
         $chart_registrations_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
         $chart_registrations_per_month->xAxis->type('datetime');
-        $chart_registrations_per_month->xAxis->minRange(14 * 24 * 3600000);
+        $chart_registrations_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
         $chart_registrations_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('User registrations per month')));
         $chart_registrations_per_month->legend->enabled(true);
         $chart_registrations_per_month->plotOptions->area(array(
@@ -106,7 +106,7 @@ class StatsController extends BaseController
         $chart_machines_per_month->subtitle->text($this->get('translator')->trans('Click and drag in the plot area to zoom in'));
         $chart_machines_per_month->xAxis->title(array('text'  => $this->get('translator')->trans('Date')));
         $chart_machines_per_month->xAxis->type('datetime');
-        $chart_machines_per_month->xAxis->minRange(14 * 24 * 3600000);
+        $chart_machines_per_month->xAxis->minRange(14 * 24 * 3600000 * 30); // 14 Monate
         $chart_machines_per_month->yAxis->title(array('text'  => $this->get('translator')->trans('Machine registrations per month')));
         $chart_machines_per_month->legend->enabled(true);
         $chart_machines_per_month->plotOptions->area(array(
