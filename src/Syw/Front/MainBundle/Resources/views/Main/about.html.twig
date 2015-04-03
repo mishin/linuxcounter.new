@@ -11,8 +11,99 @@
                         <h3 class="panel-title">{{ 'About the New Linux Counter Project'|trans }}</h3>
                     </div>
                     <div class="panel-body">
-                        <h2><em>LiCo - The New LinuxCounter Project</em></h2>
-                        <p>
+                        <h2><em>LiCo - The New LinuxCounter Project is moving!</em></h2>
+
+                        <p><strong>Dear linux user!</strong></p>
+                        <p> &nbsp; </p>
+
+                        <p>Please hold by and read this information carefully, as it contains important things about
+                            your private data, your account and the moving and migration.</p>
+                        <p> &nbsp; </p>
+
+                        <p>First, we want to welcome you to this very new page of the Linux Counter Project!<br/>
+                            Presumably, you have reached this page, because you wanted to login to your account on the
+                            old page, or you have read our announcements in the social networks. It is some months ago,
+                            since we have announced, that we'll develop a very new page for the Linux Counter Project.
+                        </p>
+                        <p> &nbsp; </p>
+
+                        <p>Our first try with developing the page with the microframework "Silex" and containing a cool
+                            timeline feature like the one from facebook was a failure.<br/>
+                            So we've decided to start again from scratch, using the Symfony 2 framework and as many
+                            useful
+                            and available third party bundles as possible to improve stability and security, as we
+                            didn't want
+                            to reinvent the wheel(s).</p>
+                        <p> &nbsp; </p>
+
+                        <p>The second reason for again starting from scratch was the responsiveness and mobility of the
+                            page. This is much easier and and better integrated in the Symfony 2 Framework, together
+                            with
+                            the Twitter Bootstrap.</p>
+                        <p> &nbsp; </p>
+
+                        <p>So, well, here we are now and the page is ready to get used. Unfortunatly the migration and
+                            moving of the whole data from the old database will take some several days, maybe weeks, as
+                            the database is really huge with thousands of thousands of datasets which all needs to be
+                            converted to the new database format. This is not so easy, but it has to be done.<br/>
+                            The migration, moving and converting already has started some few days ago and thus, the
+                            login
+                            to the old page is now deactivated, in order to prevent data loss.</p>
+                        <p> &nbsp; </p>
+
+                        <p>All your account, user and machines data already are migrated and converted, so we are now
+                            able to allow the login to this new page.<br/>
+                            Unfortunatly there are some few profiles information that couldn't be migrated, for example
+                            your password, as they are encrypted in the database and the new encryption is much more
+                            secure.
+                            Also the city where you are living was not migrated and a few others.</p>
+                        <p> &nbsp; </p>
+
+                        <p>So, the first thing you have to do in order to be able to login and to change and complete
+                            your data, is to <a href="{{ url('syw_front_main_main_index') }}resetting/request">reset and
+                                create your new password</a></p>
+                        <p> &nbsp; </p>
+
+                        <p>After you have created your new password, you will be able to <a
+                                    href="{{ url('syw_front_main_main_index') }}login">reset and
+                                create your new password</a> and to change all of your personal data and your machines.
+                        </p>
+                        <p> &nbsp; </p>
+
+                        <p>Actually there are still some things missing in this new page:
+                        <ul>
+                            <li>All the statistics about the users, machines, countries, distributions, etc...</li>
+                            <li>The ability to change your privacy settings. But don't worry, all your private data is
+                                hidden by default.</li>
+                            <li>The new lico update script for this new page, the old one won't work any more.</li>
+                            <li>The RESTful API, promised on the startpage, is also still missing.</li>
+                        </ul>
+                        </p>
+
+
+                        <p>But be sure that we're doing our best to complete this new page and to add the missing
+                            features very, very soon.</p>
+
+                        <p> &nbsp; </p>
+
+                        <p>So, the last thing to mention is, that we would be very, very glad about EVERY feature request, reported issue or bug and also about every compliment or praise you want to tell us! Any <a href="http://pledgie.com/campaigns/18562">donations are also welcome</a>! :-)</p>
+                        <p> &nbsp; </p>
+
+                        <p><strong>Please report any bug, problem or also feature requests to <a href="https://github.com/alexloehner/linuxcounter.new/issues">our bugtracker on github</a>.</strong></p>
+
+                        <p> &nbsp; </p>
+                        <p>Thanks for reading and we hope, you'll like this new page!</p>
+                        <p> &nbsp; </p>
+                        <p> &nbsp; </p>
+                        <p> &nbsp; </p>
+                        <p><hr></p>
+
+
+                        <p><strong>The content of this page is only a temporary information content while we are moving
+                                and migrating. The text will change to the real "about" page, when this process is
+                                finished.</strong></p>
+
+                        <!-- p>
                             The New <em>LinuxCounter Project</em> was created in order to revive and replace the good old linux counter project on <a href="http://counter.li.org" title="Link to the old counter project">counter.li.org</a>.<br>
                             Since January 11, 2012 counter.li.org redirects directly to linuxcounter.net and thus, linuxcounter.net is the only and main real linux counter with the greatest userbase.
                         </p>
@@ -20,7 +111,7 @@
                             The original <em>Linux Counter</em> was run by a nonprofit membership organization called the <em>Linux Counter</em> Project. This organization was created on May 1, 1999, taking over the running of the counter from Harald Tveit Alvestrand, who has been running the project since 1993. Harald Alvestrand is chief executive officer of the organization.<br>
                             <br>It was started as a "for fun" project to find out how many Linux users there are worldwide. The basic idea is for people to register themselves as being a Linux user. Of course, this way you won't get all Linux users counted as not every Linux user will register himself at the <em>Linux Counter</em> site. Thus, the only way to "know" the number of Linux users worldwide, is to make a guess, preferably a not-too-wild guess of the number of Linux users. Not making wild guesses there is only one way to go: <b>statistics</b>. And so, there we are.<br>
                             <br>Also see <a href="http://en.wikipedia.org/wiki/Linux_Counter" title="Link to wikipedia article about the Linux Counter">this wikipedia article</a> for information about the <em>Linux Counter</em> Project. On the 10th of september in 2011, we also were "<a href="http://en.wikipedia.org/wiki/Slashdotted" title="Link to the wikipedia article about what is slashdotted">slashdotted</a>". <a href="http://linux.slashdot.org/story/11/09/10/1249257/the-linux-counter-relaunches" title="Link to slashdot article about the Linux Counter">See this article here</a>.<br>
-                        </p>
+                        </p -->
                     </div>
                 </div>
             </div>
