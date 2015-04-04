@@ -43,6 +43,7 @@ EOT
         $uCount = $qb->getQuery()->getSingleScalarResult();
         $ipl   = 100;
         gc_collect_cycles();
+        $counter = 0;
         for ($start = 0; $start <  $uCount; $start+=$ipl) {
             $profiles = $db->getRepository('SywFrontMainBundle:UserProfile')->findBy(
                 array(),
@@ -82,6 +83,10 @@ EOT
                 unset($pexist);
 
                 gc_collect_cycles();
+                $counter++;
+                $mypid = getmypid();
+                $files = @exec('lsof -p '.$mypid.' | wc -l');
+                file_put_contents("import.log", ">>> ".$counter." | ".$range[0]->format('Y-m-d')." | open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
             }
             $profiles = null;
             unset($profiles);
