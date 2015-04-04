@@ -120,6 +120,18 @@ EOT
 
             $db->clear();
             $db->close();
+            $licotest->clear();
+            $licotest->close();
+            $licotestdb->close();
+            $lico->close();
+
+            $licotest = null;
+            unset($licotest);
+            $licotestdb = null;
+            unset($licotestdb);
+            $lico = null;
+            unset($lico);
+
             file_put_contents('import.db', ($a + $itemsperloop) . " " . $counter);
             @exec("php app/console syw:statistics:registration start >>import.log 2>&1 3>&1 4>&1 &");
             exit(0);
