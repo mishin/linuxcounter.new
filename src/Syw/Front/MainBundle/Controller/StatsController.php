@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use Syw\Front\MainBundle\Util\XmlToArrayParser;
 
 class StatsController extends BaseController
 {
@@ -107,20 +108,6 @@ class StatsController extends BaseController
         } else {
             $user = null;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         $stats = array();
         return array(
             'metatitle' => $metatitle,
@@ -140,7 +127,6 @@ class StatsController extends BaseController
     public function machinesAction()
     {
         $metatitle = $this->get('translator')->trans('Statistics about the Linux machines');
-        $title = $metatitle;
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
@@ -151,9 +137,30 @@ class StatsController extends BaseController
             $user = null;
         }
         $stats = array();
+
+        // accounts on the machines
+        $title1 = $this->get('translator')->trans('Statistics about the number of accounts on the machines');
+        $xml = file_get_contents("xml/machines_accounts.xml");
+        $domObj = new xmlToArrayParser($xml);
+        $domArr = $domObj->array;
+        $stats['machine']['generated'] = $domArr['statistics']['_']['generated'];
+        $gesamt = 0;
+        for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
+            $gesamt += intval($domArr['statistics']['line'][$a]['number']);
+        }
+        $stats['machine']['accounts'] = array();
+        for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
+            $line = $domArr['statistics']['line'][$a];
+            $percent = round((100/$gesamt) * intval($line['number']), 2);
+            $stats['machine']['accounts'][$a]['accounts'] = $line['accounts'];
+            $stats['machine']['accounts'][$a]['number'] = $line['number'];
+            $stats['machine']['accounts'][$a]['percent'] = $percent;
+        }
+        // end accounts on the machines
+
         return array(
             'metatitle' => $metatitle,
-            'title' => $title,
+            'title1' => $title1,
             'languages' => $languages,
             'user' => $user,
             'stats' => $stats

@@ -215,7 +215,14 @@ label > span {
     font-size: 2em;
 }
 
-
+.progress-bar-lico {
+    background-image: -webkit-linear-gradient(top, #ced6de 0, #73909d 100%);
+    background-image: -o-linear-gradient(top,#ced6de 0,#73909d 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#ced6de),to(#73909d));
+    background-image: linear-gradient(to bottom,#ced6de 0,#73909d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffced6de', endColorstr='#ff73909d', GradientType=0);
+    background-repeat: repeat-x;
+}
 
 
 
