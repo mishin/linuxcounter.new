@@ -6,11 +6,14 @@
         <div class="col-sm-12">
             {{ pieceOfNews.body|striptags|length > 50 ? pieceOfNews.body|striptags|slice(0, 400) ~ '...' : pieceOfNews.body|raw|nl2br }}
         </div>
+        <div class="col-sm-12">
+            <hr size="1" noshade="noshade"/>
+        </div>
         <div class="col-sm-6">
             <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}">{{ pieceOfNews.createdAt|date('Y-m-d H:i') }}</a>
         </div>
         <div class="col-sm-6">
-            <span style="text-align:right">
+            <span style="display: block;text-align:right">
                 <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}">Read more...</a>
             </span>
         </div>
