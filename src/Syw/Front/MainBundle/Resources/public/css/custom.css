@@ -198,7 +198,10 @@ label > span {
     margin-bottom: 10px;
 }
 
-
+.newsBody > hr {
+    margin-top: 8px;
+    margin-bottom: 80px;
+}
 
 
 
