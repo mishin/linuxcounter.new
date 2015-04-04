@@ -90,35 +90,6 @@ class StatsController extends BaseController
     }
 
     /**
-     * @Route("/statistics/guess")
-     * @Method("GET")
-     *
-     * @Template()
-     */
-    public function guessAction()
-    {
-        $metatitle = $this->get('translator')->trans('Our Guess about the Linux Users worldwide');
-        $title = $metatitle;
-        $languages = $this->get('doctrine')
-            ->getRepository('SywFrontMainBundle:Languages')
-            ->findBy(array('active' => 1), array('language' => 'ASC'));
-
-        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $user = $this->getUser();
-        } else {
-            $user = null;
-        }
-        $stats = array();
-        return array(
-            'metatitle' => $metatitle,
-            'title' => $title,
-            'languages' => $languages,
-            'user' => $user,
-            'stats' => $stats
-        );
-    }
-
-    /**
      * @Route("/statistics/users")
      * @Method("GET")
      *

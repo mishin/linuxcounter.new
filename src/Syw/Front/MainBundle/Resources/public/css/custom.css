@@ -203,6 +203,18 @@ label > span {
     margin-bottom: 8px;
 }
 
+#linux_user_guess {
+    border: 1px solid #b9b9b9;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 3px 3px 5px;
+    background-color: #ced6de;
+    font-size: 3em;
+}
+
+.h1, h1 {
+    font-size: 2em;
+}
+
 
 
 
