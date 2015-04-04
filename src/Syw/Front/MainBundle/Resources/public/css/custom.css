@@ -198,7 +198,7 @@ label > span {
     margin-bottom: 10px;
 }
 
-.newsBody > hr {
+.newsBody > .col-sm-12 > hr {
     margin-top: 8px;
     margin-bottom: 80px;
 }
