@@ -45,6 +45,10 @@ EOT
         gc_collect_cycles();
         $counter = 0;
         for ($start = 0; $start <  $uCount; $start+=$ipl) {
+            $profiles = null;
+            unset($profiles);
+            $range = null;
+            unset($range);
             $profiles = $db->getRepository('SywFrontMainBundle:UserProfile')->findBy(
                 array(),
                 array('createdAt' => 'ASC'),
@@ -55,6 +59,12 @@ EOT
             $range[1] = new \DateTime("1970-1-1 00:00:00");
             gc_collect_cycles();
             foreach ($profiles as $profile) {
+                $createdAt = null;
+                unset($createdAt);
+                $rtmp = null;
+                unset($rtmp);
+                $pexist = null;
+                unset($pexist);
                 $createdAt = $profile->getCreatedAt();
                 $rtmp = $this->monthRange($createdAt);
                 $pexist = $db->getRepository('SywFrontMainBundle:StatsRegistration')->findOneBy(array('month' => $rtmp[0]));
@@ -71,6 +81,7 @@ EOT
                     $db->persist($statsReg);
                     $db->flush();
                 }
+                $statsReg = null;
                 unset($statsReg);
                 $range    = $this->monthRange($createdAt);
                 $statsReg = new StatsRegistration();
