@@ -92,6 +92,7 @@ EOT
                 if (($createdAt >= $range[0]) && ($createdAt <= $range[1])) {
                     $statsReg->setNum($statsReg->getNum() + 1);
                     $db->persist($statsReg);
+                    $db->flush();
                     $counter++;
                     $mypid = getmypid();
                     $files = @exec('lsof -p '.$mypid.' | wc -l');
