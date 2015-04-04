@@ -5,27 +5,13 @@
     <!-- Page Content -->
     <div class="container page">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-7">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ title }}</h3>
                     </div>
                     <div class="panel-body">
 
-                        <p><strong>This page is still under hard development and generally it is still in a pre-alpha state.</strong></p>
-                        <p> &nbsp; </p>
-
-                        <p><strong>We are actually at migrating all the data from the old website to this new one which can take several days, maybe weeks.</strong></p>
-                        <p> &nbsp; </p>
-
-                        <p><strong>There are still not many statistics here, because this makes no sense before the data is not migrated.</strong></p>
-                        <p> &nbsp; </p>
-
-                        <p><strong>But be sure, that we're doing our best to create the statistics very soon and with much more detail than before.</strong></p>
-                        <p> &nbsp; </p>
-
-                        <p><strong>Please test this new website and tell us every issue or problem in our <a href="https://github.com/alexloehner/linuxcounter.new/issues">bugtracker</a>.</strong></p>
-                        <p> &nbsp; </p>
 
 
 
@@ -33,6 +19,28 @@
 
 
 
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ title }}</h3>
+                    </div>
+                    <div class="panel-body" style="text-align: center;">
+
+                        <span class="bold">
+                            At this moment, there are
+                            <span class="h1" style="display:block;">{{ stats.usernum|number_format }}</span> users and
+                            <span class="h1" style="display:block;">{{ stats.machinenum|number_format }}</span> machines registered.<br/>
+
+                            <a href="{{ url('syw_front_main_stats_guess') }}">My guess</a> at the number of Linux users:<br/>
+
+                            <span id="linux_user_guess" class="h1" style="display:block;">{{ stats.guestimate_users|number_format }}</span>
+
+                            <small>World population: <span id="worldpop">{{ stats.world_population|number_format }}</span></small><br/>
+                            <small>Internet users: <span id="internet_user">{{ stats.world_internet_users|number_format }}</span></small>
+                        </span>
                     </div>
                 </div>
             </div>
