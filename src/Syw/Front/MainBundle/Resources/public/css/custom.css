@@ -224,6 +224,9 @@ label > span {
     background-repeat: repeat-x;
 }
 
+.progress-description {
+    text-align: left;
+}
 
 
 

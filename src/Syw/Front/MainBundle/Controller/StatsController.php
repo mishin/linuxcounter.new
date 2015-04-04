@@ -143,24 +143,66 @@ class StatsController extends BaseController
         $xml = file_get_contents("xml/machines_accounts.xml");
         $domObj = new xmlToArrayParser($xml);
         $domArr = $domObj->array;
-        $stats['machine']['generated'] = $domArr['statistics']['_']['generated'];
+        $stats['accounts'] = array();
         $gesamt = 0;
         for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
             $gesamt += intval($domArr['statistics']['line'][$a]['number']);
         }
-        $stats['machine']['accounts'] = array();
         for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
             $line = $domArr['statistics']['line'][$a];
             $percent = round((100/$gesamt) * intval($line['number']), 2);
-            $stats['machine']['accounts'][$a]['accounts'] = $line['accounts'];
-            $stats['machine']['accounts'][$a]['number'] = $line['number'];
-            $stats['machine']['accounts'][$a]['percent'] = $percent;
+            $stats['accounts'][$a]['accounts'] = $line['accounts'];
+            $stats['accounts'][$a]['number'] = $line['number'];
+            $stats['accounts'][$a]['percent'] = $percent;
         }
         // end accounts on the machines
+
+        // countries of the machines
+        $title2 = $this->get('translator')->trans('Statistics about the number of machines per country');
+        $xml = file_get_contents("xml/machines_countries.xml");
+        $domObj = new xmlToArrayParser($xml);
+        $domArr = $domObj->array;
+        $stats['countries'] = array();
+        $gesamt = 0;
+        for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
+            $gesamt += intval($domArr['statistics']['line'][$a]['machines']);
+        }
+        for ($a = 0; $a<count($domArr['statistics']['line']); $a++) {
+            $line = $domArr['statistics']['line'][$a];
+            $percent = round((100/$gesamt) * intval($line['machines']), 2);
+
+            $country = null;
+            unset($country);
+            $country = $this->get('doctrine')
+                ->getRepository('SywFrontMainBundle:Countries')
+                ->findOneBy(array('code' => strtolower($line['country'])));
+
+            $stats['countries'][$a]['country'] = $country->getName();
+            $stats['countries'][$a]['number'] = $line['machines'];
+            $stats['countries'][$a]['percent'] = $percent;
+        }
+        // end accounts on the machines
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         return array(
             'metatitle' => $metatitle,
             'title1' => $title1,
+            'title2' => $title2,
             'languages' => $languages,
             'user' => $user,
             'stats' => $stats
