@@ -41,15 +41,15 @@ CREATE TABLE `fos_user` (
   `credentials_expired` tinyint(1) NOT NULL,
   `credentials_expire_at` datetime DEFAULT NULL,
   `locale` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
-  `profile_id` int(11) DEFAULT NULL,
-  `mailpref_id` int(11) DEFAULT NULL,
+  `user_profile` int(11) DEFAULT NULL,
+  `mail` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_957A647992FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`),
-  UNIQUE KEY `UNIQ_957A6479CCFA12B8` (`profile_id`),
-  UNIQUE KEY `UNIQ_957A6479C57BB7B7` (`mailpref_id`),
-  CONSTRAINT `FK_957A6479CCFA12B8` FOREIGN KEY (`profile_id`) REFERENCES `user_profile` (`id`),
-  CONSTRAINT `FK_957A6479C57BB7B7` FOREIGN KEY (`mailpref_id`) REFERENCES `mail` (`id`)
+  UNIQUE KEY `UNIQ_957A6479D95AB405` (`user_profile`),
+  UNIQUE KEY `UNIQ_957A64795126AC48` (`mail`),
+  CONSTRAINT `FK_957A64795126AC48` FOREIGN KEY (`mail`) REFERENCES `mail` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_957A6479D95AB405` FOREIGN KEY (`user_profile`) REFERENCES `user_profile` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +62,4 @@ CREATE TABLE `fos_user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-03 22:51:38
+-- Dump completed on 2015-04-04 11:39:19

@@ -30,7 +30,7 @@ class Mail
 
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="mailpref", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
 

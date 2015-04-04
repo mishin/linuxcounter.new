@@ -31,11 +31,13 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToOne(targetEntity="UserProfile", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="user_profile", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $profile;
 
     /**
      * @ORM\OneToOne(targetEntity="Mail", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="mail", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $mailpref;
 

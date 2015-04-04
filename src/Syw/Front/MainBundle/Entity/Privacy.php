@@ -29,7 +29,7 @@ class Privacy
      *
      * @ORM\ManyToOne(targetEntity="Syw\Front\MainBundle\Entity\User", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $user;

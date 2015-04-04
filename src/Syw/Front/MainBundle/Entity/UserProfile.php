@@ -25,13 +25,13 @@ class UserProfile
 
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="profile", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="user", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="Cities", inversedBy="users", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="city", referencedColumnName="id")
+     * @ORM\JoinColumn(name="city", referencedColumnName="id", onDelete="CASCADE")
      */
     private $city;
 

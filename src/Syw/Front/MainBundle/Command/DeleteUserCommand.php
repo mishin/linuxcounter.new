@@ -39,10 +39,75 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $db = $this->getContainer()->get('doctrine')->getManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $licotest   = $this->getContainer()->get('doctrine')->getManager();
+        $licotestdb = $this->getContainer()->get('doctrine.dbal.default_connection');
+
         $username   = $input->getArgument('username');
-        $manipulator = $this->getContainer()->get('syw.util.user_manipulator');
-        $manipulator->delete($username);
+        $user = $em->getRepository('SywFrontMainBundle:User')->findOneBy(array("username" => $username));
+
+        $machines   = $licotest->getRepository('SywFrontMainBundle:Machines')
+            ->findBy(array('user' => $user));
+
+        foreach ($machines as $machine) {
+            unset($obj);
+            $obj = $machine->getClass();
+            if (true === isset($obj) && is_object($obj)) {
+                $obj->setMachinesNum($obj->getMachinesNum() - 1);
+                $em->persist($obj);
+            }
+            $machine->setClass(null);
+            unset($obj);
+            $obj = $machine->getCpu();
+            if (true === isset($obj) && is_object($obj)) {
+                $obj->setMachinesNum($obj->getMachinesNum() - 1);
+                $em->persist($obj);
+            }
+            $machine->setCpu(null);
+            unset($obj);
+            $obj = $machine->getKernel();
+            if (true === isset($obj) && is_object($obj)) {
+                $obj->setMachinesNum($obj->getMachinesNum() - 1);
+                $em->persist($obj);
+            }
+            $machine->setKernel(null);
+            unset($obj);
+            $obj = $machine->getArchitecture();
+            if (true === isset($obj) && is_object($obj)) {
+                $obj->setMachinesNum($obj->getMachinesNum() - 1);
+                $em->persist($obj);
+            }
+            $machine->setArchitecture(null);
+            unset($obj);
+            $obj = $machine->getCountry();
+            if (true === isset($obj) && is_object($obj)) {
+                $obj->setMachinesNum($obj->getMachinesNum() - 1);
+                $em->persist($obj);
+            }
+            $machine->setCountry(null);
+            unset($obj);
+            $obj = $machine->getDistribution();
+            if (true === isset($obj) && is_object($obj)) {
+                $obj->setMachinesNum($obj->getMachinesNum() - 1);
+                $em->persist($obj);
+            }
+            $machine->setDistribution(null);
+            unset($obj);
+            $obj = $machine->getPurpose();
+            if (true === isset($obj) && is_object($obj)) {
+                $obj->setMachinesNum($obj->getMachinesNum() - 1);
+                $em->persist($obj);
+            }
+            $machine->setPurpose(null);
+            $em->persist($machine);
+            $em->flush();
+            $em->remove($machine);
+            $em->flush();
+        }
+
+        $licotestdb->exec('DELETE FROM fos_user WHERE `id`=\''.$user->getId().'\'');
+        // $manipulator = $this->getContainer()->get('syw.util.user_manipulator');
+        // $manipulator->delete($username);
 
         $output->writeln(sprintf('Deleted user <comment>%s</comment>', $username));
     }
