@@ -107,6 +107,20 @@ class StatsController extends BaseController
         } else {
             $user = null;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         $stats = array();
         return array(
             'metatitle' => $metatitle,
