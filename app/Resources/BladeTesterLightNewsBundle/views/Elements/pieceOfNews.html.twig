@@ -3,6 +3,16 @@
         <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}"><h3 class="panel-title newsTitle">[{{ pieceOfNews.createdAt|date('Y-m-d H:i') }}]  {{ pieceOfNews.title }}</h3></a>
     </div>
     <div class="panel-body newsBody">
-        {{ pieceOfNews.body|striptags|length > 50 ? pieceOfNews.body|striptags|slice(0, 400) ~ '...' : pieceOfNews.body|raw|nl2br }}
+        <div class="col-sm-12">
+            {{ pieceOfNews.body|striptags|length > 50 ? pieceOfNews.body|striptags|slice(0, 400) ~ '...' : pieceOfNews.body|raw|nl2br }}
+        </div>
+        <div class="col-sm-6">
+            <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}">{{ pieceOfNews.createdAt|date('Y-m-d H:i') }}</a>
+        </div>
+        <div class="col-sm-6">
+            <span style="text-align:right">
+                <a href="{{ url('news_view', {'id': pieceOfNews.getId()}) }}">Read more...</a>
+            </span>
+        </div>
     </div>
 </div>
