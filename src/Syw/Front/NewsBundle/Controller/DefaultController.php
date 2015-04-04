@@ -27,7 +27,7 @@ class DefaultController extends LightNewsDefaultController
             $user = null;
         }
 
-        $metatitle = $this->get('translator')->trans('About the Linux Counter');
+        $metatitle = $this->get('translator')->trans('News and Announcements');
         $title = $metatitle;
         return array(
             'metatitle' => $metatitle,
@@ -57,7 +57,7 @@ class DefaultController extends LightNewsDefaultController
             $user = null;
         }
 
-        $metatitle = $this->get('translator')->trans('About the Linux Counter');
+        $metatitle = $news->getTitle();
         $title = $metatitle;
         return array(
             'metatitle' => $metatitle,
