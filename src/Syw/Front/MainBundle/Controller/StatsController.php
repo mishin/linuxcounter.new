@@ -19,7 +19,8 @@ class StatsController extends BaseController
     public function indexAction()
     {
         $metatitle = $this->get('translator')->trans('Statistics mainpage');
-        $title = $metatitle;
+        $title1 = $metatitle;
+        $title2 = $this->get('translator')->trans('The estimation of linux users');
         $languages = $this->get('doctrine')
             ->getRepository('SywFrontMainBundle:Languages')
             ->findBy(array('active' => 1), array('language' => 'ASC'));
@@ -78,19 +79,10 @@ class StatsController extends BaseController
         $estimated_num_of_linux_users =   (($stats['world_internet_users'] / 100) * 2.55);
         $stats['guestimate_users'] =   $estimated_num_of_linux_users;
 
-
-
-
-
-
-
-
-
-
-
         return array(
             'metatitle' => $metatitle,
-            'title' => $title,
+            'title1' => $title1,
+            'title2' => $title2,
             'languages' => $languages,
             'user' => $user,
             'stats' => $stats
