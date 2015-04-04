@@ -1,0 +1,8 @@
+{% if current_announcement and announcement_hidden(current_announcement) == false %}
+<div id="announcement">
+    <span>{{ current_announcement.body|raw }}</span>
+    <span class="hide">
+        <a href="#" id="hide_announcement" data-announcement="{{ announcement_cookie(current_announcement) }}">Hide</a>
+    </span>
+</div>
+{% endif %}

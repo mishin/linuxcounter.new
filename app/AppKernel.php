@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new Ob\HighchartsBundle\ObHighchartsBundle(),
             new Whisnet\IrcBotBundle\WhisnetIrcBotBundle(),
             new BladeTester\LightNewsBundle\BladeTesterLightNewsBundle(),
+            new Redmonster\AnnouncementBundle\RedmonsterAnnouncementBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -48,5 +49,14 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
+    }
+
+    protected function initializeContainer()
+    {
+        parent::initializeContainer();
+        if (PHP_SAPI == 'cli') {
+            $this->getContainer()->enterScope('request');
+            $this->getContainer()->set('request', new \Symfony\Component\HttpFoundation\Request(), 'request');
+        }
     }
 }

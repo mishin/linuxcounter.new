@@ -16,29 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `classes`
+-- Table structure for table `announcements`
 --
 
-DROP TABLE IF EXISTS `classes`;
+DROP TABLE IF EXISTS `announcements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `classes` (
+CREATE TABLE `announcements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `machinesnum` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `body` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `classes`
+-- Dumping data for table `announcements`
 --
 
-LOCK TABLES `classes` WRITE;
-/*!40000 ALTER TABLE `classes` DISABLE KEYS */;
-INSERT INTO `classes` VALUES (2,'1686',0),(3,'asus',0),(4,'barebone',0),(5,'cluster',0),(6,'d201gly2',1),(7,'desktop',1),(8,'desktop-pc',0),(9,'diskless',0),(10,'embedded',15),(11,'fujitsu',0),(12,'games',0),(13,'handheld',10),(14,'headless',0),(15,'homebrew',0),(16,'htpc',0),(17,'itx',0),(18,'laptop',241),(19,'netbook',0),(20,'nettop',0),(21,'normalilla',0),(22,'notebook',0),(23,'other',5),(24,'pc',0),(25,'personal',0),(26,'phone',0),(27,'server',275),(28,'server/workstation',0),(29,'smartphone',5),(30,'sobremesa',0),(31,'study',0),(32,'sub-notebook',0),(33,'systemax',0),(34,'various',0),(35,'virtual',0),(36,'virtualmachine',8),(37,'vm',0),(38,'workstation',463),(39,'workstation/server',0);
-/*!40000 ALTER TABLE `classes` ENABLE KEYS */;
+LOCK TABLES `announcements` WRITE;
+/*!40000 ALTER TABLE `announcements` DISABLE KEYS */;
+INSERT INTO `announcements` VALUES (1,'Read the latest news!','2015-04-04 11:54:51','2015-04-04 11:54:51'),(2,'some testing...','2015-04-04 11:58:18','2015-04-04 11:58:18');
+/*!40000 ALTER TABLE `announcements` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

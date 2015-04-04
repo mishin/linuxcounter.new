@@ -207,3 +207,8 @@ blade_tester_light_news:
     classes:
         news:
             entity: 'Syw\Front\NewsBundle\Entity\News'
+
+redmonster_announcement:
+    duration: +2 months
+    db_driver: orm
+    announcement_class: Redmonster\AnnouncementBundle\Entity\Announcement
