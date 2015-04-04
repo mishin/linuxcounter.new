@@ -12,7 +12,7 @@
 /web/coverage
 /web/css
 /web/js
-
 import.db
 import.log
 population.db
+web/xml/*.xml
