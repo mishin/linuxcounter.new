@@ -91,15 +91,12 @@ EOT
                 }
                 if (($createdAt >= $range[0]) && ($createdAt <= $range[1])) {
                     $statsReg->setNum($statsReg->getNum() + 1);
+                    $db->persist($statsReg);
                     $counter++;
                     $mypid = getmypid();
                     $files = @exec('lsof -p '.$mypid.' | wc -l');
                     file_put_contents("import.log", ">>> ".$counter." | ".$range[0]->format('Y-m-d')." | open files: ".$files." | Memory info: ".number_format(round((memory_get_usage()/1000), 2))." Mb   (".number_format(round((memory_get_peak_usage()/1000), 2))." Mb) \n", FILE_APPEND);
                     continue;
-                }
-                if (true === isset($statsReg) && true === is_object($statsReg)) {
-                    $db->persist($statsReg);
-                    $db->flush();
                 }
                 $statsReg = null;
                 unset($statsReg);
