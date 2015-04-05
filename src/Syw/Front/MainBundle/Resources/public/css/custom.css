@@ -697,6 +697,16 @@ label > span {
     }
 }
 
+@media only screen and (max-width: 992px) {
+    #profile_machine_table {
+        font-size: 0.8em;
+    }
+    #profile_machine_table table td:nth-child(4),
+    #profile_machine_table table th:nth-child(4) {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 720px) {
     #profile_machine_table {
         font-size: 0.8em;
