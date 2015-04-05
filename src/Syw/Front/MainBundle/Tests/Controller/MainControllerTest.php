@@ -9,7 +9,8 @@ class MainControllerTest extends BaseControllerTest
      */
     public function testMainIndexCharset()
     {
-        $crawler = $this->client->request('GET', '/');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/');
         $this->assertGreaterThan(0, $crawler->filter('meta[charset="utf-8"]')->count());
     }
 
@@ -18,7 +19,8 @@ class MainControllerTest extends BaseControllerTest
      */
     public function testMainIndexContent()
     {
-        $crawler = $this->client->request('GET', '/');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("We are providing the most accurate and complete statistics about linux and its distributions, users, kernels and machines in the world wide web. This also includes statistics about users per country or city, most used cpus, top uptimes lists and much more.")')->count());
     }
 
@@ -27,7 +29,8 @@ class MainControllerTest extends BaseControllerTest
      */
     public function testMainContactContent()
     {
-        $crawler = $this->client->request('GET', '/contact');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/contact');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Contact")')->count());
     }
 
@@ -36,7 +39,8 @@ class MainControllerTest extends BaseControllerTest
      */
     public function testMainAboutContent()
     {
-        $crawler = $this->client->request('GET', '/about');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/about');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("About")')->count());
     }
 
@@ -45,7 +49,8 @@ class MainControllerTest extends BaseControllerTest
      */
     public function testMainDownloadContent()
     {
-        $crawler = $this->client->request('GET', '/download');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/download');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Download")')->count());
     }
 
@@ -54,7 +59,8 @@ class MainControllerTest extends BaseControllerTest
      */
     public function testMainImpressumContent()
     {
-        $crawler = $this->client->request('GET', '/impressum');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/impressum');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Imprint")')->count());
     }
 
@@ -63,7 +69,8 @@ class MainControllerTest extends BaseControllerTest
      */
     public function testMainSupportContent()
     {
-        $crawler = $this->client->request('GET', '/support');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/support');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Support")')->count());
     }
 }

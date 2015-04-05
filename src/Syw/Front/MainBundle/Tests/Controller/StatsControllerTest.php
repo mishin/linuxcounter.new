@@ -9,7 +9,8 @@ class StatsControllerTest extends BaseControllerTest
      */
     public function testStatsIndexContent()
     {
-        $crawler = $this->client->request('GET', '/statistics');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/statistics');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Statistics")')->count());
     }
 
@@ -18,7 +19,8 @@ class StatsControllerTest extends BaseControllerTest
      */
     public function testStatsGuessContent()
     {
-        $crawler = $this->client->request('GET', '/statistics/guess');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/statistics/guess');
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Guess")')->count());
     }
 }

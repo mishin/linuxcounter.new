@@ -8,7 +8,8 @@ class SecurityControllerTest extends BaseControllerTest
     {
         @exec('php app/console syw:user:create '.$this->test1_username.' '.$this->test1_email.' '.$this->test1_passwd.' en >/dev/null 2>&1 3>&1 4>&1');
 
-        $crawler = $this->client->request('GET', '/login');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/login');
 
         $form = $crawler->selectButton('Login')->form(array( '_username' => $this->test1_email, '_password' => $this->test1_passwd ));
         $this->client->submit($form);
@@ -29,7 +30,8 @@ class SecurityControllerTest extends BaseControllerTest
     {
         @exec('php app/console syw:user:create '.$this->test2_username.' '.$this->test2_email.' '.$this->test2_passwd.' de >/dev/null 2>&1 3>&1 4>&1');
 
-        $crawler = $this->client->request('GET', '/login');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/login');
 
         $form = $crawler->selectButton('Login')->form(array( '_username' => $this->test2_email, '_password' => $this->test2_passwd ));
         $this->client->submit($form);
@@ -47,7 +49,8 @@ class SecurityControllerTest extends BaseControllerTest
 
     public function testLoginFailure()
     {
-        $crawler = $this->client->request('GET', '/login');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/login');
 
         $form = $crawler->selectButton('Login')->form(array( '_username' => $this->test1_email, '_password' => $this->test1_passwd.'xyz' ));
         $this->client->submit($form);

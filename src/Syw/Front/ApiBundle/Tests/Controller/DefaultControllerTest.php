@@ -4,14 +4,13 @@ namespace Syw\Front\ApiBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends BaseControllerTest
 {
     public function testIndex()
     {
-        $client = static::createClient();
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('api_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/');
 
-        $crawler = $client->request('GET', '/hello/Fabien');
-
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
+        $this->assertTrue($crawler->filter('html:contains("API Documentation")')->count() > 0);
     }
 }

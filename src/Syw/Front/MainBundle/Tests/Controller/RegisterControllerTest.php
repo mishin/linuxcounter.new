@@ -6,7 +6,8 @@ class RegisterControllerTest extends BaseControllerTest
 {
     public function testRegistrationSuccess1()
     {
-        $crawler = $this->client->request('GET', '/register/');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/register/');
 
         $form = $crawler->filter('form[class=fos_user_registration_register]')->form(array(
             'fos_user_registration_form[email]'                 => $this->test1_email,
@@ -42,7 +43,8 @@ class RegisterControllerTest extends BaseControllerTest
 
     public function testRegistrationSuccess2()
     {
-        $crawler = $this->client->request('GET', '/register/');
+        $basehost = $this->client->getKernel()->getContainer()->getParameter('base_host');
+        $crawler = $this->client->request('GET', 'http://'.$basehost.'/register/');
 
         $form = $crawler->filter('form[class=fos_user_registration_register]')->form(array(
             'fos_user_registration_form[email]'                 => $this->test2_email,
