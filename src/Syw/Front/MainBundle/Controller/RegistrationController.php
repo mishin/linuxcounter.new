@@ -93,11 +93,11 @@ class RegistrationController extends BaseController
             $obj->setSecretSocialInfo(0);
             $obj->setShowRealName(0);
             $obj->setShowEmail(0);
-            $obj->setShowLocation(1);
-            $obj->setShowHostnames(1);
+            $obj->setShowLocation(0);
+            $obj->setShowHostnames(0);
             $obj->setShowKernel(1);
             $obj->setShowDistribution(1);
-            $obj->setShowVersions(1);
+            $obj->setShowVersions(0);
             $em->persist($obj);
             $em->flush();
 
