@@ -50,3 +50,8 @@ services:
         tags:
             - { name: 'kernel.event_subscriber' }
             - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+    activity_listener:
+        class: Syw\Front\MainBundle\Listener\ActivityListener
+        arguments: ['@security.context', '@doctrine']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }
