@@ -697,6 +697,29 @@ label > span {
     }
 }
 
+@media only screen and (max-width: 720px) {
+    #profile_machine_table {
+        font-size: 0.8em;
+    }
+    #profile_machine_table table td:nth-child(4),
+    #profile_machine_table table th:nth-child(4),
+    #profile_machine_table table td:nth-child(5),
+    #profile_machine_table table th:nth-child(5) {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 595px) {
+    #profile_machine_table {
+        font-size: 0.7em;
+    }
+    #profile_machine_table table td:nth-child(4),
+    #profile_machine_table table th:nth-child(4),
+    #profile_machine_table table td:nth-child(5),
+    #profile_machine_table table th:nth-child(5) {
+        display: none;
+    }
+}
 
 
 
