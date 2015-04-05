@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article" lang="en">
+<head>
+    {{ include('SywFrontMainBundle:Common:_meta.html.twig') }}
+
+    {% block stylesheets %}
+        {{ include('SywFrontMainBundle:Common:_stylesheets.html.twig') }}
+    {% endblock %}
+    {% javascripts
+    'bundles/sywfrontmain/js/jquery-1.11.2.min.js'
+    'bundles/sywfrontmain/js/jquery-ui.min.js'
+    'assets/EmailObfuscator.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</head>
+<body>
+<div id="main" class="container">
+    <div id="loadingDiv">
+        <img id="loadingImg" src="{{ '/bundles/sywfrontmain/images/loading.gif' }}"/><br/>
+        <strong>{{ 'Loading...'|trans }}</strong>
+    </div>
+
+    <!-- {--{ include('RedmonsterAnnouncementBundle:Announcement:announcement.html.twig') }--} -->
+    {{ include('SywFrontApiBundle:Common:_navbar.html.twig') }}
+
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="{{ type }}">
+                {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+
+    {% block body %}
+        <div class="container page">
+            {% if app.session.get('confirmation') is defined and app.session.get('confirmation') is not null %}
+                <div id="confirmdialog">
+                    <p>
+                        Are you sure to delete the {{ app.session.get('confirmation').type }} with name {{ app.session.get('confirmation').hostname }} and ID {{ app.session.get('confirmation').id }}?
+                    </p>
+                    <form method="post" action="{{ url(app.session.get('confirmation').yes,{'id':app.session.get('confirmation').id }) }}">
+                        <button type="submit" class="btn red">confirm and delete</button>
+                        <a href="{{ path(app.session.get('confirmation').no) }}" class="btn blue">Cancel</a>
+                    </form>
+                </div>
+                {{ app.session.set('confirmation',null) }}
+            {% endif  %}
+            {% block fos_user_content %}
+                {% trans_default_domain 'FOSUserBundle' %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {{ include('SywFrontMainBundle:Common:_footer.html.twig') }}
+
+    {% block javascripts %}
+        {{ include('SywFrontMainBundle:Common:_javascripts.html.twig') }}
+    {% endblock %}
+</div>
+</body>
+</html>

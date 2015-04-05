@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Syw\Front\MainBundle\SywFrontMainBundle(),
             new Syw\Front\NewsBundle\SywFrontNewsBundle(),
+            new Syw\Front\ApiBundle\SywFrontApiBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Asm\TranslationLoaderBundle\AsmTranslationLoaderBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),

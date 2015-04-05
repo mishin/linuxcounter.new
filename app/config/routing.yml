@@ -2,19 +2,30 @@ syw_front_main:
     resource: "@SywFrontMainBundle/Controller/"
     type:     annotation
     prefix:   /
+    host:     %base_host%
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    host:     %base_host%
 
 easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
+    host:     %base_host%
 
 shtumi_useful:
     resource: '@ShtumiUsefulBundle/Resources/config/routing.xml'
+    host:     %base_host%
 
 blade_tester_light_news_bundle:
     resource: "@BladeTesterLightNewsBundle/Resources/config/routing.yml"
     prefix:   /news
+    host:     %base_host%
+
+syw_front_api:
+    resource: "@SywFrontApiBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    host:     %api_host%
 

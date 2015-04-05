@@ -70,7 +70,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ 'FOSUserBundle', 'SywFrontMainBundle' ]
+    bundles:        [ 'FOSUserBundle', 'SywFrontMainBundle', 'SywFrontApiBundle' ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
