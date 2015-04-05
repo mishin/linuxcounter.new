@@ -23,7 +23,7 @@
                         {% for this in stats.accounts %}
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <span class="progress-description">{{ this.accounts }}</span>
+                                    <span class="progress-description">{{ this.accounts }} Accounts</span>
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="progress">
@@ -56,7 +56,7 @@
                         {% for this in stats.countries %}
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <span class="progress-description">{{ this.country }}</span>
+                                    <span class="progress-description">{{ this.country|raw }}</span>
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="progress">
