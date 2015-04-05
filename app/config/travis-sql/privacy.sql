@@ -29,7 +29,7 @@ CREATE TABLE `privacy` (
   `secret_counterdata` int(11) NOT NULL DEFAULT '0',
   `secret_machines` int(11) NOT NULL DEFAULT '0',
   `secret_contactinfo` int(11) NOT NULL DEFAULT '1',
-  `secret_socialinfo` int(11) NOT NULL DEFAULT '0',
+  `secret_socialinfo` int(11) NOT NULL DEFAULT '1',
   `show_realname` int(11) NOT NULL DEFAULT '0',
   `show_email` int(11) NOT NULL DEFAULT '0',
   `show_location` int(11) NOT NULL DEFAULT '0',
@@ -52,4 +52,4 @@ CREATE TABLE `privacy` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-05 21:27:06
+-- Dump completed on 2015-04-05 21:44:55

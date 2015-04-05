@@ -16,21 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `news`
+-- Table structure for table `api_access`
 --
 
-DROP TABLE IF EXISTS `news`;
+DROP TABLE IF EXISTS `api_access`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `news` (
+CREATE TABLE `api_access` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `body` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `user` int(11) DEFAULT NULL,
+  `apikey` varchar(48) COLLATE utf8_unicode_ci NOT NULL,
+  `last_access` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_809E6CD48D93D649` (`user`),
+  CONSTRAINT `FK_809E6CD48D93D649` FOREIGN KEY (`user`) REFERENCES `fos_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `api_access`
+--
+
+LOCK TABLES `api_access` WRITE;
+/*!40000 ALTER TABLE `api_access` DISABLE KEYS */;
+/*!40000 ALTER TABLE `api_access` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

@@ -21,18 +21,18 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 class IrcBotImportListener extends CommandListener
 {
     protected $em;
+    protected $container;
 
-    public function setEntityManager(EntityManager $em)
+    public function setEntityManager(ContainerInterface $container, Doctrine $doctrine)
     {
-        $this->em = $em;
+        $this->em = $doctrine->getEntityManager();
+        $this->container = $container;
     }
 
     public function onCommand(BotCommandFoundEvent $event)
     {
         // get list of arguments passed after command
         // $args = $event->getArguments();
-
-        $em = $this->getManager();
 
         $running = @exec('ps ax | grep "syw:import:lico" | grep -v grep');
         if (trim($running) == "") {

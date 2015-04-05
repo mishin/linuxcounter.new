@@ -43,5 +43,10 @@ services:
             - { name: twig.extension }
     syw.irclistener.importlistener:
         class: Syw\Front\MainBundle\EventListener\IrcBotImportListener
-        calls:
-        - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+        arguments: ['@service_container', '@doctrine']
+    syw.loginlistener.login:
+        class: Syw\Front\MainBundle\EventListener\LoginListener
+        arguments: ['@service_container', '@router', '@security.context', '@doctrine']
+        tags:
+            - { name: 'kernel.event_subscriber' }
+            - { name: 'kernel.event_listener', event: 'security.interactive_login' }

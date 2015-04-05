@@ -35,64 +35,64 @@ class Privacy
     private $user;
 
     /**
-     * @ORM\Column(name="secret_profile", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="secret_profile", type="integer", length=1, nullable=false, options={"default"="0"})
      */
-    private $secretProfile;
+    private $secretProfile = 0;
 
     /**
-     * @ORM\Column(name="secret_counterdata", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="secret_counterdata", type="integer", length=1, nullable=false, options={"default"="0"})
      */
-    private $secretCounterData;
+    private $secretCounterData = 0;
 
     /**
-     * @ORM\Column(name="secret_machines", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="secret_machines", type="integer", length=1, nullable=false, options={"default"="0"})
      */
-    private $secretMachines;
+    private $secretMachines = 0;
 
     /**
-     * @ORM\Column(name="secret_contactinfo", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="secret_contactinfo", type="integer", length=1, nullable=false, options={"default"="1"})
      */
-    private $secretContactInfo;
+    private $secretContactInfo = 1;
 
     /**
-     * @ORM\Column(name="secret_socialinfo", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="secret_socialinfo", type="integer", length=1, nullable=false, options={"default"="1"})
      */
-    private $secretSocialInfo;
+    private $secretSocialInfo = 1;
 
     /**
-     * @ORM\Column(name="show_realname", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="show_realname", type="integer", length=1, nullable=false, options={"default"="0"})
      */
-    private $showRealName;
+    private $showRealName = 0;
 
     /**
-     * @ORM\Column(name="show_email", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="show_email", type="integer", length=1, nullable=false, options={"default"="0"})
      */
-    private $showEmail;
+    private $showEmail = 0;
 
     /**
-     * @ORM\Column(name="show_location", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="show_location", type="integer", length=1, nullable=false, options={"default"="0"})
      */
-    private $showLocation;
+    private $showLocation = 0;
 
     /**
-     * @ORM\Column(name="show_hostnames", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="show_hostnames", type="integer", length=1, nullable=false, options={"default"="0"})
      */
-    private $showHostnames;
+    private $showHostnames = 0;
 
     /**
-     * @ORM\Column(name="show_kernel", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="show_kernel", type="integer", length=1, nullable=false, options={"default"="1"})
      */
-    private $showKernel;
+    private $showKernel = 1;
 
     /**
-     * @ORM\Column(name="show_distribution", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="show_distribution", type="integer", length=1, nullable=false, options={"default"="1"})
      */
-    private $showDistribution;
+    private $showDistribution = 1;
 
     /**
-     * @ORM\Column(name="show_versions", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="show_versions", type="integer", length=1, nullable=false, options={"default"="0"})
      */
-    private $showVersions;
+    private $showVersions = 0;
 
     /**
      * Get id
