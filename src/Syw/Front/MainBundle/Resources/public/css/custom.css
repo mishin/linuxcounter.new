@@ -697,7 +697,7 @@ label > span {
     }
 }
 
-@media only screen and (max-width: 992px) {
+@media (max-width: 992px) {
     #public_machine_table, #profile_machine_table {
         font-size: 0.8em;
     }
@@ -711,7 +711,7 @@ label > span {
     }
 }
 
-@media only screen and (max-width: 720px) {
+@media (max-width: 720px) {
     #public_machine_table, #profile_machine_table {
         font-size: 0.8em;
     }
@@ -729,7 +729,7 @@ label > span {
     }
 }
 
-@media only screen and (max-width: 595px) {
+@media (max-width: 595px) {
     #public_machine_table, #profile_machine_table {
         font-size: 0.7em;
     }
