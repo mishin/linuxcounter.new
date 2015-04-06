@@ -698,8 +698,12 @@ label > span {
 }
 
 @media only screen and (max-width: 992px) {
-    #profile_machine_table {
+    #public_machine_table {
         font-size: 0.8em;
+    }
+    #public_machine_table table td:nth-child(4),
+    #public_machine_table table th:nth-child(4) {
+        display: none;
     }
     #profile_machine_table table td:nth-child(4),
     #profile_machine_table table th:nth-child(4) {
@@ -708,8 +712,14 @@ label > span {
 }
 
 @media only screen and (max-width: 720px) {
-    #profile_machine_table {
+    #public_machine_table {
         font-size: 0.8em;
+    }
+    #public_machine_table table td:nth-child(4),
+    #public_machine_table table th:nth-child(4),
+    #public_machine_table table td:nth-child(5),
+    #public_machine_table table th:nth-child(5) {
+        display: none;
     }
     #profile_machine_table table td:nth-child(4),
     #profile_machine_table table th:nth-child(4),
@@ -720,13 +730,21 @@ label > span {
 }
 
 @media only screen and (max-width: 595px) {
-    #profile_machine_table {
+    #public_machine_table {
         font-size: 0.7em;
+    }
+    #public_machine_table table td:nth-child(4),
+    #public_machine_table table th:nth-child(4),
+    #public_machine_table table td:nth-child(5),
+    #public_machine_table table th:nth-child(5) {
+        display: none;
     }
     #profile_machine_table table td:nth-child(4),
     #profile_machine_table table th:nth-child(4),
     #profile_machine_table table td:nth-child(5),
-    #profile_machine_table table th:nth-child(5) {
+    #profile_machine_table table th:nth-child(5),
+    #profile_machine_table table td:nth-child(2),
+    #profile_machine_table table th:nth-child(2) {
         display: none;
     }
 }
